@@ -35,6 +35,9 @@ public class firstMainMenu extends JDialog {
         System.out.println("open account clicked");
         //Going to open a new menu that allows data to be entered
         dispose();
+        addAccount acct = new addAccount();
+        acct.pack();
+        acct.setVisible(true);
     }
 
     private void onCloseAccount() {
@@ -45,7 +48,7 @@ public class firstMainMenu extends JDialog {
 
     private void onCloseSystem() {
         System.out.println("close system clicked");
-        //Going to open a new menu that closes the system
+        //Going to close system, possibly will be the force save
         dispose();
         System.exit(0);
     }
