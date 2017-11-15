@@ -1,6 +1,9 @@
 public class Main {
 
     public static void main(String[] args) {
-        // write your code here
+        firstMainMenu mainMenu = new firstMainMenu();
+
+        mainMenu.pack();
+        mainMenu.setVisible(true);
     }
 }
