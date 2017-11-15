@@ -5,10 +5,10 @@ public class addAccount extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
+    private JTextField SSNTextField;
     private JTextField firstNameTextField;
     private JTextField lastNameTextField;
-    private JTextField SSNTextField;
-    private JComboBox comboBox1;
+    private JComboBox acctTypecomboBox1;
 
     public addAccount() {
         setContentPane(contentPane);
@@ -44,12 +44,20 @@ public class addAccount extends JDialog {
     }
 
     private void onOK() {
-        // add your code here
+        System.out.println("Ok clicked in add Account");
+        if (acctTypecomboBox1.getSelectedItem() == "Checking") {
+            //This is where we will set a new Checking Account
+            new Checking();
+        } else if (acctTypecomboBox1.getSelectedItem() == "Savings") {
+            //This is where we will set a new Savings account
+            new Savings();
+        }
+        //TODO Finish updating this
         dispose();
     }
 
     private void onCancel() {
-        // add your code here if necessary
+        //Closes the current box.
         dispose();
     }
 
