@@ -52,13 +52,16 @@ public class addAccount extends JDialog {
             //This is where we will set a new Savings account
             new Savings();
         }
-        //TODO Finish updating this
+        //TODO Finish updating this-
         dispose();
     }
 
     private void onCancel() {
         //Closes the current box.
         dispose();
+        firstMainMenu mm = new firstMainMenu();
+        mm.pack();
+        mm.setVisible(true);
     }
 
     public static void main(String[] args) {
