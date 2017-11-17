@@ -4,66 +4,53 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
+    public static ArrayList<User> users = new ArrayList<>();
 
-    static ArrayList<String> users = new ArrayList<>();//The Array for users
+    public static void main(String [] args) throws Exception {
+    readDB();
 
-    public static void main(String[] args) {
+   }
 
-        readDB();
-        firstMainMenu mainMenu = new firstMainMenu();
 
-        mainMenu.pack();
-        mainMenu.setVisible(true);
-    }
+    public static void readDB() throws Exception {
+        File db = new File("testDB.txt");
+        Scanner input = new Scanner(db);
+        input.nextLine(); //Skip title line.
 
-    public static void readDB() {
-        File db = new File("bankdatabase.txt");//connecting to the database
-        try {
-            Scanner input = new Scanner(db);//Open Scanner
-            input.useDelimiter("\r");//Setting Delimeter to Return
-            while (input.hasNext()) {//Checking if their is another record in the file
-                System.out.println(input.next());//TODO This is where we would seperate the account types into the different arrays.
-                String record = input.next();
-                String[] splitRecord = record.split("\t");//splitting the line by tabs
-                if (!users.contains(splitRecord[0])) {//Checking to see if the users group has that SSN in it already
-                    users.add(splitRecord[0]);//If not, then add it
-                    System.out.println("Found New User");
-                }
+      input.useDelimiter("\n");//Set Delimiter to returns to get a record from the Database
+        while(input.hasNext()) {
+            String record = input.next();
+            System.out.println("This is the original DB Record: \n" + record);
+            String[] splitRecord = record.split("\\|");
+            updateUserArray(splitRecord);
+
+
+            //Scanner temp = new Scanner(String.valueOf(input));
+            //int count = 0;
+            //while (input.hasNext()) {
+            //    splitRecord[count] = input.next();
+            //    count++;
             }
-            input.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        input.close();
         }
 
-    }
-
-    public static void readDBtest() {
-        File db = new File("bankdatabase.txt");//connecting to the database
-        try {
-            Scanner input = new Scanner(db);//Open Scanner
-            input.useDelimiter("\r");//Setting Delimeter to Return
-            while (input.hasNext()) {//Checking if their is another record in the file
-                //TODO This is where we would seperate the account types into the different arrays.
-                String record = input.next();
-                System.out.println(record);
-                String[] splitRecord = record.split("\t");//splitting the line by tabs
+    public static void updateUserArray(String[] record) {
+        User obj;
+        obj = new User(record[0], record[5], record[6], record[1],record[2],record[3],record[4]);
+        users.add(obj);
+        String accountType = record[8];
+        System.out.println("AccountType should be: " + accountType);
+        Double balance = Double.valueOf(Integer.parseInt(record[9]));
+        System.out.println("Balance should be: " + balance);
+        //Need to create account here.
+        Account account = new Account();
 
 
-                if (!users.contains(splitRecord[0])) {//Checking to see if the users group has that SSN in it already
-                    users.add(splitRecord[0]);//If not, then add it
-                    System.out.println("Found New User");
-                }
-            }
-            input.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        //Validate that user has this account already.
+
 
     }
 
 
-    public User CreateAddUser(String[] splitRecord) {
-        User obj = new User(splitRecord[0], splitRecord[1], splitRecord[2], splitRecord[3], splitRecord[4], splitRecord[5], splitRecord[6]);
-        return obj;
     }
-}
+
