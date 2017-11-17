@@ -16,14 +16,6 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="a4ef5" class="javax.swing.JButton" binding="openAccountButton" default-binding="true">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Open Account"/>
-            </properties>
-          </component>
           <vspacer id="28548">
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
@@ -31,10 +23,26 @@
           </vspacer>
           <component id="54514" class="javax.swing.JButton" binding="closeSystemButton" default-binding="true">
             <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Close System"/>
+            </properties>
+          </component>
+          <component id="4b5b" class="javax.swing.JButton" binding="newUserButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="New User"/>
+            </properties>
+          </component>
+          <component id="a4ef5" class="javax.swing.JButton" binding="openAccountButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Open Account"/>
             </properties>
           </component>
           <component id="12ae0" class="javax.swing.JButton" binding="closeAccountButton" default-binding="true">
@@ -45,6 +53,11 @@
               <text value="Close Account"/>
             </properties>
           </component>
+          <vspacer id="854f6">
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
         </children>
       </grid>
     </children>

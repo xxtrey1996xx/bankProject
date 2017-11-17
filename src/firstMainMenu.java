@@ -1,5 +1,3 @@
-import src.addAccount;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +7,7 @@ public class firstMainMenu extends JDialog {
     private JButton openAccountButton;
     private JButton closeSystemButton;
     private JButton closeAccountButton;
+    private JButton newUserButton;
 
     public firstMainMenu() {
         setContentPane(contentPane);
@@ -17,6 +16,12 @@ public class firstMainMenu extends JDialog {
         openAccountButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onOpenAccount();
+            }
+        });
+
+        newUserButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onNewUser();
             }
         });
 
@@ -45,6 +50,12 @@ public class firstMainMenu extends JDialog {
     private void onCloseAccount() {
         System.out.println("close account clicked");
         //Going to open a new menu that allows accounts to be closed
+        dispose();
+    }
+
+    private void onNewUser() {
+        System.out.println("new User clicked");
+        //Going to open a new menu that allows new Users to be created
         dispose();
     }
 
