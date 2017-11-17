@@ -49,6 +49,7 @@ public class firstMainMenu extends JDialog {
     private void onCloseSystem() {
         System.out.println("close system clicked");
         //Going to close system, possibly will be the force save
+
         dispose();
         System.exit(0);
     }
