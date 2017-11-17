@@ -17,7 +17,7 @@ public class Main {
     }
 
     public static void readDB() {
-        File db = new File("bankdatabase.txt");//connecting to the database
+        File db = new File("src/bankdatabase.txt");//connecting to the database
         try {
             Scanner input = new Scanner(db);//Open Scanner
             input.useDelimiter("\r");//Setting Delimeter to Tab
