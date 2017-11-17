@@ -5,10 +5,19 @@ public class addAccount extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JTextField SSNTextField;
-    private JTextField firstNameTextField;
-    private JTextField lastNameTextField;
     private JComboBox acctTypecomboBox1;
+    private JTextField ssnText;
+    private JTextField addressText;
+    private JTextField fnameText;
+    private JTextField lnameText;
+    private JTextField actNumText;
+    private JTextField balText;
+    private JTextField intRateText;
+    private JTextField dateOpenedText;
+    private JTextField textField9;
+    private JTextField textField10;
+    private JTextField textField11;
+    private JTextField textField12;
 
     public addAccount() {
         setContentPane(contentPane);
