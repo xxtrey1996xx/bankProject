@@ -1,13 +1,17 @@
+import javafx.application.Application;
+import javafx.stage.Stage;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main {
+public class Main extends Application {
     public static ArrayList<User> users = new ArrayList<>();
 
     public static void main(String [] args) throws Exception {
     readDB();
+        launch(args);
 
    }
 
@@ -34,6 +38,7 @@ public class Main {
         input.close();
         }
 
+
     public static void updateUserArray(String[] record) {
         User obj;
         obj = new User(record[0], record[5], record[6], record[1],record[2],record[3],record[4]);
@@ -43,7 +48,7 @@ public class Main {
         Double balance = Double.valueOf(Integer.parseInt(record[9]));
         System.out.println("Balance should be: " + balance);
         //Need to create account here.
-        Account account = new Account();
+        //Account account = new Account();
 
 
         //Validate that user has this account already.
@@ -52,5 +57,9 @@ public class Main {
     }
 
 
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+
     }
+}
 
