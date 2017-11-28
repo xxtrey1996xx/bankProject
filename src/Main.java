@@ -22,24 +22,19 @@ public class Main {
             String record = input.next();
             System.out.println("This is the original DB Record: \n" + record);
             String[] splitRecord = record.split("\\|");
-            updateUserArray(splitRecord);
+            updateCustomerArray(splitRecord);
 
-
-            //Scanner temp = new Scanner(String.valueOf(input));
-            //int count = 0;
-            //while (input.hasNext()) {
-            //    splitRecord[count] = input.next();
-            //    count++;
         }
         input.close();
     }
 
-    public static void updateUserArray(String[] record) {
+    public static void updateCustomerArray(String[] record) {
         Customer obj;
         obj = new Customer(record[0], record[5], record[6], record[1], record[2], record[3], record[4]);
         customers.add(obj);
         String accountType = null;
         Double balance = 0.0;
+        /*This upcoming code seperates the lack of consistancy in the code for the diffent account types.*/
         if (record[7].compareToIgnoreCase("TMB") == 0) {
             accountType = record[7];
             balance = Double.valueOf(Double.parseDouble(record[8]));
