@@ -1,17 +1,32 @@
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.stage.Window;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main extends Application {
+public class Main {
     public static ArrayList<User> users = new ArrayList<>();
 
-    public static void main(String [] args) throws Exception {
-    readDB();
-        launch(args);
+    public static void main(String[] args) throws Exception {
+
+        LogInScreen lis = new LogInScreen();
+        lis.pack();
+        lis.setVisible(true);
+    }
+}
+     /*   launch(args);
+        readDB();
+
+
+
 
    }
 
@@ -59,7 +74,15 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login.fxml"));
+        Parent root1 = fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("Login Screen");
+        stage.initStyle(StageStyle.DECORATED);
+        stage.setScene(new Scene(root1));
+        stage.show();
     }
 }
 
+*/
