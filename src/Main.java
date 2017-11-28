@@ -13,7 +13,7 @@ public class Main {
     }
 
     public static void readDB() throws Exception {
-        File db = new File("testDB.txt");
+        File db = new File("bankdatabasePIPE.txt");
         Scanner input = new Scanner(db);
         input.nextLine(); //Skip title line.
 
@@ -38,9 +38,21 @@ public class Main {
         Customer obj;
         obj = new Customer(record[0], record[5], record[6], record[1], record[2], record[3], record[4]);
         customers.add(obj);
-        String accountType = record[8];
+        String accountType = null;
+        Double balance = 0.0;
+        if (record[7].compareToIgnoreCase("TMB") == 0) {
+            accountType = record[7];
+            balance = Double.valueOf(Double.parseDouble(record[8]));
+        } else if (record[8].compareToIgnoreCase("savings") == 0) {
+            accountType = record[8];
+            balance = Double.valueOf(Double.parseDouble(record[7]));
+        } else {
+            accountType = record[8];
+            balance = Double.valueOf(Double.parseDouble(record[9]));
+        }
+        //String accountType = record[8];
         System.out.println("AccountType should be: " + accountType);
-        Double balance = Double.valueOf(Integer.parseInt(record[9]));
+        //Double balance = Double.valueOf(Double.parseDouble(record[9]));
         System.out.println("Balance should be: " + balance);
         //Need to create account here.
         //Account account = new Account();
