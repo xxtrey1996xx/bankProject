@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class User {
+public class Customer {
     String ssn;
     String streetAddress;
     String city;
@@ -12,7 +12,7 @@ public class User {
     ArrayList<Account> accounts;
 
 
-    public User(String social, String fName, String lName, String address, String city, String state, String zip) {
+    public Customer(String social, String fName, String lName, String address, String city, String state, String zip) {
         ssn = social;
         streetAddress = address;
         this.city = city;
