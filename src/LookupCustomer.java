@@ -1,14 +1,13 @@
 import javax.swing.*;
 import java.awt.event.*;
 
-public class LogInScreen extends JDialog {
+public class LookupCustomer extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JTextField userNameTextField;
-    private JPasswordField passwordPasswordField;
+    private JTextField textField1;
 
-    public LogInScreen() {
+    public LookupCustomer() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -42,35 +41,21 @@ public class LogInScreen extends JDialog {
     }
 
     public static void main(String[] args) {
-        LogInScreen dialog = new LogInScreen();
+        LookupCustomer dialog = new LookupCustomer();
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);
     }
 
-    //This method checks credentials
-    public static void checkCredentials(String userName, String password) {
-        if (userName.compareToIgnoreCase("teller") == 0 && password.compareToIgnoreCase("password") == 0) {
-            //This means that a teller has inputted their creds
-            FirstMainMenu fmm = new FirstMainMenu();
-            fmm.pack();
-            fmm.setVisible(true);
-        } else if (userName.compareToIgnoreCase("manager") == 0 && password.compareToIgnoreCase("password") == 0) {
-            //THis means that a manager has inputted their creds
-            FirstMainMenu fmm = new FirstMainMenu();
-            fmm.pack();
-            fmm.setVisible(true);
-        } else {
-
-        }
-    }
-
     private void onOK() {
+        //We need to check and see if their SSN is in the system yet.
         dispose();
-        checkCredentials(userNameTextField.getText(), passwordPasswordField.getText());
     }
 
     private void onCancel() {
         dispose();
+        FirstMainMenu fmm = new FirstMainMenu();
+        fmm.pack();
+        fmm.setVisible(true);
     }
 }

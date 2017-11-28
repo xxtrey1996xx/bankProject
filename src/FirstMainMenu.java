@@ -1,3 +1,5 @@
+import jdk.nashorn.internal.lookup.Lookup;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,6 +9,7 @@ public class FirstMainMenu extends JDialog {
     private JButton openAccountButton;
     private JButton closeSystemButton;
     private JButton closeAccountButton;
+    private JButton lookupCustomerButton;
 
     public FirstMainMenu() {
         setContentPane(contentPane);
@@ -27,6 +30,12 @@ public class FirstMainMenu extends JDialog {
         closeSystemButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onCloseSystem();
+            }
+        });
+
+        lookupCustomerButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onLookupCustomer();//Performs button event
             }
         });
     }
@@ -58,5 +67,12 @@ public class FirstMainMenu extends JDialog {
         //Going to close system, possibly will be the force save
         dispose();
         System.exit(0);
+    }
+
+    private void onLookupCustomer() {
+        dispose();
+        LookupCustomer luc = new LookupCustomer();
+        luc.pack();
+        luc.setVisible(true);
     }
 }
