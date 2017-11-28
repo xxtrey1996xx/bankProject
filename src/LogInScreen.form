@@ -93,7 +93,7 @@
             </constraints>
             <properties>
               <labelFor value="df8a4"/>
-              <text value="UserName"/>
+              <text value="Username"/>
             </properties>
           </component>
           <hspacer id="5495e">
