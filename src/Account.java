@@ -1,7 +1,7 @@
 public abstract class Account {
     //Abstract Variables
     public String balance;
-    public String interestRate;
+    public double interestRate;
     public String accountNumber;
     public String type;
     public String ownerID;
@@ -9,7 +9,8 @@ public abstract class Account {
 
     //Abstract Functions
     public abstract String getBalance();//Returns balance
-    public abstract String getInterestRate();//Returns Interest Rate
+
+    public abstract double getInterestRate();//Returns Interest Rate
     public abstract String getType();//Returns account type
     public abstract void credit();//credits the account
     public abstract void debit();//debits the account

@@ -2,7 +2,7 @@ public class Checking extends Account {
     public boolean hasOverdraftAccount;
     private String overdraftAccount;
 
-    public Checking(String ownerID, String balance, String interestRate, String accountNumber, String type, String date, boolean hasOverdraftAccount) {
+    public Checking(String ownerID, String balance, double interestRate, String accountNumber, String type, String date, boolean hasOverdraftAccount) {
         this.ownerID = ownerID;
         this.balance = balance;
         this.interestRate = interestRate;
@@ -12,7 +12,7 @@ public class Checking extends Account {
         this.hasOverdraftAccount = hasOverdraftAccount;
     }
 
-    public Checking(String ownerID, String balance, String interestRate, String accountNumber, String type, String date, boolean hasOverdraftAccount, String overdraftAccount) {
+    public Checking(String ownerID, String balance, double interestRate, String accountNumber, String type, String date, boolean hasOverdraftAccount, String overdraftAccount) {
         this.ownerID = ownerID;
         this.balance = balance;
         this.interestRate = interestRate;
@@ -29,7 +29,7 @@ public class Checking extends Account {
     }
 
     @Override
-    public String getInterestRate() {
+    public double getInterestRate() {
         return interestRate;
     }
 
