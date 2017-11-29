@@ -1,4 +1,6 @@
 import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,10 +9,13 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         readDB();
+        //test save
+        saveDB();
         LogInScreen lis = new LogInScreen();
         lis.pack();
         lis.setVisible(true);
     }
+
     public static void readDB() throws Exception {
         File db = new File("bankdatabasePIPE.txt");
         Scanner input = new Scanner(db);
@@ -22,11 +27,9 @@ public class Main {
             System.out.println("This is the original DB Record: \n" + record);
             String[] splitRecord = record.split("\\|");
             updateCustomerArray(splitRecord);
-
         }
         input.close();
     }
-
 
 
     public static void updateCustomerArray(String[] record) {
@@ -58,6 +61,40 @@ public class Main {
 
 
     }
+
+    public static void saveDB() throws Exception{
+        PrintWriter printWriter = new PrintWriter(new File("CurrentDB.txt"));
+        for (int i = 0; i <= customers.size() - 1; i++) {
+            String address = customers.get(i).streetAddress;
+            String city = customers.get(i).city;
+            String state = customers.get(i).state;
+            String zip = customers.get(i).zip;
+            String fName = customers.get(i).firstName;
+            String lName = customers.get(i).lastName;
+            for (int x = 0; x <= customers.get(i).accounts.size() - 1; x++) {
+                String balance = customers.get(i).accounts.get(x).balance;
+                String interestRate = customers.get(i).accounts.get(x).interestRate;
+                String type = customers.get(i).accounts.get(x).type;
+                String acctNum = customers.get(i).accounts.get(x).accountNumber;
+                String date = customers.get(i).accounts.get(x).date;
+                String ssn = customers.get(i).accounts.get(x).ownerID;
+                //Format and Print Records
+                printWriter.println(
+                        ssn + "\\|" +
+                                address + "\\|" +
+                                city + "\\|" +
+                                state + "\\|" +
+                                zip + "\\|" +
+                                fName + "\\|" +
+                                lName + "\\|" +
+                                acctNum + "\\|" +
+                                type + "\\|" +
+                                balance + "\\|" +
+                                interestRate + "\\|" +
+                                date);
+            }//end nested loop
+        }//end For
+    }//end SaveDb
 
 }
      /*   launch(args);
