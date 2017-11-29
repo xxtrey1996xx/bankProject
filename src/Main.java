@@ -12,6 +12,7 @@ public class Main {
         lis.setVisible(true);
     }
 
+    //Test
     public static void readDB() throws Exception {
         File db = new File("bankdatabasePIPE.txt");
         Scanner input = new Scanner(db);
