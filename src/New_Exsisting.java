@@ -55,6 +55,7 @@ public class New_Exsisting extends JDialog {
     }
 
     private void onCancel() {
+        //Goes backwards
         dispose();
         FirstMainMenu fmm = new FirstMainMenu();
         fmm.pack();
@@ -62,6 +63,7 @@ public class New_Exsisting extends JDialog {
     }
 
     private void onNewCustomer() {
+        //launches new InputCustomer menu
         dispose();
         InputCustomerInformation ici = new InputCustomerInformation();
         ici.pack();
@@ -69,6 +71,7 @@ public class New_Exsisting extends JDialog {
     }
 
     private void onExistingCustomer() {
+        //Launches new Add account menu
         dispose();
         AddAccount aa = new AddAccount();
         aa.pack();
