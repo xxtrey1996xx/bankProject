@@ -57,8 +57,6 @@ public class LookupCustomer extends JDialog {
             //user exists
 
         }
-
-        dispose();
     }
 
     private void onCancel() {
@@ -80,6 +78,11 @@ public class LookupCustomer extends JDialog {
             handleInvalidUser(ssn);
         } else
             System.out.println("Found User: " + Main.customers.get(findIndex).firstName + " " + Main.customers.get(findIndex).lastName);
+        //Shows a popup with a confirmation message
+        JOptionPane.showMessageDialog(null,
+                ssn + " was found. Belongs to " + Main.customers.get(findIndex).firstName + " " + Main.customers.get(findIndex).lastName,
+                "Found Customer", JOptionPane.INFORMATION_MESSAGE);
+
         return findIndex;
     }
 
