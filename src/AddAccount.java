@@ -5,10 +5,12 @@ public class AddAccount extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JTextField SSNTextField;
-    private JTextField firstNameTextField;
-    private JTextField lastNameTextField;
     private JComboBox acctTypecomboBox1;
+    private JTextField SSNTextField;
+    private JTextField accountNumTextField;
+    private JTextField balanceTextField;
+    private JTextField interestRateTextField;
+    private JTextField dateTextField;
 
     public AddAccount() {
         setContentPane(contentPane);
@@ -53,7 +55,10 @@ public class AddAccount extends JDialog {
     private void onOK() {
         System.out.println("Ok clicked in add Account");
         if (acctTypecomboBox1.getSelectedItem() == "Checking") {
-            //This is where we will set a new Checking Account
+            int found = LookupCustomer.lookupUser(SSNTextField.getText());
+            if (found != -99) {
+
+            }
         } else if (acctTypecomboBox1.getSelectedItem() == "Savings") {
             //This is where we will set a new Savings account
         }
