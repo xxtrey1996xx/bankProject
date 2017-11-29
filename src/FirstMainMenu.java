@@ -51,9 +51,9 @@ public class FirstMainMenu extends JDialog {
         System.out.println("open account clicked");
         //Going to open a new menu that allows data to be entered
         dispose();
-        AddAccount acct = new AddAccount();
-        acct.pack();
-        acct.setVisible(true);
+        New_Exsisting ne = new New_Exsisting();
+        ne.pack();
+        ne.setVisible(true);
     }
 
     private void onCloseAccount() {
