@@ -29,6 +29,8 @@ public class Main {
         input.close();
     }
 
+
+
     public static void updateCustomerArray(String[] record) {
         Customer obj;
         obj = new Customer(record[0], record[5], record[6], record[1], record[2], record[3], record[4]);

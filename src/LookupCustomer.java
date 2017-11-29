@@ -1,3 +1,6 @@
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -57,5 +60,28 @@ public class LookupCustomer extends JDialog {
         FirstMainMenu fmm = new FirstMainMenu();
         fmm.pack();
         fmm.setVisible(true);
+    }
+
+    private int lookupUser(String ssn){
+        int findIndex = -99;
+        for(int i = 0; i<Main.customers.size()-1; i++){
+            if(Main.customers.get(i).ssn == ssn)
+                findIndex = i;
+            else
+                handleInvalidUser();
+            System.out.println("Invalid social: " + ssn);
+        }
+        return findIndex;
+    }
+
+
+
+    private void handleInvalidUser() {
+        Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION, "Invalid Username", ButtonType.OK);
+        alertBox.setContentText("Username Is invalid. \n Please verify username and try again.");
+        alertBox.showAndWait();
+        if (alertBox.getResult() == ButtonType.OK) {
+            alertBox.close();
+        }
     }
 }
