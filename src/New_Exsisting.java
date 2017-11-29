@@ -69,6 +69,9 @@ public class New_Exsisting extends JDialog {
     }
 
     private void onExistingCustomer() {
-
+        dispose();
+        AddAccount aa = new AddAccount();
+        aa.pack();
+        aa.setVisible(true);
     }
 }
