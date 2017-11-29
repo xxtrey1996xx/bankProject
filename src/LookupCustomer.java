@@ -75,20 +75,16 @@ public class LookupCustomer extends JDialog {
             if (Main.customers.get(i).ssn.equals(ssn))
                 findIndex = i;
         }
-        if(findIndex == -99)
+        if (findIndex == -99) {
             System.out.println("User not found SSN: " + ssn);
-        else
+            handleInvalidUser(ssn);
+        } else
             System.out.println("Found User: " + Main.customers.get(findIndex).firstName + " " + Main.customers.get(findIndex).lastName);
         return findIndex;
     }
 
 
-    private void handleInvalidUser() {
-        Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION, "Invalid Username", ButtonType.OK);
-        alertBox.setContentText("Username Is invalid. \n Please verify username and try again.");
-        alertBox.showAndWait();
-        if (alertBox.getResult() == ButtonType.OK) {
-            alertBox.close();
-        }
+    private void handleInvalidUser(String ssn) {
+        JOptionPane.showMessageDialog(null, ssn + " was not found", "Customer Not Found", JOptionPane.ERROR_MESSAGE);
     }
 }
