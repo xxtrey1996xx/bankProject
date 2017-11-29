@@ -54,15 +54,16 @@ public class AddAccount extends JDialog {
 
     private void onOK() {
         System.out.println("Ok clicked in add Account");
+        int found = LookupCustomer.lookupUser(SSNTextField.getText());
         if (acctTypecomboBox1.getSelectedItem() == "Checking") {
-            int found = LookupCustomer.lookupUser(SSNTextField.getText());
             if (found != -99) {
-
+                Main.customers.get(found).accounts.add(new Checking(SSNTextField.getText(), balanceTextField.getText(), Double.parseDouble(interestRateTextField.getText()),
+                        accountNumTextField.getText(), "TMB", dateTextField.getText(), true));
+                //TODO We need to update to allow for the different checking account types. I.E tmb gold diamond. Also, hasOverdraftACCT
             }
         } else if (acctTypecomboBox1.getSelectedItem() == "Savings") {
             //This is where we will set a new Savings account
         }
-        //TODO Finish updating this-
         dispose();
     }
 
