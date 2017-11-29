@@ -62,7 +62,10 @@ public class New_Exsisting extends JDialog {
     }
 
     private void onNewCustomer() {
-
+        dispose();
+        InputCustomerInformation ici = new InputCustomerInformation();
+        ici.pack();
+        ici.setVisible(true);
     }
 
     private void onExistingCustomer() {
