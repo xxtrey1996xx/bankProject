@@ -52,6 +52,12 @@ public class LookupCustomer extends JDialog {
 
     private void onOK() {
         //We need to check and see if their SSN is in the system yet.
+        int i = lookupUser(SSNtextField.getText());
+        if (i != -99) {
+            //user exists
+
+        }
+
         dispose();
     }
 
@@ -62,18 +68,18 @@ public class LookupCustomer extends JDialog {
         fmm.setVisible(true);
     }
 
-    private int lookupUser(String ssn){
+    private int lookupUser(String ssn) {
         int findIndex = -99;
-        for(int i = 0; i<Main.customers.size()-1; i++){
-            if(Main.customers.get(i).ssn == ssn)
+        for (int i = 0; i < Main.customers.size() - 1; i++) {
+            if (Main.customers.get(i).ssn.equals(ssn))
                 findIndex = i;
-            else
-                handleInvalidUser();
-            System.out.println("Invalid social: " + ssn);
         }
+        if(findIndex == -99)
+            System.out.println("User not found SSN: " + ssn);
+        else
+            System.out.println("Found User: " + Main.customers.get(findIndex).firstName + " " + Main.customers.get(findIndex).lastName);
         return findIndex;
     }
-
 
 
     private void handleInvalidUser() {
