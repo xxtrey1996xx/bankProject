@@ -1,13 +1,13 @@
 import javax.swing.*;
 import java.awt.event.*;
 
-public class New_Exsisting extends JDialog {
+public class New_Existing extends JDialog {
     private JPanel contentPane;
     private JButton buttonCancel;
     private JButton newCustomerButton;
     private JButton existingCustomerButton;
 
-    public New_Exsisting() {
+    public New_Existing() {
         setContentPane(contentPane);
         setModal(true);
 
@@ -48,7 +48,7 @@ public class New_Exsisting extends JDialog {
     }
 
     public static void main(String[] args) {
-        New_Exsisting dialog = new New_Exsisting();
+        New_Existing dialog = new New_Existing();
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);

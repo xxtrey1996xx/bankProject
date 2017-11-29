@@ -1,5 +1,3 @@
-import jdk.nashorn.internal.lookup.Lookup;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -51,7 +49,7 @@ public class FirstMainMenu extends JDialog {
         System.out.println("open account clicked");
         //Going to open a new menu that allows data to be entered
         dispose();
-        New_Exsisting ne = new New_Exsisting();
+        New_Existing ne = new New_Existing();
         ne.pack();
         ne.setVisible(true);
     }
