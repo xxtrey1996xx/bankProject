@@ -1,33 +1,32 @@
 import javax.swing.*;
 import java.awt.event.*;
 
-public class New_Exsisting extends JDialog {
+public class InputCustomerInformation extends JDialog {
     private JPanel contentPane;
+    private JButton buttonOK;
     private JButton buttonCancel;
-    private JButton newCustomerButton;
-    private JButton existingCustomerButton;
+    private JTextField SSNTextField;
+    private JTextField firstNameTextField;
+    private JTextField lastNameTextField;
+    private JTextField addressTextField;
+    private JTextField cityTextField;
+    private JTextField stateTextField;
+    private JTextField zipcodeTextField;
 
-    public New_Exsisting() {
+    public InputCustomerInformation() {
         setContentPane(contentPane);
         setModal(true);
+        getRootPane().setDefaultButton(buttonOK);
+
+        buttonOK.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onOK();
+            }
+        });
 
         buttonCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onCancel();
-            }
-        });
-
-        newCustomerButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onNewCustomer();
-                System.out.println("New Customer Clicked");
-            }
-        });
-
-        existingCustomerButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onExistingCustomer();
-                System.out.println("Existing Customer Clicked");
             }
         });
 
@@ -48,10 +47,20 @@ public class New_Exsisting extends JDialog {
     }
 
     public static void main(String[] args) {
-        New_Exsisting dialog = new New_Exsisting();
+        InputCustomerInformation dialog = new InputCustomerInformation();
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);
+    }
+
+    private void onOK() {
+        dispose();
+        //This adds a new customer to the arraylist
+        Main.customers.add(new Customer(SSNTextField.getText(), firstNameTextField.getText(), lastNameTextField.getText(), addressTextField.getText(),
+                cityTextField.getText(), stateTextField.getText(), zipcodeTextField.getText()));
+        AddAccount acct = new AddAccount();
+        acct.pack();
+        acct.setVisible(true);
     }
 
     private void onCancel() {
@@ -59,13 +68,5 @@ public class New_Exsisting extends JDialog {
         FirstMainMenu fmm = new FirstMainMenu();
         fmm.pack();
         fmm.setVisible(true);
-    }
-
-    private void onNewCustomer() {
-
-    }
-
-    private void onExistingCustomer() {
-
     }
 }

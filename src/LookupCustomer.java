@@ -66,7 +66,7 @@ public class LookupCustomer extends JDialog {
         fmm.setVisible(true);
     }
 
-    private int lookupUser(String ssn) {
+    public static int lookupUser(String ssn) {
         int findIndex = -99;
         System.out.println("Searching for user " + ssn);
         for (int i = 0; i < Main.customers.size() - 1; i++) {
@@ -89,7 +89,7 @@ public class LookupCustomer extends JDialog {
     }
 
 
-    private void handleInvalidUser(String ssn) {
+    private static void handleInvalidUser(String ssn) {
         JOptionPane.showMessageDialog(null, ssn + " was not found", "Customer Not Found", JOptionPane.ERROR_MESSAGE);
     }
 }
