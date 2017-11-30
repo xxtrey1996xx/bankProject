@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Scanner;
 
 public class Main {
@@ -9,18 +10,20 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         readDB();
-        //test save
-        saveDB();
         LogInScreen lis = new LogInScreen();
         lis.pack();
         lis.setVisible(true);
-    }
+        Thread.sleep(25);
+        //Race Condition for Saving Database. Main is not finished reading before saving is implemented.
+        saveDB();
+    }//End main
 
+    //May need to make this a Runnable as well to avoid race condition with save
     public static void readDB() throws Exception {
-        File db = new File("bankdatabasePIPE.txt");
+        File db = new File("testDB.txt");
         Scanner input = new Scanner(db);
-        input.nextLine(); //Skip title line.
-
+        //Skip title line.
+        input.nextLine();
         input.useDelimiter("\n");//Set Delimiter to returns to get a record from the Database
         while (input.hasNext()) {
             String record = input.next();
@@ -31,53 +34,74 @@ public class Main {
         input.close();
     }
 
-
     public static void updateCustomerArray(String[] record) {
-        Customer obj;
-        obj = new Customer(record[0], record[5], record[6], record[1], record[2], record[3], record[4]);
-        customers.add(obj);
-        String accountType = null;
-        Double balance = 0.0;
-        /*This upcoming code seperates the lack of consistancy in the code for the diffent account types.*/
-        if (record[7].compareToIgnoreCase("TMB") == 0) {
-            accountType = record[7];
-            balance = Double.valueOf(Double.parseDouble(record[8]));
-        } else if (record[8].compareToIgnoreCase("savings") == 0) {
-            accountType = record[8];
-            balance = Double.valueOf(Double.parseDouble(record[7]));
-        } else {
-            accountType = record[8];
-            balance = Double.valueOf(Double.parseDouble(record[9]));
-        }
-        //String accountType = record[8];
-        System.out.println("AccountType should be: " + accountType);
-        //Double balance = Double.valueOf(Double.parseDouble(record[9]));
-        System.out.println("Balance should be: " + balance);
-        //Need to create account here.
-        //Account account = new Account();
+        //Assigns Parsed values to variables
+        String ssn = record[0];
+        String address = record[1];
+        String city = record[2];
+        String state = record[3];
+        String zip = record[4];
+        String fName = record[5];
+        String lName = record[6];
+        String acctNum = record[7];
+        String type = record[8];
+        String balance = record[9];
+        String interest = record[10];
+        String date = record[11];
 
+        //Creates customer object from parsed values
+        Customer newCustomer;
+        newCustomer = new Customer(ssn, fName, lName, address, city, state, zip);
+        customers.add(newCustomer);
+
+        //Creates Account object and assigns to Customer objects Account Array.
+        //if(type == "Savings")
+        newCustomer.accounts.add(new Savings(ssn, balance, interest, acctNum, type, date));
+        System.out.println("Account: " + acctNum +"-" + type +" was added to user " + newCustomer.firstName + " " + newCustomer.lastName);
 
         //Validate that user has this account already.
 
 
     }
 
+    //May need to make this a Runnable to avoid Race condition with reading the database
     public static void saveDB() throws Exception{
+        String address,city,state,zip,fName,lName,balance,interestRate,type,acctNum,date,ssn;
+
+        FileWriter fileWriter = new FileWriter("currentDB.txt");
+
         PrintWriter printWriter = new PrintWriter(new File("CurrentDB.txt"));
         for (int i = 0; i <= customers.size() - 1; i++) {
-            String address = customers.get(i).streetAddress;
-            String city = customers.get(i).city;
-            String state = customers.get(i).state;
-            String zip = customers.get(i).zip;
-            String fName = customers.get(i).firstName;
-            String lName = customers.get(i).lastName;
+            address = customers.get(i).streetAddress;
+            city = customers.get(i).city;
+            state = customers.get(i).state;
+            zip = customers.get(i).zip;
+            fName = customers.get(i).firstName;
+            lName = customers.get(i).lastName;
             for (int x = 0; x <= customers.get(i).accounts.size() - 1; x++) {
-                String balance = customers.get(i).accounts.get(x).balance;
-                String interestRate = customers.get(i).accounts.get(x).interestRate;
-                String type = customers.get(i).accounts.get(x).type;
-                String acctNum = customers.get(i).accounts.get(x).accountNumber;
-                String date = customers.get(i).accounts.get(x).date;
-                String ssn = customers.get(i).accounts.get(x).ownerID;
+                balance = customers.get(i).accounts.get(x).getBalance();
+                interestRate = customers.get(i).accounts.get(x).getInterestRate();
+                type = customers.get(i).accounts.get(x).getType();
+                acctNum = customers.get(i).accounts.get(x).getAccountNumber();
+                date = customers.get(i).accounts.get(x).getDate();
+                ssn = customers.get(i).accounts.get(x).getOwnerID();
+
+                String dbRecord=(
+                        ssn + "\\|" +
+                        address + "\\|" +
+                        city + "\\|" +
+                        state + "\\|" +
+                        zip + "\\|" +
+                        fName + "\\|" +
+                        lName + "\\|" +
+                        acctNum + "\\|" +
+                        type + "\\|" +
+                        balance + "\\|" +
+                        interestRate + "\\|" +
+                        date);
+
+                fileWriter.write(dbRecord);
+
                 //Format and Print Records
                 printWriter.println(
                         ssn + "\\|" +
@@ -92,8 +116,12 @@ public class Main {
                                 balance + "\\|" +
                                 interestRate + "\\|" +
                                 date);
+            fileWriter.flush();
+            printWriter.flush();
             }//end nested loop
         }//end For
+        fileWriter.close();
+        printWriter.close();
     }//end SaveDb
 
 }

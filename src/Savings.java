@@ -1,16 +1,19 @@
 public class Savings extends Account {
 
+    String ownerID, balance, interestRate,accountNumber, type,date;
+
     public Savings(String ownerID, String balance, String interestRate, String accountNumber, String type, String date) {
-        this.ownerID = ownerID;
-        this.balance = balance;
-        this.interestRate = interestRate;
-        this.accountNumber = accountNumber;
-        this.type = type;
-        this.date = date;
+        this.setOwnerID(ownerID);
+        this.setBalance(balance);
+        this.setInterestRate(interestRate);
+        this.setAccountNumber(accountNumber);
+        this.setType(type);
+        this.setDate(date);
     }
 
     @Override
     public String getBalance() {
+        //return this.getBalance();
         return balance;
     }
 
@@ -31,6 +34,24 @@ public class Savings extends Account {
 
     @Override
     public void debit() {
+
+    }
+
+    @Override
+    public void debit(double amount) {
+        //Initialization
+        double currentTotal;
+        double newTotal;
+        String oldTotal = getBalance();
+
+        //Convert Balance from String to double
+        currentTotal = Double.valueOf(oldTotal);
+        //Subtract Debit Amount from Balance
+        newTotal = currentTotal - amount;
+        //Check if this will send account negative
+        if (newTotal < 0.00)
+            //handleOverdraft();
+            setBalance(Double.toString(newTotal));
 
     }
 
