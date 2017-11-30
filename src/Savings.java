@@ -1,6 +1,6 @@
 public class Savings extends Account {
 
-    String ownerID, balance, interestRate,accountNumber, type,date;
+  String ownerID, balance, interestRate,accountNumber, type,date;
 
     public Savings(String ownerID, String balance, String interestRate, String accountNumber, String type, String date) {
         this.setOwnerID(ownerID);
@@ -18,7 +18,7 @@ public class Savings extends Account {
     }
 
     @Override
-    public String getInterestRate() {
+    public double getInterestRate() {
         return interestRate;
     }
 
