@@ -1,11 +1,11 @@
 public abstract class Account {
     //Abstract Variables
-  private String balance;
-    private String interestRate;
-    private String accountNumber;
-    private String type;
-    private String ownerID;
-    private String date;
+    public String balance;
+    public String interestRate;
+    public String accountNumber;
+    public String type;
+    public String ownerID;
+    public String date;
 
     public void setBalance(String balance) {
         this.balance = balance;
@@ -46,7 +46,7 @@ public abstract class Account {
     //Abstract Functions
     public abstract String getBalance();//Returns balance
 
-    public abstract double getInterestRate();//Returns Interest Rate
+    public abstract String getInterestRate();//Returns Interest Rate
     public abstract String getType();//Returns account type
     public abstract void credit();//credits the account
     public abstract void debit();//debits the account
