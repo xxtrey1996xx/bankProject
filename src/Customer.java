@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Customer {
     String ssn;
@@ -9,7 +11,8 @@ public class Customer {
     String firstName;
     String lastName;
 
-    ArrayList<Account> accounts;
+    List<Account> accounts = new ArrayList<Account>(Arrays.asList());
+    //ArrayList<Account> accounts;
 
 
     public Customer(String social, String fName, String lName, String address, String city, String state, String zip) {
@@ -51,7 +54,7 @@ public class Customer {
         return zip;
     }
 
-    public ArrayList<Account> getAccounts() {
+    public List<Account> getAccounts() {
         return accounts;
     }
 }
