@@ -18,7 +18,7 @@ public class Savings extends Account {
     }
 
     @Override
-    public double getInterestRate() {
+    public String getInterestRate() {
         return interestRate;
     }
 
