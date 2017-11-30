@@ -101,27 +101,10 @@ public class Main {
                         date);
 
                 fileWriter.write(dbRecord);
-
-                //Format and Print Records
-                printWriter.println(
-                        ssn + "\\|" +
-                                address + "\\|" +
-                                city + "\\|" +
-                                state + "\\|" +
-                                zip + "\\|" +
-                                fName + "\\|" +
-                                lName + "\\|" +
-                                acctNum + "\\|" +
-                                type + "\\|" +
-                                balance + "\\|" +
-                                interestRate + "\\|" +
-                                date);
             fileWriter.flush();
-            printWriter.flush();
             }//end nested loop
         }//end For
         fileWriter.close();
-        printWriter.close();
     }//end SaveDb
 
 }
