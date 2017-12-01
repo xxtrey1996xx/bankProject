@@ -7,7 +7,7 @@
     </constraints>
     <properties>
       <opaque value="true"/>
-      <preferredSize width="400" height="300"/>
+      <preferredSize width="500" height="600"/>
     </properties>
     <border type="etched" title="CSC-406 Bank App" title-justification="2"/>
     <children>
