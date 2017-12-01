@@ -52,14 +52,14 @@ public class LogInScreen extends JDialog {
     public static void checkCredentials(String userName, String password) {
         if (userName.compareToIgnoreCase("teller") == 0 && password.compareToIgnoreCase("password") == 0) {
             //This means that a teller has inputted their creds
-            FirstMainMenu fmm = new FirstMainMenu();
             Main.activeUser = "teller";
+            FirstMainMenu fmm = new FirstMainMenu(Main.activeUser);
             fmm.pack();
             fmm.setVisible(true);
         } else if (userName.compareToIgnoreCase("manager") == 0 && password.compareToIgnoreCase("password") == 0) {
             //THis means that a manager has inputted their creds
             Main.activeUser = "manager";
-            FirstMainMenu fmm = new FirstMainMenu();
+            FirstMainMenu fmm = new FirstMainMenu(Main.activeUser);
             fmm.pack();
             fmm.setVisible(true);
         } else {

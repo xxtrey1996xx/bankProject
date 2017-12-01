@@ -12,9 +12,10 @@ public class FirstMainMenu extends JDialog {
     private JButton lookupCustomerButton;
     private JButton testButton;
 
-    public FirstMainMenu() {
+    public FirstMainMenu(String activeUser) {
         setContentPane(contentPane);
         setModal(true);
+
 
         openAccountButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -57,9 +58,10 @@ public class FirstMainMenu extends JDialog {
         System.exit(0);
     }
 
-    private void checkCredentials() {
-        if (Main.activeUser.compareToIgnoreCase("teller") == 0) {
-            testButton.setEnabled(false);
+    private void checkCredentials(String activeUser) {
+        if (activeUser.compareToIgnoreCase("teller") == 0) {
+            testButton.setVisible(false);
+
         }
     }
     private void onOpenAccount() {

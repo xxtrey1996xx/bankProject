@@ -148,6 +148,8 @@ public class Main {
     public static void saveDB() throws Exception {
         String address, city, state, zip, fName, lName, balance, interestRate, type, acctNum, date, ssn;
         PrintWriter printWriter = new PrintWriter(new File("testDB.txt"));
+        //Print Title Line
+        printWriter.println("SSN         Address         City        State/Zip   FNam    LName   ACCT#   ACCTTYP Balance Int     OpenDate");
         for (int i = 0; i <= customers.size() - 1; i++) {
             address = customers.get(i).streetAddress;
             city = customers.get(i).city;
