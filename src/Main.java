@@ -32,7 +32,6 @@ public class Main {
         input.close();
     }
 
-
     public static void updateCustomerArray(String[] record) {
         //Checks to see what kind of account we are dealing with
         //Assigns Parsed values to variables
@@ -110,7 +109,7 @@ public class Main {
 
     //Checks if Checking account has the flag for overdraft protection
     public static boolean hasOverdraftAccount(String flag){
-        if (flag == "0")
+        if (flag == "1")
             return true;
         else
             return false;
@@ -136,25 +135,52 @@ public class Main {
                 acctNum = customers.get(i).accounts.get(x).getAccountNumber();
                 date = customers.get(i).accounts.get(x).getDate();
                 ssn = customers.get(i).accounts.get(x).getOwnerID();
-
-                String dbRecord = (
-                        ssn + "|" +
-                                address + "|" +
-                                city + "|" +
-                                state + "|" +
-                                zip + "|" +
-                                fName + "|" +
-                                lName + "|" +
-                                acctNum + "|" +
-                                type + "|" +
-                                balance + "|" +
-                                interestRate + "|" +
-                                date);
-                printWriter.println(dbRecord);
-                printWriter.flush();
+                //TODO Will need a print function written for each type of account since Credit and loans have extra fields.
+                //TODO will also need to include the flag for overdraft coverage.
+                switch(type){
+                    case "Savings":
+                    case "TMB":
+                    case "Gold":
+                    case "Diamond":
+                    case "CD": checkingDBRecord(printWriter,ssn,address,city,state,zip,fName,lName,acctNum,type,
+                            balance,interestRate,date, (Boolean) customers.get(i).accounts.get(x).getOverdraftAccount());
+                }
             }//end nested loop
         }//end For
         printWriter.close();
     }//end SaveDb
+
+    public static String checkingDBRecord(PrintWriter printWriter, String ssn, String address, String city, String state, String zip, String fName,
+                                          String lName, String acctNum, String type, String balance, String interestRate, String date, boolean overdraft){
+        String overdraftFlag = "0";
+        if(overdraft = true)
+            overdraftFlag = "1";
+        String dbRecord = (
+                ssn + "|" +
+                        address + "|" +
+                        city + "|" +
+                        state + "|" +
+                        zip + "|" +
+                        fName + "|" +
+                        lName + "|" +
+                        acctNum + "|" +
+                        type + "|" +
+                        balance + "|" +
+                        interestRate + "|" +
+                        date + "|" +
+                        overdraftFlag);
+        printWriter.println(dbRecord);
+        printWriter.flush();
+
+        String record = "test";
+        return record;
+    }
+
+    public String creditDBRecord(){
+        String record = "test";
+        return record;
+    }
+
+
 
 }

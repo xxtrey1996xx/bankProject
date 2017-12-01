@@ -45,6 +45,10 @@ public class Checking extends Account {
 
     }
 
+    public boolean getOverdraftAccount(){
+        return hasOverdraftAccount;
+    }
+
     @Override
     public void debit() {
 
