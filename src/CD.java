@@ -62,8 +62,8 @@ public class CD extends Account {
     }
 
     @Override
-    public Object getOverdraftAccount() {
-        return null;
+    public boolean getOverdraftAccount() {
+        return false;
     }
 
 

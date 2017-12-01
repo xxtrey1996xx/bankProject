@@ -62,5 +62,5 @@ public abstract class Account {
     public abstract double calcInterest();
 
 
-    public abstract Object getOverdraftAccount();
+    public abstract boolean getOverdraftAccount();
 }
