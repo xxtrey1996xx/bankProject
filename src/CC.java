@@ -61,8 +61,8 @@ public class CC extends Credit {
     }
 
     @Override
-    public Object getOverdraftAccount() {
-        return null;
+    public boolean getOverdraftAccount() {
+        return false;
     }
 
     //Method to charge credit card

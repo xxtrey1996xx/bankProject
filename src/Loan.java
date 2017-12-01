@@ -53,8 +53,8 @@ public class Loan extends Credit {
     }
 
     @Override
-    public Object getOverdraftAccount() {
-        return null;
+    public boolean getOverdraftAccount() {
+        return false;
     }
     //TODO setup loan class
 

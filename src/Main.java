@@ -18,7 +18,7 @@ public class Main {
 
     //May need to make this a Runnable as well to avoid race condition with save
     public static void readDB() throws Exception {
-        File db = new File("bankdatabasePIPE.txt");
+        File db = new File("testDB2.txt");
         Scanner input = new Scanner(db);
         //Skip title line.
         input.nextLine();
