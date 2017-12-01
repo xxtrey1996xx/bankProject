@@ -11,8 +11,7 @@ public class AddAccount extends JDialog {
     private JTextField balanceTextField;
     private JTextField interestRateTextField;
     private JTextField dateTextField;
-    private JCheckBox overdraftCheckBox;
-    private JTextField overdraftAccountNum;
+    private JCheckBox OAcheckbox;
 
     public AddAccount() {
         setContentPane(contentPane);
