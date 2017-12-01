@@ -11,6 +11,8 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         readDB();
+        Thread.sleep(25);
+        saveDB();
         LogInScreen lis = new LogInScreen();
         lis.pack();
         lis.setVisible(true);
@@ -119,6 +121,7 @@ public class Main {
     public static void saveDB() throws Exception {
         String address, city, state, zip, fName, lName, balance, interestRate, type, acctNum, date, ssn;
         PrintWriter printWriter = new PrintWriter(new File("currentDB.txt"));
+        String dbRecord;
         //Print Title Line
         printWriter.println("SSN         Address         City        State/Zip   FNam    LName   ACCT#   ACCTTYP Balance Int     OpenDate");
         for (int i = 0; i <= customers.size() - 1; i++) {
@@ -137,20 +140,26 @@ public class Main {
                 ssn = customers.get(i).accounts.get(x).getOwnerID();
                 //TODO Will need a print function written for each type of account since Credit and loans have extra fields.
                 //TODO will also need to include the flag for overdraft coverage.
-                switch(type){
+                //dbRecord = checkingDBRecord(printWriter, ssn,address,city,state,zip,fName,lName,acctNum,type,balance,interestRate,date,hasOverdraftAccount("0"));
+                //printWriter.println(dbRecord);
+                checkingDBRecord(printWriter, ssn, address, city, state, zip, fName, lName, acctNum, type, balance, interestRate, date, hasOverdraftAccount("0"));
+                /*switch(type){
                     case "Savings":
                     case "TMB":
                     case "Gold":
                     case "Diamond":
-                    case "CD": checkingDBRecord(printWriter,ssn,address,city,state,zip,fName,lName,acctNum,type,
+                    case "CD": dbRecord = checkingDBRecord(printWriter,ssn,address,city,state,zip,fName,lName,acctNum,type,
                             balance,interestRate,date, (Boolean) customers.get(i).accounts.get(x).getOverdraftAccount());
+                            printWriter.println(dbRecord);
+                    break;
+                    default : System.out.println("Invalid Type");*/
                 }
             }//end nested loop
-        }//end For
         printWriter.close();
-    }//end SaveDb
+    }//end For
+    //end SaveDb
 
-    public static String checkingDBRecord(PrintWriter printWriter, String ssn, String address, String city, String state, String zip, String fName,
+    public static void checkingDBRecord(PrintWriter printWriter, String ssn, String address, String city, String state, String zip, String fName,
                                           String lName, String acctNum, String type, String balance, String interestRate, String date, boolean overdraft){
         String overdraftFlag = "0";
         if(overdraft = true)
@@ -167,13 +176,10 @@ public class Main {
                         type + "|" +
                         balance + "|" +
                         interestRate + "|" +
-                        date + "|" +
-                        overdraftFlag);
+                        date);
         printWriter.println(dbRecord);
         printWriter.flush();
-
         String record = "test";
-        return record;
     }
 
     public String creditDBRecord(){

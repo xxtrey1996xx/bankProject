@@ -87,6 +87,7 @@ public class AddAccount extends JDialog {
             }
 
         System.out.println("Account Added \nSaving to Database...");
+        Thread.sleep(25);
         Main.saveDB();
         System.out.println("Saved to Database.");
         dispose();
