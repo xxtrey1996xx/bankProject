@@ -45,7 +45,7 @@ public class LogInScreen extends JDialog {
         LogInScreen dialog = new LogInScreen();
         dialog.pack();
         dialog.setVisible(true);
-        System.exit(0);
+        System.exit(1);
     }
 
     //This method checks credentials
@@ -63,6 +63,10 @@ public class LogInScreen extends JDialog {
             fmm.pack();
             fmm.setVisible(true);
         } else {
+            JOptionPane.showMessageDialog(null, "The username or password entered was incorrect.", "Incorrect credentials", JOptionPane.ERROR_MESSAGE);
+            LogInScreen lis = new LogInScreen();
+            lis.pack();
+            lis.setVisible(true);
 
         }
     }
