@@ -19,6 +19,10 @@ public class CC extends Credit {
     this.wtFvariable = wtFvariable;
     }
 
+    public CC(String text, String text1, String text2, String text3) {
+        super();
+    }
+
 
     @Override
     public String getBalance() {

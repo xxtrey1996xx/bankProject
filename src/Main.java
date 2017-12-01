@@ -18,7 +18,7 @@ public class Main {
 
     //May need to make this a Runnable as well to avoid race condition with save
     public static void readDB() throws Exception {
-        File db = new File("testDB2.txt");
+        File db = new File("bankdatabasePIPE.txt");
         Scanner input = new Scanner(db);
         //Skip title line.
         input.nextLine();
@@ -48,10 +48,9 @@ public class Main {
         String balance = record[9];
         String interest = record[10];
         String date = record[11];
-        String lastPaymentDate = record[12];
-        String monthlyPayment = record[13];
-        String openDate = record[14];
-        String WTFvariable = record[15];//TODO What is this variable? Number 15 in example below - Zach
+
+        //Variables only used in CC, and Loans
+        String lastPaymentDate, monthlyPayment, openDate, WTFvariable;
 
         //Create customer object from parsed values
         Customer newCustomer;
@@ -83,12 +82,20 @@ public class Main {
                 break;
 
             case "CC":
+                lastPaymentDate = record[12];
+                monthlyPayment = record[13];
+                openDate = record[14];
+                WTFvariable = record[15];
                 newCC = new CC(acctNum, balance, interest, date, lastPaymentDate, monthlyPayment, openDate, WTFvariable);
                 newCustomer.accounts.add(newCC);
                 break;
 
             case "long":
             case "short":
+                lastPaymentDate = record[12];
+                monthlyPayment = record[13];
+                openDate = record[14];
+                WTFvariable = record[15];
                 newLoan = new Loan(ssn, acctNum, type, balance, interest, date, lastPaymentDate, monthlyPayment, openDate, WTFvariable);
                 newCustomer.accounts.add(newLoan);
                 break;

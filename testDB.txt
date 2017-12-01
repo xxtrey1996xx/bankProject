@@ -1,1 +1,15 @@
 SSN         Address         City        State/Zip   FNam    LName   ACCT#   ACCTTYP Balance Int     OpenDate
+345653425|1805 Jules|St. Joseph|MO|64503|Mark|Ingrem|496645|null|null|null|11062003
+423148894|2109 Sylviana|St. Joseph| MO|64501|Sherry|Harrison|496640|null|null|null|06292002
+677879013|4305 West 3rd|Wathena|KS|66090|John|Morgeson|483522|null|null|null|01012001
+345599870|221 South Highly|St. Joseph|MO|64503|Gary|Gilkerson|556310|null|null|null|05041996
+423567890|335 Jules|St. Joseph|MO|64503|Mary|Francis|156123|null|null|null|04042004
+345812332|1402 Mocking Bird|St.Joseph|MO|64502|Carolyn|Johnson|156100|null|null|null|
+345879912|2105 Senior Dr.|St. Joseph|MO|64503|Larry|Waite|159332|null|null|null|10062012
+423168945|1801 Lovers Ln.|St. Josph|MO|64502|Marilyn|Maklin|786667|null|null|null|12242005
+235445789|2508 Stonecrest|St. Joseph|MO|64501|Lana|McGlynn|153220|null|null|null|03252001
+436789213|4156 N. Mulbury|St. Joseph|MO|64502|John|Munzer|125300|null|null|null|12031999
+233435656|1525 Kioa|Elwood|KS|66024|Mary|White|153212|null|null|null|08111995
+435678787|8902 Martha Ln|Gower|MO|63301|Jerry|Gronius|153212|null|null|null|08082008
+563432913|1532 Lovers ln|St. Joseph|MO|64502|Martin|Williams|123456|null|null|null|05041997
+345679898|703 Park Ln|St. Joseph|Mo|64501|Broderick|Jones|759735|null|null|null|06012010

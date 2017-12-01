@@ -58,20 +58,33 @@ public class AddAccount extends JDialog {
         //dispose();
         System.out.println("Ok clicked in add Account");
         int found = LookupCustomer.lookupUser(SSNTextField.getText());
-        //Get User Index
-        switch(acctTypecomboBox1.getSelectedItem().toString()){
-            case "Checking":
-                break;
-        }
+        //Check if User Exists
+            if(found!=-99) {
+                switch (acctTypecomboBox1.getSelectedItem().toString()) {
+                    case "Checking":
+                        //TODO Figure out how to handle checking overdraft - My Suggestion is translate it to a String - Zach
+                        Checking newChecking = new Checking(SSNTextField.getText(),balanceTextField.getText(),interestRateTextField.getText(),
+                                accountNumTextField.getText(),checkingStatus(balanceTextField.getText()),dateTextField.getText(),true);
+                        Main.customers.get(found).accounts.add(newChecking);
+                        break;
 
+                        case "Savings":
+                        Savings newSavings = new Savings(SSNTextField.getText(),balanceTextField.getText(),interestRateTextField.getText(),
+                                accountNumTextField.getText(),"Savings", dateTextField.getText());
+                        Main.customers.get(found).accounts.add(newSavings);
+                        break;
 
+                    case "CD":
+                        CD newCD = new CD(SSNTextField.getText(), balanceTextField.getText(), interestRateTextField.getText(),
+                                accountNumTextField.getText(),dateTextField.getText());
+                        Main.customers.get(found).accounts.add(newCD);
+                        break;
 
-
-
-
-
-
-
+                    case "CC":
+                        CC newCC = new CC(accountNumTextField.getText(),balanceTextField.getText(), interestRateTextField.getText(),dateTextField.getText());
+                        Main.customers.get(found).accounts.add(newCC);
+                }
+            }
 
         if (acctTypecomboBox1.getSelectedItem() == "Checking") {
             //boolean overdraftProtection = overdraftCheckBox.
@@ -93,6 +106,19 @@ public class AddAccount extends JDialog {
         FirstMainMenu redirect = new FirstMainMenu(Main.activeUser);
         redirect.pack();
         redirect.setVisible(true);
+    }
+
+    private String checkingStatus(String text) {
+        String type;
+        double initialBalance = Double.valueOf(text);
+        double temp = initialBalance;
+        if (initialBalance > 1500)
+            text = "Diamond";
+        else if(initialBalance > 1000)
+            text = "Gold";
+        else
+            text = "TMB";
+        return text;
     }
 
     private void onCancel() {
