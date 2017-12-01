@@ -62,6 +62,12 @@ public class LogInScreen extends JDialog {
             FirstMainMenu fmm = new FirstMainMenu(Main.activeUser);
             fmm.pack();
             fmm.setVisible(true);
+        } else if (userName.compareToIgnoreCase("customer") == 0 && password.compareToIgnoreCase("0000") == 0) {
+            //THis means that a customer has inputted their creds
+            Main.activeUser = "customer";
+            FirstMainMenu fmm = new FirstMainMenu(Main.activeUser);
+            fmm.pack();
+            fmm.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "The username or password entered was incorrect.", "Incorrect credentials", JOptionPane.ERROR_MESSAGE);
             LogInScreen lis = new LogInScreen();

@@ -11,6 +11,8 @@ public class FirstMainMenu extends JDialog {
     private JButton closeAccountButton;
     private JButton lookupCustomerButton;
     private JButton hideButton;
+    private JButton withdrawelButton;
+    private JButton depositButton;
     private String activeUser;
 
     public FirstMainMenu(String activeUser) {
@@ -20,6 +22,11 @@ public class FirstMainMenu extends JDialog {
             hideButton.setVisible(false);
         } else if (activeUser.compareToIgnoreCase("manager") == 0) {
             hideButton.setVisible(true);
+        } else if (activeUser.compareToIgnoreCase("customer") == 0) {
+            openAccountButton.setVisible(false);
+            closeAccountButton.setVisible(false);
+            lookupCustomerButton.setVisible(false);
+            hideButton.setVisible(false);
         }
         setContentPane(contentPane);
         setModal(true);
