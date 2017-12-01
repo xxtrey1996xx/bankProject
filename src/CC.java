@@ -60,6 +60,11 @@ public class CC extends Credit {
         return 0;
     }
 
+    @Override
+    public Object getOverdraftAccount() {
+        return null;
+    }
+
     //Method to charge credit card
     public void creditCharge(double amount, String location, String date){
         //Create Transaction Object

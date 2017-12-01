@@ -58,4 +58,9 @@ public class Savings extends Account {
     public double calcInterest() {
         return 0;//TODO get this from Pickett
     }
+
+    @Override
+    public Object getOverdraftAccount() {
+        return null;
+    }
 }

@@ -51,6 +51,11 @@ public class Loan extends Credit {
     public double calcInterest() {
         return 0;
     }
+
+    @Override
+    public Object getOverdraftAccount() {
+        return null;
+    }
     //TODO setup loan class
 
 }

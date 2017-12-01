@@ -45,7 +45,7 @@ public class Checking extends Account {
 
     }
 
-    public boolean getOverdraftAccount(){
+    public Object getOverdraftAccount() {
         return hasOverdraftAccount;
     }
 

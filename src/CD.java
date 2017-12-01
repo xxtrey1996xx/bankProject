@@ -61,6 +61,11 @@ public class CD extends Account {
         return 0;
     }
 
+    @Override
+    public Object getOverdraftAccount() {
+        return null;
+    }
+
 
     public static boolean compareDates(String currentDate, String maturityDate) {
         try {

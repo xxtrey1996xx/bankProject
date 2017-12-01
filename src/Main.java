@@ -118,7 +118,7 @@ public class Main {
     //May need to make this a Runnable to avoid Race condition with reading the database
     public static void saveDB() throws Exception {
         String address, city, state, zip, fName, lName, balance, interestRate, type, acctNum, date, ssn;
-        PrintWriter printWriter = new PrintWriter(new File("testDB.txt"));
+        PrintWriter printWriter = new PrintWriter(new File("currentDB.txt"));
         //Print Title Line
         printWriter.println("SSN         Address         City        State/Zip   FNam    LName   ACCT#   ACCTTYP Balance Int     OpenDate");
         for (int i = 0; i <= customers.size() - 1; i++) {
