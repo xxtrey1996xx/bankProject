@@ -71,7 +71,9 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <text value="Testy"/>
+            </properties>
           </component>
           <component id="54377" class="javax.swing.JTextField" binding="lastNameTextField" default-binding="true">
             <constraints>
@@ -79,7 +81,9 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <text value="Person"/>
+            </properties>
           </component>
           <component id="ee4e4" class="javax.swing.JTextField" binding="addressTextField" default-binding="true">
             <constraints>
@@ -87,7 +91,9 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <text value="123 Testy Lane"/>
+            </properties>
           </component>
           <component id="3704" class="javax.swing.JTextField" binding="cityTextField" default-binding="true">
             <constraints>
@@ -95,7 +101,9 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <text value="Seatle"/>
+            </properties>
           </component>
           <component id="10620" class="javax.swing.JTextField" binding="stateTextField" default-binding="true">
             <constraints>
@@ -103,7 +111,9 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <text value="WA"/>
+            </properties>
           </component>
           <component id="d135b" class="javax.swing.JTextField" binding="zipcodeTextField" default-binding="true">
             <constraints>
@@ -111,7 +121,9 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <text value="88999"/>
+            </properties>
           </component>
           <component id="4adfe" class="javax.swing.JLabel">
             <constraints>
