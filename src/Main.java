@@ -57,7 +57,7 @@ public class Main {
         //Creates Account object and assigns to Customer objects Account Array.
         //if(type == "Savings")
         newCustomer.accounts.add(new Savings(ssn, balance, interest, acctNum, type, date));
-        System.out.println("Account: " + acctNum +"-" + type +" was added to user " + newCustomer.firstName + " " + newCustomer.lastName);
+        System.out.println("Account: " + acctNum + "-" + type + " was added to user " + newCustomer.firstName + " " + newCustomer.lastName);
 
         //Validate that user has this account already.
 
@@ -65,8 +65,8 @@ public class Main {
     }
 
     //May need to make this a Runnable to avoid Race condition with reading the database
-    public static void saveDB() throws Exception{
-        String address,city,state,zip,fName,lName,balance,interestRate,type,acctNum,date,ssn;
+    public static void saveDB() throws Exception {
+        String address, city, state, zip, fName, lName, balance, interestRate, type, acctNum, date, ssn;
 
         FileWriter fileWriter = new FileWriter("currentDB.txt");
 
@@ -86,7 +86,7 @@ public class Main {
                 date = customers.get(i).accounts.get(x).getDate();
                 ssn = customers.get(i).accounts.get(x).getOwnerID();
 
-                String dbRecord=(
+                String dbRecord = (
                         ssn + "|" +
                                 address + "|" +
                                 city + "|" +
@@ -98,10 +98,10 @@ public class Main {
                                 type + "|" +
                                 balance + "|" +
                                 interestRate + "|" +
-                        date);
+                                date);
 
                 fileWriter.write(dbRecord);
-            fileWriter.flush();
+                fileWriter.flush();
             }//end nested loop
         }//end For
         fileWriter.close();
