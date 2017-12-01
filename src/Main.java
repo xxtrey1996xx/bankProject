@@ -35,6 +35,7 @@ public class Main {
     }
 
     public static void updateCustomerArray(String[] record) {
+        //Checks to see what kind of account we are dealing with
         if (record[8].compareToIgnoreCase("Savings") == 0) {
             //Assigns Parsed values to variables
             String ssn = record[0];
