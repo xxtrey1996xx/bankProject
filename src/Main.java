@@ -146,10 +146,7 @@ public class Main {
     //May need to make this a Runnable to avoid Race condition with reading the database
     public static void saveDB() throws Exception {
         String address, city, state, zip, fName, lName, balance, interestRate, type, acctNum, date, ssn;
-
-        FileWriter fileWriter = new FileWriter("currentDB.txt");
-
-        PrintWriter printWriter = new PrintWriter(new File("CurrentDB.txt"));
+        PrintWriter printWriter = new PrintWriter(new File("testDB.txt"));
         for (int i = 0; i <= customers.size() - 1; i++) {
             address = customers.get(i).streetAddress;
             city = customers.get(i).city;
@@ -166,7 +163,7 @@ public class Main {
                 ssn = customers.get(i).accounts.get(x).getOwnerID();
 
                 String dbRecord = (
-                        "\n"+ssn + "|" +
+                        ssn + "|" +
                                 address + "|" +
                                 city + "|" +
                                 state + "|" +
@@ -178,12 +175,11 @@ public class Main {
                                 balance + "|" +
                                 interestRate + "|" +
                                 date);
-
-                fileWriter.write(dbRecord);
-                fileWriter.flush();
+                printWriter.println(dbRecord);
+                printWriter.flush();
             }//end nested loop
         }//end For
-        fileWriter.close();
+        printWriter.close();
     }//end SaveDb
 
 }
