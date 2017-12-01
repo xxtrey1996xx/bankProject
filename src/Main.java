@@ -87,17 +87,17 @@ public class Main {
                 ssn = customers.get(i).accounts.get(x).getOwnerID();
 
                 String dbRecord=(
-                        ssn + "\\|" +
-                        address + "\\|" +
-                        city + "\\|" +
-                        state + "\\|" +
-                        zip + "\\|" +
-                        fName + "\\|" +
-                        lName + "\\|" +
-                        acctNum + "\\|" +
-                        type + "\\|" +
-                        balance + "\\|" +
-                        interestRate + "\\|" +
+                        ssn + "|" +
+                                address + "|" +
+                                city + "|" +
+                                state + "|" +
+                                zip + "|" +
+                                fName + "|" +
+                                lName + "|" +
+                                acctNum + "|" +
+                                type + "|" +
+                                balance + "|" +
+                                interestRate + "|" +
                         date);
 
                 fileWriter.write(dbRecord);
