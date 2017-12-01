@@ -63,7 +63,9 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <text value="teller"/>
+            </properties>
           </component>
           <component id="49d0d" class="javax.swing.JPasswordField" binding="passwordPasswordField" default-binding="true">
             <constraints>
@@ -71,7 +73,9 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <text value="password"/>
+            </properties>
           </component>
           <component id="7d4a6" class="javax.swing.JLabel">
             <constraints>
