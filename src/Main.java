@@ -34,6 +34,9 @@ public class Main {
         input.close();
     }
 
+
+
+
     public static void updateCustomerArray(String[] record) {
         //Checks to see what kind of account we are dealing with
         if (record[8].compareToIgnoreCase("Savings") == 0) {
@@ -48,8 +51,11 @@ public class Main {
             String acctNum = record[7];
             String type = record[8];
             String balance = record[9];
-            String interest = record[10];
+            String interest = record[10];//TODO what is this part of the record?
             String date = record[11];
+            //String hasOverdraftAccount, mostRecentPayDate,
+
+
 
             //Creates customer object from parsed values
             Customer newCustomer;
@@ -63,18 +69,6 @@ public class Main {
             //Validate that user has this account already.
         } else if (record[8].compareToIgnoreCase("CD") == 0) {
             //Assigns Parsed values to variables
-            String ssn = record[0];
-            String address = record[1];
-            String city = record[2];
-            String state = record[3];
-            String zip = record[4];
-            String fName = record[5];
-            String lName = record[6];
-            String acctNum = record[7];
-            String type = record[8];
-            String balance = record[9];
-            String interest = record[10];
-            String date = record[11];
 
             //TODO This is commented out until we are ready for it.
             //Creates customer object from parsed values
@@ -91,19 +85,6 @@ public class Main {
             //Validate that user has this account already.
         } else if (record[8].compareToIgnoreCase("TMB") == 0 || record[8].compareToIgnoreCase("Gold") == 0 || record[8].compareToIgnoreCase("Diamond") == 0) {
             //Assigns Parsed values to variables
-            String ssn = record[0];
-            String address = record[1];
-            String city = record[2];
-            String state = record[3];
-            String zip = record[4];
-            String fName = record[5];
-            String lName = record[6];
-            String acctNum = record[7];
-            String type = record[8];
-            String bal = record[9];
-            String wtfIsThis = record[10];//TODO what is this part of the record?
-            String date = record[11];
-            String hasOverdraftAccount = record[12];
             boolean hasOverdraftAccountBool;
             //TODO We need to setup the overdraft account link
 

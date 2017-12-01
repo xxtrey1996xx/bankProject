@@ -55,9 +55,20 @@ public class InputCustomerInformation extends JDialog {
 
     private void onOK() {
         dispose();
-        //This adds a new customer to the arraylist
-        Main.customers.add(new Customer(SSNTextField.getText(), firstNameTextField.getText(), lastNameTextField.getText(), addressTextField.getText(),
-                cityTextField.getText(), stateTextField.getText(), zipcodeTextField.getText()));
+        //Log Attempted User Creation
+        System.out.println("Attempting to create new User.");
+        //Create Customer Object from form entry
+        Customer newCustomer = new Customer(SSNTextField.getText(), firstNameTextField.getText(), lastNameTextField.getText(), addressTextField.getText(),
+                cityTextField.getText(), stateTextField.getText(), zipcodeTextField.getText());
+        //Log successful Creation
+        System.out.println("New User Created: " + firstNameTextField.getText() + " " + lastNameTextField.getText());
+
+
+
+        //Add Customer Object to customers list
+        Main.customers.add(newCustomer);
+
+        //Link to AddAccount Form
         AddAccount acct = new AddAccount();
         acct.pack();
         acct.setVisible(true);
