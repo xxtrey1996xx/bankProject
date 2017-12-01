@@ -10,9 +10,17 @@ public class FirstMainMenu extends JDialog {
     private JButton closeSystemButton;
     private JButton closeAccountButton;
     private JButton lookupCustomerButton;
-    private JButton testButton;
+    private JButton hideButton;
+    private String activeUser;
 
     public FirstMainMenu(String activeUser) {
+        this.activeUser = activeUser;
+        //This is for controlling what the tellers can see as apposed to managers
+        if (activeUser.compareToIgnoreCase("teller") == 0) {
+            hideButton.setVisible(false);
+        } else if (activeUser.compareToIgnoreCase("manager") == 0) {
+            hideButton.setVisible(true);
+        }
         setContentPane(contentPane);
         setModal(true);
 
@@ -40,7 +48,6 @@ public class FirstMainMenu extends JDialog {
                 onLookupCustomer();//Performs button event
             }
         });
-
         // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
@@ -52,7 +59,7 @@ public class FirstMainMenu extends JDialog {
     }
 
     public static void main(String[] args) {
-        FirstMainMenu dialog = new FirstMainMenu();
+        FirstMainMenu dialog = new FirstMainMenu(Main.activeUser);
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);
@@ -60,7 +67,7 @@ public class FirstMainMenu extends JDialog {
 
     private void checkCredentials(String activeUser) {
         if (activeUser.compareToIgnoreCase("teller") == 0) {
-            testButton.setVisible(false);
+            hideButton.setVisible(false);
 
         }
     }

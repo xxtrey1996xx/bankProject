@@ -61,7 +61,7 @@ public class LookupCustomer extends JDialog {
 
     private void onCancel() {
         dispose();
-        FirstMainMenu fmm = new FirstMainMenu();
+        FirstMainMenu fmm = new FirstMainMenu(Main.activeUser);
         fmm.pack();
         fmm.setVisible(true);
     }

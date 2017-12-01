@@ -57,7 +57,7 @@ public class New_Existing extends JDialog {
     private void onCancel() {
         //Goes backwards
         dispose();
-        FirstMainMenu fmm = new FirstMainMenu();
+        FirstMainMenu fmm = new FirstMainMenu(Main.activeUser);
         fmm.pack();
         fmm.setVisible(true);
     }

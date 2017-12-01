@@ -75,7 +75,7 @@ public class AddAccount extends JDialog {
         Main.saveDB();
         System.out.println("Saved to Database.");
         dispose();
-        FirstMainMenu redirect = new FirstMainMenu();
+        FirstMainMenu redirect = new FirstMainMenu(Main.activeUser);
         redirect.pack();
         redirect.setVisible(true);
     }
@@ -83,7 +83,7 @@ public class AddAccount extends JDialog {
     private void onCancel() {
         //Closes the current box.
         dispose();
-        FirstMainMenu mm = new FirstMainMenu();
+        FirstMainMenu mm = new FirstMainMenu(Main.activeUser);
         mm.pack();
         mm.setVisible(true);
     }
