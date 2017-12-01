@@ -58,6 +58,21 @@ public class AddAccount extends JDialog {
         //dispose();
         System.out.println("Ok clicked in add Account");
         int found = LookupCustomer.lookupUser(SSNTextField.getText());
+        //Get User Index
+        switch(acctTypecomboBox1.getSelectedItem().toString()){
+            case "Checking":
+                break;
+        }
+
+
+
+
+
+
+
+
+
+
         if (acctTypecomboBox1.getSelectedItem() == "Checking") {
             //boolean overdraftProtection = overdraftCheckBox.
             //Check if User Exists

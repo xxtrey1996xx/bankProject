@@ -34,41 +34,6 @@ public class LoginController implements Initializable {
     }
 
 
-    /*public void loginValidation() {
-        boolean login = false;
-        String loginGroup;
-        int foundIndex = -99;
-
-        //search users for matching username
-        for (int i = 0; i <= Main.employees.size() - 1; i++) {
-            if (Main.employees.get(i).loginId == username.getText())
-                foundIndex = i;
-        }//end for
-
-        //Username was found in Database
-        if(foundIndex != -99){
-            if(Main.employees.get(foundIndex).password == password.getText()){
-                System.out.println("Successful Login for\nUser: " + username.getText() + "\nPassword: " + password.getText());
-                login = true;
-
-            }
-            //Username is correct but password is incorrect
-            else{
-                System.out.println("Invalid Password: " + password.getText() + "\nUser: " + username);
-                handleInvalidPassword();
-            }
-        }
-        //Username does not exist
-        else if (foundIndex == -99) {
-            System.out.println("User: " + username.getText() + " does not exist.");
-            handleInvalidUser();
-        }
-    }
-
-
-    private void userLogin() {
-    }*/
-
     private void handleInvalidUser() {
         Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION, "Invalid Username", ButtonType.OK);
         alertBox.setContentText("Username Is invalid. \n Please verify username and try again.");

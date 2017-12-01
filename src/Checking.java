@@ -55,6 +55,10 @@ public class Checking extends Account {
 
     }
 
+    public void stopPay(String checkNumber){
+
+    }
+
     @Override
     public double calcInterest() {
         return 0;
