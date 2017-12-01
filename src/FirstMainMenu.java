@@ -10,6 +10,7 @@ public class FirstMainMenu extends JDialog {
     private JButton closeSystemButton;
     private JButton closeAccountButton;
     private JButton lookupCustomerButton;
+    private JButton testButton;
 
     public FirstMainMenu() {
         setContentPane(contentPane);
@@ -46,6 +47,7 @@ public class FirstMainMenu extends JDialog {
                 onCloseSystem();
             }
         });
+
     }
 
     public static void main(String[] args) {
@@ -55,6 +57,11 @@ public class FirstMainMenu extends JDialog {
         System.exit(0);
     }
 
+    private void checkCredentials() {
+        if (Main.activeUser.compareToIgnoreCase("teller") == 0) {
+            testButton.setEnabled(false);
+        }
+    }
     private void onOpenAccount() {
         System.out.println("open account clicked");
         //Going to open a new menu that allows data to be entered
