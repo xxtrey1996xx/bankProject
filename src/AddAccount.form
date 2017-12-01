@@ -44,6 +44,7 @@
                 </constraints>
                 <properties>
                   <model>
+                    <item value="Select"/>
                     <item value="Checking"/>
                     <item value="Savings"/>
                     <item value="Credit"/>
