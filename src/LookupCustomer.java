@@ -70,8 +70,9 @@ public class LookupCustomer extends JDialog {
         int findIndex = -99;
         double test;
         System.out.println("Searching for user " + ssn);
-        for (int i = 0; i < Main.customers.size() - 1; i++) {
+        for (int i = 0; i <= Main.customers.size() - 1; i++) {
             test = Main.customers.get(i).getSSN().compareToIgnoreCase(ssn);
+            System.out.println("In for loop looking up customer");
             if (Main.customers.get(i).ssn.compareToIgnoreCase(ssn) == 0)
                 findIndex = i;
         }

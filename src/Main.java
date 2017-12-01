@@ -15,7 +15,7 @@ public class Main {
         lis.setVisible(true);
         Thread.sleep(25);
         //Race Condition for Saving Database. Main is not finished reading before saving is implemented.
-        saveDB();
+        //saveDB();
     }//End main
 
     //May need to make this a Runnable as well to avoid race condition with save
@@ -166,7 +166,7 @@ public class Main {
                 ssn = customers.get(i).accounts.get(x).getOwnerID();
 
                 String dbRecord = (
-                        ssn + "|" +
+                        "\n"+ssn + "|" +
                                 address + "|" +
                                 city + "|" +
                                 state + "|" +

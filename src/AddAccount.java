@@ -18,7 +18,11 @@ public class AddAccount extends JDialog {
         getRootPane().setDefaultButton(buttonOK);
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                onOK();
+                try {
+                    onOK();
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
             }
         });
 
@@ -44,14 +48,14 @@ public class AddAccount extends JDialog {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         AddAccount dialog = new AddAccount();
         dialog.pack();
         dialog.setVisible(true);
-        System.exit(0);
+
     }
-    private void onOK() {
-        dispose();
+    private void onOK() throws Exception {
+        //dispose();
         System.out.println("Ok clicked in add Account");
         int found = LookupCustomer.lookupUser(SSNTextField.getText());
         if (acctTypecomboBox1.getSelectedItem() == "Checking") {
@@ -66,6 +70,14 @@ public class AddAccount extends JDialog {
         } else if (acctTypecomboBox1.getSelectedItem() == "Savings") {
             //This is where we will set a new Savings account
         }
+
+        System.out.println("Account Added \nSaving to Database...");
+        Main.saveDB();
+        System.out.println("Saved to Database.");
+        dispose();
+        FirstMainMenu redirect = new FirstMainMenu();
+        redirect.pack();
+        redirect.setVisible(true);
     }
 
     private void onCancel() {
