@@ -86,19 +86,6 @@ public class AddAccount extends JDialog {
                 }
             }
 
-        if (acctTypecomboBox1.getSelectedItem() == "Checking") {
-            //boolean overdraftProtection = overdraftCheckBox.
-            //Check if User Exists
-            if (found != -99) {//User Found
-                //Create Checking account and add to user account arraylist
-                Main.customers.get(found).accounts.add(new Checking(SSNTextField.getText(), balanceTextField.getText(), interestRateTextField.getText(),
-                        accountNumTextField.getText(), "TMB", dateTextField.getText(), true));
-                //TODO We need to update to allow for the different checking account types. I.E tmb gold diamond. Also, hasOverdraftACCT
-            }
-        } else if (acctTypecomboBox1.getSelectedItem() == "Savings") {
-            //This is where we will set a new Savings account
-        }
-
         System.out.println("Account Added \nSaving to Database...");
         Main.saveDB();
         System.out.println("Saved to Database.");
