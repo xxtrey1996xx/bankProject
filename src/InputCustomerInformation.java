@@ -63,8 +63,6 @@ public class InputCustomerInformation extends JDialog {
         //Log successful Creation
         System.out.println("New User Created: " + firstNameTextField.getText() + " " + lastNameTextField.getText());
 
-
-
         //Add Customer Object to customers list
         Main.customers.add(newCustomer);
 

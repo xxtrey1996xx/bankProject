@@ -51,6 +51,7 @@ public class AddAccount extends JDialog {
         System.exit(0);
     }
     private void onOK() {
+        dispose();
         System.out.println("Ok clicked in add Account");
         int found = LookupCustomer.lookupUser(SSNTextField.getText());
         if (acctTypecomboBox1.getSelectedItem() == "Checking") {
@@ -65,7 +66,6 @@ public class AddAccount extends JDialog {
         } else if (acctTypecomboBox1.getSelectedItem() == "Savings") {
             //This is where we will set a new Savings account
         }
-        dispose();
     }
 
     private void onCancel() {
