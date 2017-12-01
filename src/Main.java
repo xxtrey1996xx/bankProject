@@ -6,7 +6,8 @@ import java.util.Collection;
 import java.util.Scanner;
 
 public class Main {
-    public static ArrayList<Customer> customers = new ArrayList<>();
+    public static ArrayList<Customer> customers = new ArrayList<>();//Main Data structure for program
+    public static String activeUser = null;//Stores user type that logged in
 
     public static void main(String[] args) throws Exception {
         readDB();
