@@ -12,12 +12,10 @@ public class AddAccount extends JDialog {
     private JTextField interestRateTextField;
     private JTextField dateTextField;
     private JCheckBox OAcheckbox;
-
     public AddAccount() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
-
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onOK();
@@ -52,7 +50,6 @@ public class AddAccount extends JDialog {
         dialog.setVisible(true);
         System.exit(0);
     }
-
     private void onOK() {
         System.out.println("Ok clicked in add Account");
         int found = LookupCustomer.lookupUser(SSNTextField.getText());
