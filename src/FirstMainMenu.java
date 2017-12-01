@@ -33,7 +33,7 @@ public class FirstMainMenu extends JDialog {
 
         closeAccountButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                onCloseAccount();
+                onCloseAccount(activeUser);
             }
         });
 
@@ -80,8 +80,9 @@ public class FirstMainMenu extends JDialog {
         ne.setVisible(true);
     }
 
-    private void onCloseAccount() {
+    private void onCloseAccount(String activeUser) {
         System.out.println("close account clicked");
+        checkCredentials(activeUser);
         //Going to open a new menu that allows accounts to be closed
         dispose();
     }
