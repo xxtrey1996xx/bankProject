@@ -108,6 +108,8 @@ public class Main {
     }//end SaveDb
 
 }
+//TODO remove all this once we get done looking at it
+
      /*   launch(args);
         readDB();
 

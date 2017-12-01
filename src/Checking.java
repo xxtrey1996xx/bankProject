@@ -22,9 +22,10 @@ public class Checking extends Account {
         this.setAccountNumber(accountNumber);
         this.setType(type);
         this.setDate(date);
-        this.hasOverdraftAccount = hasOverdraftAccount;
-        this.overdraftAccount = overdraftAccount;
+
     }
+    this.hasOverdraftAccount = hasOverdraftAccount;
+    this.overdraftAccount = overdraftAccount;
 
     @Override
     public String getBalance() {

@@ -16,7 +16,6 @@ public class Savings extends Account {
         //return this.getBalance();
         return balance;
     }
-
     @Override
     public String getInterestRate() {
         return interestRate;
