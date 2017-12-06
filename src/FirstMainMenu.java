@@ -22,14 +22,11 @@ public class FirstMainMenu extends JDialog {
         this.activeUser = activeUser;
         //This is for controlling what the tellers can see as apposed to managers
         if (activeUser.compareToIgnoreCase("teller") == 0) {
-            hideButton.setVisible(false);
         } else if (activeUser.compareToIgnoreCase("manager") == 0) {
-            hideButton.setVisible(true);
         } else if (activeUser.compareToIgnoreCase("customer") == 0) {
             openAccountButton.setVisible(false);
             closeAccountButton.setVisible(false);
             lookupCustomerButton.setVisible(false);
-            hideButton.setVisible(false);
         }
         setContentPane(contentPane);
         setModal(true);
