@@ -106,12 +106,12 @@ public class FirstMainMenu extends JDialog {
     }
 
     private void onUpdateDate() {
-        String[] parsed = systemDateAndTimeTextField.getText().split(" ");
+        String[] parsed = systemDateAndTimeTextField.getText().split("-");
+        dispose();
         //setting new day values
         int month = Integer.parseInt(parsed[0]);
         int day = Integer.parseInt(parsed[1]);
         int year = Integer.parseInt(parsed[2]);
-        updateSystemDateTime(year, month, day);
         FirstMainMenu fmm = new FirstMainMenu(Main.activeUser);
         fmm.setSystemDateTime();
         fmm.pack();
