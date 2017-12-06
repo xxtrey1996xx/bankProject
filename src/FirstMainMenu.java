@@ -97,7 +97,6 @@ public class FirstMainMenu extends JDialog {
         }
     }
 
-    //todo here zach
     public void setSystemDateTime() {
         SimpleDateFormat date = new SimpleDateFormat("MM/dd/yyyy");
         String strDate = date.format(Main.myDate);

@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Main {
     public static ArrayList<Customer> customers = new ArrayList<>();//Main Data structure for program
     public static String activeUser = null;//Stores user type that logged in
-    public static Date myDate = new Date();
+    public static Date myDate = new Date();//Stores Date for the system
 
 
     public static void main(String[] args) throws Exception {
@@ -64,6 +64,7 @@ public class Main {
         Customer newCustomer;
         newCustomer = new Customer(ssn, fName, lName, address, city, state, zip);
         customers.add(newCustomer);
+        //Instanciating account types
         Savings newSavings;
         Checking newChecking;
         CC newCC;
