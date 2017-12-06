@@ -27,7 +27,7 @@ public class Main {
 
     //May need to make this a Runnable as well to avoid race condition with save
     public static void readDB() throws Exception {
-        File db = new File("testDB2.txt");
+        File db = new File("bankdatabasePIPE.txt");
         Scanner input = new Scanner(db);
         //Skip title line.
         input.nextLine();
@@ -153,7 +153,16 @@ public class Main {
 
                 //dbRecord = checkingDBRecord(printWriter, ssn,address,city,state,zip,fName,lName,acctNum,type,balance,interestRate,date,hasOverdraftAccount("0"));
                 //printWriter.println(dbRecord);
+                //if(type.equalsIgnoreCase("tmb")||type.equalsIgnoreCase("gold")||type.equalsIgnoreCase("diamond")||type.equalsIgnoreCase("savings")) {
                 checkingDBRecord(printWriter, ssn, address, city, state, zip, fName, lName, acctNum, type, balance, interestRate, date, hasOverdraftAccount("0"));
+                //}else if(type.equalsIgnoreCase("long")||type.equalsIgnoreCase("short")||type.equalsIgnoreCase("cc")){
+                //String lastPaymentDate, monthlyPayment, openDate, WTFvariable;
+                //lastPaymentDate = customers.get(i).accounts.get(x).
+                //}else if(type.equalsIgnoreCase("cd")){
+
+                //}else{
+                // System.out.println("Tried to write invalid record");
+                //}
                 /*switch(type){
                     case "Savings":
                     case "TMB":
