@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -19,6 +21,7 @@ public class FirstMainMenu extends JDialog {
     private JTextField systemDateAndTimeTextField;
     private JButton updateDateButton;
     private String activeUser;
+
 
     public FirstMainMenu(String activeUser) {
         this.activeUser = activeUser;
@@ -41,7 +44,16 @@ public class FirstMainMenu extends JDialog {
         });
         updateDateButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                onUpdateDate();
+                String dateStr = systemDateAndTimeTextField.getText();
+                DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+                Date newDate = Main.myDate;
+                try {
+                    newDate = formatter.parse(dateStr);
+                } catch (ParseException e1) {
+                    e1.printStackTrace();
+                }
+
+                onUpdateDate(newDate);
             }
         });
         closeAccountButton.addActionListener(new ActionListener() {
@@ -87,7 +99,7 @@ public class FirstMainMenu extends JDialog {
 
     //todo here zach
     public void setSystemDateTime() {
-        SimpleDateFormat date = new SimpleDateFormat("MM-dd-yyyy");
+        SimpleDateFormat date = new SimpleDateFormat("MM/dd/yyyy");
         String strDate = date.format(Main.myDate);
         systemDateAndTimeTextField.setText(strDate);
     }
@@ -105,18 +117,20 @@ public class FirstMainMenu extends JDialog {
         ne.setVisible(true);
     }
 
-    private void onUpdateDate() {
-        String[] parsed = systemDateAndTimeTextField.getText().split("-");
-        dispose();
-        //setting new day values
-        int month = Integer.parseInt(parsed[0]);
-        int day = Integer.parseInt(parsed[1]);
-        int year = Integer.parseInt(parsed[2]);
-        FirstMainMenu fmm = new FirstMainMenu(Main.activeUser);
-        fmm.setSystemDateTime();
-        fmm.pack();
-        fmm.setVisible(true);
+    private void onUpdateDate(Date newDate){
+        Date previousDate = Main.myDate;
+        int difference = previousDate.compareTo(newDate);
+
+        SimpleDateFormat date = new SimpleDateFormat("MM/dd/yyyy");
+        String strPrevDate = date.format(previousDate);
+        String strCurrentDate = date.format(newDate);
+
+        JOptionPane.showMessageDialog(null, "Date Changed Successfully\nNew Date: " + strCurrentDate +
+                "\nPrevious Date was " + strPrevDate, "Successful Date Change", JOptionPane.INFORMATION_MESSAGE);
+
+        Main.myDate = newDate;
     }
+
     private void onCloseAccount(String activeUser) {
         System.out.println("close account clicked");
         checkCredentials(activeUser);
