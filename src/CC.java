@@ -44,6 +44,35 @@ public class CC extends Credit {
 
     }
 
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    public String getInterest() {
+        return interest;
+    }
+
+    @Override
+    public String getDate() {
+        return date;
+    }
+
+    public String getLastPaymentDate() {
+        return lastPaymentDate;
+    }
+
+    public String getMonthlyPayment() {
+        return monthlyPayment;
+    }
+
+    public String getOpenDate() {
+        return openDate;
+    }
+
+    public String getWtFvariable() {
+        return wtFvariable;
+    }
+
     @Override
     public void credit(double amount) {
         
