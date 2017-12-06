@@ -88,6 +88,8 @@ public class FirstMainMenu extends JDialog {
         systemDateAndTimeTextField.setText(new Date().toString());
     }
 
+    //Change Detected
+
     private void onOpenAccount() {
         System.out.println("open account clicked");
         //Going to open a new menu that allows data to be entered
