@@ -66,7 +66,6 @@ public class FirstMainMenu extends JDialog {
     }
 
     public void main(String[] args) {
-        setSystemDateTime();
         FirstMainMenu dialog = new FirstMainMenu(Main.activeUser);
         dialog.pack();
         dialog.setVisible(true);
@@ -82,7 +81,7 @@ public class FirstMainMenu extends JDialog {
 
     //todo here zach
     public void setSystemDateTime() {
-        systemDateAndTimeTextField.setText(new Date(2017, 01, 01).toString());
+        systemDateAndTimeTextField.setText(Main.systemDate.toString());
     }
 
     //Change Detected

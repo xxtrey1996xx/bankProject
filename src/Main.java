@@ -3,11 +3,13 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
     public static ArrayList<Customer> customers = new ArrayList<>();//Main Data structure for program
     public static String activeUser = null;//Stores user type that logged in
+    public static Date systemDate = new Date(2017, 0, 01);
 
     public static void main(String[] args) throws Exception {
         readDB();

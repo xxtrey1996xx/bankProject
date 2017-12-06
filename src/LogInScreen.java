@@ -54,18 +54,21 @@ public class LogInScreen extends JDialog {
             //This means that a teller has inputted their creds
             Main.activeUser = "teller";
             FirstMainMenu fmm = new FirstMainMenu(Main.activeUser);
+            fmm.setSystemDateTime();
             fmm.pack();
             fmm.setVisible(true);
         } else if (userName.compareToIgnoreCase("manager") == 0 && password.compareToIgnoreCase("password") == 0) {
             //THis means that a manager has inputted their creds
             Main.activeUser = "manager";
             FirstMainMenu fmm = new FirstMainMenu(Main.activeUser);
+            fmm.setSystemDateTime();
             fmm.pack();
             fmm.setVisible(true);
         } else if (userName.compareToIgnoreCase("customer") == 0 && password.compareToIgnoreCase("0000") == 0) {
             //THis means that a customer has inputted their creds
             Main.activeUser = "customer";
             FirstMainMenu fmm = new FirstMainMenu(Main.activeUser);
+            fmm.setSystemDateTime();
             fmm.pack();
             fmm.setVisible(true);
         } else {
