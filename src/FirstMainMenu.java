@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Date;
 
 public class FirstMainMenu extends JDialog {
     private JPanel contentPane;
@@ -13,6 +14,7 @@ public class FirstMainMenu extends JDialog {
     private JButton hideButton;
     private JButton withdrawelButton;
     private JButton depositButton;
+    private JTextField systemDateAndTimeTextField;
     private String activeUser;
 
     public FirstMainMenu(String activeUser) {
@@ -67,6 +69,7 @@ public class FirstMainMenu extends JDialog {
 
     public static void main(String[] args) {
         FirstMainMenu dialog = new FirstMainMenu(Main.activeUser);
+        //setSystemDateTime();
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);
@@ -78,6 +81,11 @@ public class FirstMainMenu extends JDialog {
 
         }
     }
+
+    //todo here zach
+//    private void setSystemDateTime(){
+//        systemDateAndTimeTextField.setText(new Date().toString());
+//    }
     private void onOpenAccount() {
         System.out.println("open account clicked");
         //Going to open a new menu that allows data to be entered
