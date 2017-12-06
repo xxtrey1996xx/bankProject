@@ -16,7 +16,7 @@ public class FirstMainMenu extends JDialog {
     private JButton closeAccountButton;
     private JButton lookupCustomerButton;
     private JButton hideButton;
-    private JButton withdrawelButton;
+    private JButton withdrawalButton;
     private JButton depositButton;
     private JTextField systemDateAndTimeTextField;
     private JButton updateDateButton;
