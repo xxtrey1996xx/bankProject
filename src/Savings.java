@@ -33,7 +33,11 @@ public class Savings extends Account {
 
     @Override
     public void credit(double amount) {
-
+        //Adding money to account
+        Double newBalance;
+        newBalance = Double.valueOf(balance) + amount;
+        balance = newBalance.toString();
+        System.out.println(accountNumber + " should be " + balance);
     }
 
     @Override
