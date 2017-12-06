@@ -35,7 +35,9 @@ public class Savings extends Account {
     public void credit(double amount) {
         //Adding money to account
         Double newBalance;
+        //convert into double format
         newBalance = Double.valueOf(balance) + amount;
+        //saving new balance
         balance = newBalance.toString();
         System.out.println(accountNumber + " should be " + balance);
     }
