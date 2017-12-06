@@ -16,6 +16,8 @@ public class Main {
         LogInScreen lis = new LogInScreen();
         lis.pack();
         lis.setVisible(true);
+        Thread.sleep(25);
+        saveDB();
     }//End main
 
     //May need to make this a Runnable as well to avoid race condition with save
@@ -132,9 +134,9 @@ public class Main {
             fName = customers.get(i).firstName;
             lName = customers.get(i).lastName;
             for (int x = 0; x <= customers.get(i).accounts.size() - 1; x++) {
-                balance = customers.get(i).accounts.get(x).getBalance();
-                interestRate = customers.get(i).accounts.get(x).getInterestRate();
-                type = customers.get(i).accounts.get(x).getType();
+                balance = customers.get(i).accounts.get(x).balance;
+                interestRate = customers.get(i).accounts.get(x).interestRate;
+                type = customers.get(i).accounts.get(x).type;
                 acctNum = customers.get(i).accounts.get(x).getAccountNumber();
                 date = customers.get(i).accounts.get(x).getDate();
                 ssn = customers.get(i).accounts.get(x).getOwnerID();
@@ -187,6 +189,14 @@ public class Main {
         return record;
     }
 
+/*
+    Calculate interest(){
+        principal = $$.$$;
+        rate = yearlyRate % 2.1
+        yearly = principal * rate * .01
+        
 
+    }
+ */
 
 }
