@@ -15,7 +15,7 @@ public class FirstMainMenu extends JDialog {
     private JButton hideButton;
     private JButton withdrawelButton;
     private JButton depositButton;
-    private static JTextField systemDateAndTimeTextField;
+    private JTextField systemDateAndTimeTextField;
     private String activeUser;
 
     public FirstMainMenu(String activeUser) {
@@ -65,9 +65,9 @@ public class FirstMainMenu extends JDialog {
 
     }
 
-    public static void main(String[] args) {
-        FirstMainMenu dialog = new FirstMainMenu(Main.activeUser);
+    public void main(String[] args) {
         setSystemDateTime();
+        FirstMainMenu dialog = new FirstMainMenu(Main.activeUser);
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);
@@ -81,8 +81,8 @@ public class FirstMainMenu extends JDialog {
     }
 
     //todo here zach
-      private static void setSystemDateTime(){
-        systemDateAndTimeTextField.setText(new Date().toString());
+    public void setSystemDateTime() {
+        systemDateAndTimeTextField.setText(new Date(2017, 01, 01).toString());
     }
 
     //Change Detected
