@@ -16,6 +16,7 @@ public class FirstMainMenu extends JDialog {
     private JButton withdrawelButton;
     private JButton depositButton;
     private JTextField systemDateAndTimeTextField;
+    private JButton updateDateButton;
     private String activeUser;
 
     public FirstMainMenu(String activeUser) {
@@ -37,7 +38,11 @@ public class FirstMainMenu extends JDialog {
                 onOpenAccount();
             }
         });
-
+        updateDateButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onUpdateDate();
+            }
+        });
         closeAccountButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onCloseAccount(activeUser);
@@ -101,6 +106,18 @@ public class FirstMainMenu extends JDialog {
         ne.setVisible(true);
     }
 
+    private void onUpdateDate() {
+        String[] parsed = systemDateAndTimeTextField.getText().split(" ");
+        //setting new day values
+        int month = Integer.parseInt(parsed[0]);
+        int day = Integer.parseInt(parsed[1]);
+        int year = Integer.parseInt(parsed[2]);
+        updateSystemDateTime(year, month, day);
+        FirstMainMenu fmm = new FirstMainMenu(Main.activeUser);
+        fmm.setSystemDateTime();
+        fmm.pack();
+        fmm.setVisible(true);
+    }
     private void onCloseAccount(String activeUser) {
         System.out.println("close account clicked");
         checkCredentials(activeUser);
