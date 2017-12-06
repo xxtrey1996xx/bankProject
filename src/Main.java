@@ -9,7 +9,8 @@ import java.util.Scanner;
 public class Main {
     public static ArrayList<Customer> customers = new ArrayList<>();//Main Data structure for program
     public static String activeUser = null;//Stores user type that logged in
-    public static Date systemDate = new Date(2017, 0, 01);
+    public static Date myDate = new Date();
+
 
     public static void main(String[] args) throws Exception {
         readDB();
@@ -21,6 +22,8 @@ public class Main {
         Thread.sleep(25);
         saveDB();
     }//End main
+
+
 
     //May need to make this a Runnable as well to avoid race condition with save
     public static void readDB() throws Exception {
