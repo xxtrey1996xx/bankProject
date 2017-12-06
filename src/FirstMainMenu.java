@@ -99,7 +99,7 @@ public class FirstMainMenu extends JDialog {
 
     //todo here zach
     public void setSystemDateTime() {
-        SimpleDateFormat date = new SimpleDateFormat("MM-dd-yyyy");
+        SimpleDateFormat date = new SimpleDateFormat("MM/dd/yyyy");
         String strDate = date.format(Main.myDate);
         systemDateAndTimeTextField.setText(strDate);
     }
@@ -120,6 +120,14 @@ public class FirstMainMenu extends JDialog {
     private void onUpdateDate(Date newDate){
         Date previousDate = Main.myDate;
         int difference = previousDate.compareTo(newDate);
+
+        SimpleDateFormat date = new SimpleDateFormat("MM/dd/yyyy");
+        String strPrevDate = date.format(previousDate);
+        String strCurrentDate = date.format(newDate);
+
+        JOptionPane.showMessageDialog(null, "Date Changed Successfully\nNew Date: " + strCurrentDate +
+                "\nPrevious Date was " + strPrevDate, "Successful Date Change", JOptionPane.INFORMATION_MESSAGE);
+
         Main.myDate = newDate;
     }
 
