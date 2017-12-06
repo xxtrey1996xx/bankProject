@@ -37,6 +37,11 @@ public class CD extends Account {
     }
 
     @Override
+    public void credit(double amount) {
+
+    }
+
+    @Override
     public void debit() {
         //TODO Check Maturity Date VRS Current Date if Valid -> Dispense Cash and Close Account
     }

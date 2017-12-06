@@ -7,7 +7,7 @@ public class Transaction {
     String type;
 
     //Constructor
-    private Transaction(String location, String date, double amount){
+    public Transaction(String location, String date, double amount) {
         this.location = location;
         this.date = date;
         this.amount = amount;

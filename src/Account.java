@@ -53,6 +53,8 @@ public abstract class Account {
     public abstract String getInterestRate();//Returns Interest Rate
     public abstract String getType();//Returns account type
     public abstract void credit();//credits the account
+
+    public abstract void credit(double amount);
     public abstract void debit();//debits the account
     public void updateTransactionList(Transaction transaction){
         transactionArrayList.add(transaction);

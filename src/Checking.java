@@ -2,7 +2,7 @@ public class Checking extends Account {
     public boolean hasOverdraftAccount;
     public String overdraftAccount;
 
-    String ownerID, balance, interestRate,accountNumber,type,date;
+    String ownerID, balance, interestRate, accountNumber, type, date;
     boolean HasOverdraftAccount;
 
     public Checking(String ownerID, String balance, String interestRate, String accountNumber, String type, String date, boolean hasOverdraftAccount) {
@@ -25,6 +25,7 @@ public class Checking extends Account {
         this.hasOverdraftAccount = hasOverdraftAccount;
         this.overdraftAccount = overdraftAccount;
     }
+
     @Override
     public String getBalance() {
         return balance;
@@ -45,21 +46,40 @@ public class Checking extends Account {
 
     }
 
+    @Override
+    public void credit(double amount) {
+        //Adding money to account
+        Double newBalance;
+        newBalance = Double.valueOf(balance) + amount;
+        balance = newBalance.toString();
+        System.out.println(accountNumber + " should be " + balance);
+
+    }
+
     public boolean getOverdraftAccount() {
         return hasOverdraftAccount;
     }
 
     @Override
     public void debit() {
-
+        //This isnt used
     }
 
     @Override
     public void debit(double amount) {
+        //Taking money from account
+        if ((Double.valueOf(balance) - amount) >= 0) {
+            Double newBalance = Double.valueOf(balance) - amount;
+            balance = newBalance.toString();
+            System.out.println(accountNumber + " balance should be " + balance);
+            updateTransactionList(new Transaction("Debit", Main.myDate.toString(), amount));
+        } else if ((Double.valueOf(balance) - amount) < 0) {
+            //This is where overdrafts are handled
+        }
 
     }
 
-    public void stopPay(String checkNumber){
+    public void stopPay(String checkNumber) {
 
     }
 
