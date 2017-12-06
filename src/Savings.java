@@ -32,6 +32,11 @@ public class Savings extends Account {
     }
 
     @Override
+    public void credit(double amount) {
+
+    }
+
+    @Override
     public void debit() {
 
     }

@@ -45,6 +45,11 @@ public class CC extends Credit {
     }
 
     @Override
+    public void credit(double amount) {
+        
+    }
+
+    @Override
     public void debit() {
 
 

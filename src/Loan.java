@@ -38,6 +38,11 @@ public class Loan extends Credit {
     }
 
     @Override
+    public void credit(double amount) {
+
+    }
+
+    @Override
     public void debit() {
 
     }

@@ -72,6 +72,7 @@ public class Checking extends Account {
             Double newBalance = Double.valueOf(balance) - amount;
             balance = newBalance.toString();
             System.out.println(accountNumber + " balance should be " + balance);
+            updateTransactionList(new Transaction("Debit", Main.myDate.toString(), amount));
         } else if ((Double.valueOf(balance) - amount) < 0) {
             //This is where overdrafts are handled
         }
