@@ -84,6 +84,12 @@ public class FirstMainMenu extends JDialog {
         systemDateAndTimeTextField.setText(Main.systemDate.toString());
     }
 
+    public void updateSystemDateTime(int year, int month, int day) {
+        Main.systemDate.setYear(year);
+        Main.systemDate.setMonth(month);
+        Main.systemDate.setDate(day);
+    }
+
     //Change Detected
 
     private void onOpenAccount() {

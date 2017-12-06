@@ -58,6 +58,7 @@ public class New_Existing extends JDialog {
         //Goes backwards
         dispose();
         FirstMainMenu fmm = new FirstMainMenu(Main.activeUser);
+        fmm.setSystemDateTime();
         fmm.pack();
         fmm.setVisible(true);
     }

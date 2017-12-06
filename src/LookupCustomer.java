@@ -62,6 +62,7 @@ public class LookupCustomer extends JDialog {
     private void onCancel() {
         dispose();
         FirstMainMenu fmm = new FirstMainMenu(Main.activeUser);
+        fmm.setSystemDateTime();
         fmm.pack();
         fmm.setVisible(true);
     }

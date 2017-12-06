@@ -92,6 +92,7 @@ public class AddAccount extends JDialog {
         System.out.println("Saved to Database.");
         dispose();
         FirstMainMenu redirect = new FirstMainMenu(Main.activeUser);
+        redirect.setSystemDateTime();
         redirect.pack();
         redirect.setVisible(true);
     }
@@ -113,6 +114,7 @@ public class AddAccount extends JDialog {
         //Closes the current box.
         dispose();
         FirstMainMenu mm = new FirstMainMenu(Main.activeUser);
+        mm.setSystemDateTime();
         mm.pack();
         mm.setVisible(true);
     }
