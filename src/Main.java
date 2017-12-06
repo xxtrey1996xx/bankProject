@@ -141,7 +141,10 @@ public class Main {
                 date = customers.get(i).accounts.get(x).getDate();
                 ssn = customers.get(i).accounts.get(x).getOwnerID();
                 //TODO Will need a print function written for each type of account since Credit and loans have extra fields.
+
                 //TODO will also need to include the flag for overdraft coverage.
+
+
                 //dbRecord = checkingDBRecord(printWriter, ssn,address,city,state,zip,fName,lName,acctNum,type,balance,interestRate,date,hasOverdraftAccount("0"));
                 //printWriter.println(dbRecord);
                 checkingDBRecord(printWriter, ssn, address, city, state, zip, fName, lName, acctNum, type, balance, interestRate, date, hasOverdraftAccount("0"));
