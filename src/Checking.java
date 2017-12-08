@@ -3,7 +3,7 @@ public class Checking extends Account {
     public String overdraftAccount;
     public String backupAccountNumber;
 
-    String ownerID, balance, interestRate, accountNumber, type, date;
+    String ownerID, balance, interestRate, accountNumber, type, date, monthlyOverdraftCount;
     boolean HasOverdraftAccount;
 
     public Checking(String ownerID, String balance, String interestRate, String accountNumber, String type, String date, boolean hasOverdraftAccount) {
@@ -95,17 +95,25 @@ public class Checking extends Account {
 
     @Override
     public void debit(double amount) {
+        double newBalance = Double.valueOf(balance) - amount;
+
         //Taking money from account
-        if ((Double.valueOf(balance) - amount) >= 0) {
-            Double newBalance = Double.valueOf(balance) - amount;
-            balance = newBalance.toString();
-            System.out.println(accountNumber + " balance should be " + balance);
-            updateTransactionList(new Transaction("Debit", Main.myDate.toString(), amount));
-        } else if ((Double.valueOf(balance) - amount) < 0) {
+        Transaction debit = new Transaction;
+
+        if (newBalance >= 0) {
+            balance = String.valueOf(newBalance);
+            System.out.println(accountNumber + " new balance should be " + balance);
+            updateTransactionList(new Transaction("Debit", Main.myDate.toString(), balance));
+        }
+        else if ((Double.valueOf(balance) - amount) < 0) {
             //This is where overdrafts are handled
+            System.out.println("Overdraft***\t\tAccount#: " + accountNumber);
+            balance = String.valueOf(newBalance).format("$999,999,999.99");
         }
 
     }
+
+
 
     public void stopPay(String checkNumber) {
 
