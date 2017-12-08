@@ -92,8 +92,9 @@ public class LookupCustomer extends JDialog {
         //We need to check and see if their SSN is in the system yet.
         int i = lookupUserIndex(SSNtextField.getText(), false);
         if (i != -99) {
+            Customer customer = getCustomer(i);
             dispose();
-            CustomerAccountsMenu2 cam = new CustomerAccountsMenu2();
+            CustomerAccountsMenu2 cam = new CustomerAccountsMenu2(customer);
             cam.setIndex(i);
             cam.pack();
             cam.setVisible(true);

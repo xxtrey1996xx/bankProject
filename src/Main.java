@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,12 +10,20 @@ public class Main {
     public static String activeUser = null;//Stores user type that logged in
     public static Date myDate = new Date();//Stores Date for the system
     public static String dateString;
+    public static PrintWriter oldPrintWriter;
+    public static PrintWriter newPrintWriter;
+    public static String
 
 
     public static void main(String[] args) throws Exception {
-        readDB();
+        File oldDb = new File("oldDb.txt");
+        File currentDb = new File("bankdatabasePIPE.txt");
+        File newDb = new File("newDb.txt");
+        oldPrintWriter = new PrintWriter("oldDb.txt");
+        newPrintWriter = new PrintWriter("newDb.txt");
+        readDB(currentDb);
         Thread.sleep(25);
-        saveDB();
+        saveDB(oldPrintWriter);
         LogInScreen lis = new LogInScreen();
         lis.pack();
         lis.setVisible(true);
@@ -22,11 +31,30 @@ public class Main {
         saveDB();
     }//End main
 
+    private static void createPrintWriters() throws FileNotFoundException {
+        File oldDb = new File("oldDb.txt");
+        File currentDb = new File("bankdatabasePIPE.txt");
+        File newDb = new File("newDb.txt");
+        PrintWriter oldPrintWriter = new PrintWriter(oldDb);
+        PrintWriter newPrintWriter = new PrintWriter(newDb);
+        PrintWriter currentPrintWriter = new PrintWriter(currentDb);
+    }
+
 
     //May need to make this a Runnable as well to avoid race condition with save
-    public static void readDB() throws Exception {
-        File db = new File("bankdatabasePIPE.txt");
-        Scanner input = new Scanner(db);
+    public static void readDB(File oldDb) throws Exception {
+        File oldDb = new File("oldDb.txt");
+        File currentDb = new File("bankdatabasePIPE.txt");
+        File newDb = new File("newDb.txt");
+
+        Scanner legacyInput = new Scanner(oldDb);
+        Scanner input = new Scanner(currentDb);
+        Scanner futureInput = new Scanner(newDb);
+
+        PrintWriter oldPrintWriter = new PrintWriter(oldDb);
+        PrintWriter newPrintWriter = new PrintWriter(newDb);
+        PrintWriter currentPrintWriter = new PrintWriter(currentDb);
+
         //Read in Date
 
         dateString = input.nextLine();
@@ -193,9 +221,8 @@ public class Main {
     }
 
     //May need to make this a Runnable to avoid Race condition with reading the database
-    public static void saveDB() throws Exception {
+    public static void saveDB(PrintWriter printWriter) throws Exception {
         String address, city, state, zip, fName, lName, balance, interestRate, type, acctNum, date, ssn, dateDue, backupAccountFlag, monthlyOverdraftCount;
-        PrintWriter printWriter = new PrintWriter(new File("currentDB.txt"));
         String dbRecord;
 
         //printWriter.println("SSN         Address         City        State/Zip   FNam    LName   ACCT#   ACCTTYP Balance Int     OpenDate");

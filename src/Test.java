@@ -1,10 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Test {
+public class Test extends JDialog{
     private JPanel panel1;
     private JTable table;
-    protected Customer customer;
+    public static Customer customer;
 
     public Test(Customer customer){
         this.customer = customer;
@@ -35,5 +35,19 @@ public class Test {
 
 
         // TODO: place custom component creation code here
+    }
+
+    public static void main(String[] args) {
+        Test dialog = new Test(customer);
+        dialog.pack();
+        dialog.setVisible(true);
+        System.exit(0);
+    }
+
+    public void pack() {
+    }
+
+    public void setVisible(boolean visible) {
+        this.setVisible(visible);
     }
 }
