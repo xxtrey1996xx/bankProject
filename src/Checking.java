@@ -28,7 +28,7 @@ public class Checking extends Account {
     }
 
     public void setBackupAccountNumber(String accountNumber){
-        int userIndex = LookupCustomer.lookupUser(ownerID);
+        int userIndex = LookupCustomer.lookupUserIndex(ownerID,false);
         Customer thisCustomer = Main.customers.get(userIndex);
 
         //loop through user accounts to verify Savings account exists matching requested account number.
