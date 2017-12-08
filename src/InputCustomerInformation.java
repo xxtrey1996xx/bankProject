@@ -66,8 +66,8 @@ public class InputCustomerInformation extends JDialog {
         //Add Customer Object to customers list
         Main.customers.add(newCustomer);
 
-        //Link to AddAccount Form
-        AddAccount acct = new AddAccount();
+        //Link to AddBankAccount Form
+        AddBankAccount acct = new AddBankAccount();
         acct.pack();
         acct.setVisible(true);
     }

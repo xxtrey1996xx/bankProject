@@ -74,7 +74,7 @@ public class New_Existing extends JDialog {
     private void onExistingCustomer() {
         //Launches new Add account menu
         dispose();
-        AddAccount aa = new AddAccount();
+        AddBankAccount aa = new AddBankAccount();
         aa.pack();
         aa.setVisible(true);
     }
