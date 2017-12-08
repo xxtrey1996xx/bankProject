@@ -7,7 +7,6 @@ import java.awt.Dimension;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
-
 public class CustomerAccountsMenu2 extends JDialog {
     int index;
 
@@ -21,14 +20,10 @@ public class CustomerAccountsMenu2 extends JDialog {
         // 2D array is used for data in table
         int i = 0;
         String[][] data = {
-                //while(i<=customer.accounts.size()) {
                 {
-                        customer.accounts.get(0).getAccountNumber(), customer.accounts.get(0).getType(),
-                        customer.accounts.get(0).getInterestRate(), customer.accounts.get(0).getBalance()
-                }
-                //}
-        };//end data
-
+                        customer.accounts.get(i).getAccountNumber(), customer.accounts.get(i).type,
+                        customer.accounts.get(i).interestRate, customer.accounts.get(i).balance
+                }};//end data
         // Creates Table
         jt = new JTable(data, columns) {
             // Determines if data can be entered by users
