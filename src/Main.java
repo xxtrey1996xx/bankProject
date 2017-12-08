@@ -1,8 +1,6 @@
 import java.io.File;
-import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -61,7 +59,7 @@ public class Main {
 
         //Variables only used in CC, and Loans
         String lastPaymentDate, monthlyPayment, openDate, WTFvariable, length;
-        int wasFound = LookupCustomer.lookupUser(ssn, false);
+        int wasFound = LookupCustomer.lookupUserIndex(ssn, false);
         if (wasFound == -99) {
             //Create customer object from parsed values
             Customer newCustomer;

@@ -50,7 +50,7 @@ public class LookupCustomer extends JDialog {
         System.exit(0);
     }
 
-    public static int lookupUser(String ssn, boolean alertNeeded) {
+    public static int lookupUserIndex(String ssn, boolean alertNeeded) {
         int findIndex = -99;
         double test;
         System.out.println("Searching for user " + ssn);
@@ -78,6 +78,10 @@ public class LookupCustomer extends JDialog {
         return findIndex;
     }
 
+    public static Customer getCustomer(int index) {
+        return Main.customers.get(index);
+    }
+
     private void onCancel() {
         dispose();
         FirstMainMenu fmm = new FirstMainMenu(Main.activeUser);
@@ -88,13 +92,18 @@ public class LookupCustomer extends JDialog {
 
     private void onOK() {
         //We need to check and see if their SSN is in the system yet.
-        int i = lookupUser(SSNtextField.getText(), true);
+        int i = lookupUserIndex(SSNtextField.getText(), false);
         if (i != -99) {
-            //user exists
+            dispose();
+            CustomerAccountsMenu2 cam = new CustomerAccountsMenu2();
+            cam.setIndex(i);
+            cam.pack();
+            cam.setVisible(true);
 
+        } else {
+            handleInvalidUser(SSNtextField.getText());
         }
     }
-
 
 
     private static void handleInvalidUser(String ssn) {
