@@ -1,13 +1,13 @@
 public class Loan extends Credit {
-    String ssn,acctNum, type, balance, interestRate, dueDate, lastPayment, minimumPayment, openDate, WTFvariable;
+    String ssn, length, type, balance, interestRate, dueDate, lastPayment, minimumPayment, openDate, WTFvariable;
 
     //Constructor for Loan
-    public Loan(String ssn, String acctNum, String type, String balance, String interest, String date, String lastPaymentDate, String monthlyPayment, String openDate, String WTFvariable){
-        this.ssn = ssn;
-        this.acctNum = acctNum;
-        this.type = type;
-        this.balance = balance;
-        this.interestRate = interest;
+    public Loan(String ssn, String length, String type, String balance, String interest, String date, String lastPaymentDate, String monthlyPayment, String openDate, String WTFvariable) {
+        this.setOwnerID(ssn);
+        this.length = length;
+        this.setType(type);
+        this.setBalance(balance);
+        this.setInterestRate(interest);
         this.dueDate = date;
         this.lastPayment = lastPaymentDate;
         this.minimumPayment = monthlyPayment;

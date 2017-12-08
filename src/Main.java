@@ -58,7 +58,7 @@ public class Main {
         String date = record[11];
 
         //Variables only used in CC, and Loans
-        String lastPaymentDate, monthlyPayment, openDate, WTFvariable;
+        String lastPaymentDate, monthlyPayment, openDate, WTFvariable, length;
 
         //Create customer object from parsed values
         Customer newCustomer;
@@ -101,11 +101,12 @@ public class Main {
 
             case "long":
             case "short":
+                length = record[7];
                 lastPaymentDate = record[12];
                 monthlyPayment = record[13];
                 openDate = record[14];
                 WTFvariable = record[15];
-                newLoan = new Loan(ssn, acctNum, type, balance, interest, date, lastPaymentDate, monthlyPayment, openDate, WTFvariable);
+                newLoan = new Loan(ssn, length, type, balance, interest, date, lastPaymentDate, monthlyPayment, openDate, WTFvariable);
                 newCustomer.accounts.add(newLoan);
                 break;
 
@@ -143,8 +144,7 @@ public class Main {
                 balance = customers.get(i).accounts.get(x).balance;
                 interestRate = customers.get(i).accounts.get(x).interestRate;
                 type = customers.get(i).accounts.get(x).type;
-                acctNum = customers.get(i).accounts.get(x).getAccountNumber();
-                date = customers.get(i).accounts.get(x).getDate();
+
                 ssn = customers.get(i).accounts.get(x).getOwnerID();
                 //TODO Will need a print function written for each type of account since Credit and loans have extra fields.
 
@@ -153,16 +153,19 @@ public class Main {
 
                 //dbRecord = checkingDBRecord(printWriter, ssn,address,city,state,zip,fName,lName,acctNum,type,balance,interestRate,date,hasOverdraftAccount("0"));
                 //printWriter.println(dbRecord);
-                //if(type.equalsIgnoreCase("tmb")||type.equalsIgnoreCase("gold")||type.equalsIgnoreCase("diamond")||type.equalsIgnoreCase("savings")) {
-                checkingDBRecord(printWriter, ssn, address, city, state, zip, fName, lName, acctNum, type, balance, interestRate, date, hasOverdraftAccount("0"));
-                //}else if(type.equalsIgnoreCase("long")||type.equalsIgnoreCase("short")||type.equalsIgnoreCase("cc")){
-                //String lastPaymentDate, monthlyPayment, openDate, WTFvariable;
-                //lastPaymentDate = customers.get(i).accounts.get(x).
-                //}else if(type.equalsIgnoreCase("cd")){
-
-                //}else{
-                // System.out.println("Tried to write invalid record");
-                //}
+                System.out.println(i + " " + x);
+                if (type.equalsIgnoreCase("tmb") || type.equalsIgnoreCase("gold") || type.equalsIgnoreCase("diamond") || type.equalsIgnoreCase("savings")) {
+                    acctNum = customers.get(i).accounts.get(x).getAccountNumber();
+                    date = customers.get(i).accounts.get(x).getDate();
+                    checkingDBRecord(printWriter, ssn, address, city, state, zip, fName, lName, acctNum, type, balance, interestRate, date, hasOverdraftAccount("0"));
+                } else if (type.equalsIgnoreCase("long") || type.equalsIgnoreCase("short") || type.equalsIgnoreCase("cc")) {
+                    String lastPaymentDate, monthlyPayment, openDate, WTFvariable;
+                    System.out.println("Loan printed");
+                } else if (type.equalsIgnoreCase("cd")) {
+                    System.out.println("printed cd record");
+                } else {
+                    System.out.println("Tried to write invalid record");
+                }
                 /*switch(type){
                     case "Savings":
                     case "TMB":
