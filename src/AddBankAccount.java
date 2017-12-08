@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.event.*;
 
-public class AddAccount extends JDialog {
+public class AddBankAccount extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
@@ -12,7 +12,8 @@ public class AddAccount extends JDialog {
     private JTextField interestRateTextField;
     private JTextField dateTextField;
     private JCheckBox OAcheckbox;
-    public AddAccount() {
+
+    public AddBankAccount() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -49,7 +50,7 @@ public class AddAccount extends JDialog {
     }
 
     public static void main(String[] args) throws Exception {
-        AddAccount dialog = new AddAccount();
+        AddBankAccount dialog = new AddBankAccount();
         dialog.pack();
         dialog.setVisible(true);
 

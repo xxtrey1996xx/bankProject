@@ -66,10 +66,21 @@ public class InputCustomerInformation extends JDialog {
         //Add Customer Object to customers list
         Main.customers.add(newCustomer);
 
-        //Link to AddAccount Form
-        AddAccount acct = new AddAccount();
-        acct.pack();
-        acct.setVisible(true);
+        if (FirstMainMenu.acctType.equalsIgnoreCase("bank")) {
+            AddBankAccount aa = new AddBankAccount();
+            aa.pack();
+            aa.setVisible(true);
+        } else if (FirstMainMenu.acctType.equalsIgnoreCase("CD")) {
+            AddCDAccount ac = new AddCDAccount();
+            ac.pack();
+            ac.setVisible(true);
+        } else if (FirstMainMenu.acctType.equalsIgnoreCase("loan")) {
+            AddLoanAccount al = new AddLoanAccount();
+            al.pack();
+            al.setVisible(true);
+        } else {
+            System.exit(1);
+        }
     }
 
     private void onCancel() {

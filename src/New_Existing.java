@@ -74,8 +74,20 @@ public class New_Existing extends JDialog {
     private void onExistingCustomer() {
         //Launches new Add account menu
         dispose();
-        AddAccount aa = new AddAccount();
-        aa.pack();
-        aa.setVisible(true);
+        if (FirstMainMenu.acctType.equalsIgnoreCase("bank")) {
+            AddBankAccount aa = new AddBankAccount();
+            aa.pack();
+            aa.setVisible(true);
+        } else if (FirstMainMenu.acctType.equalsIgnoreCase("CD")) {
+            AddCDAccount ac = new AddCDAccount();
+            ac.pack();
+            ac.setVisible(true);
+        } else if (FirstMainMenu.acctType.equalsIgnoreCase("loan")) {
+            AddLoanAccount al = new AddLoanAccount();
+            al.pack();
+            al.setVisible(true);
+        } else {
+            System.exit(1);
+        }
     }
 }

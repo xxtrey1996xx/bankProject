@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="AddAccount">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="AddBankAccount">
   <grid id="cbd77" binding="contentPane" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="true" same-size-vertically="false" hgap="10" vgap="10">
     <margin top="100" left="100" bottom="100" right="100"/>
     <constraints>
-      <xy x="47" y="108" width="519" height="512"/>
+      <xy x="47" y="108" width="525" height="579"/>
     </constraints>
     <properties>
       <preferredSize width="519" height="600"/>
@@ -32,15 +32,6 @@
                   <grid row="0" column="0" row-span="4" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
               </hspacer>
-              <component id="f1366" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <labelFor value="8833f"/>
-                  <text value="Account Type"/>
-                </properties>
-              </component>
               <component id="8833f" class="javax.swing.JComboBox" binding="acctTypecomboBox1">
                 <constraints>
                   <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
@@ -50,8 +41,6 @@
                     <item value="Select"/>
                     <item value="Checking"/>
                     <item value="Savings"/>
-                    <item value="Credit"/>
-                    <item value="Loan"/>
                   </model>
                 </properties>
               </component>
@@ -162,6 +151,15 @@
                 </constraints>
                 <properties>
                   <text value="Overdraft Account"/>
+                </properties>
+              </component>
+              <component id="f1366" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <labelFor value="8833f"/>
+                  <text value="Account Type"/>
                 </properties>
               </component>
             </children>
