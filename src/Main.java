@@ -133,7 +133,7 @@ public class Main {
 
     //May need to make this a Runnable to avoid Race condition with reading the database
     public static void saveDB() throws Exception {
-        String address, city, state, zip, fName, lName, balance, interestRate, type, acctNum, date, ssn, dateDue,backupAccountFlag,monthlyOverdraftCount,  ;
+        String address, city, state, zip, fName, lName, balance, interestRate, type, acctNum, date, ssn, dateDue,backupAccountFlag,backupAccountNumber,monthlyOverdraftCount;
         PrintWriter printWriter = new PrintWriter(new File("currentDB.txt"));
         String dbRecord;
         //Print Title Line
@@ -159,14 +159,17 @@ public class Main {
                 //TODO Will need a print function written for each type of account since Credit and loans have extra fields.
 
                 switch(type){
-                    case "checking":
-                            if (customers.get(i).accounts.get(x).getOverdraftAccount())
-
-                        break;
+                    case "Savings":
+                            break;
 
                     case "TMB":
                     case "Gold":
                     case "Diamond":
+                        if (customers.get(i).accounts.get(x).getOverdraftAccount()){
+                            backupAccountFlag = "1";
+                            backupAccountNumber = customers.get(i).accounts.get(x).getBackupAccountNumber();
+                        }
+                        else backupAccountFlag = "0";
                         break;
 
                     case "cc":
@@ -239,6 +242,9 @@ public class Main {
         String record = "test";
         return record;
     }
+
+
+
 
 /*
     Calculate interest(){

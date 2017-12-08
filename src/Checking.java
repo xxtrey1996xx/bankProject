@@ -1,6 +1,7 @@
 public class Checking extends Account {
     public boolean hasOverdraftAccount;
     public String overdraftAccount;
+    public String backupAccountNumber;
 
     String ownerID, balance, interestRate, accountNumber, type, date;
     boolean HasOverdraftAccount;
@@ -24,6 +25,33 @@ public class Checking extends Account {
         this.setDate(date);
         this.hasOverdraftAccount = hasOverdraftAccount;
         this.overdraftAccount = overdraftAccount;
+    }
+
+    public void setBackupAccountNumber(String accountNumber){
+        int userIndex = LookupCustomer.lookupUser(ownerID);
+        Customer thisCustomer = Main.customers.get(userIndex);
+
+        //loop through user accounts to verify Savings account exists matching requested account number.
+        for(int i = 0; i<=thisCustomer.accounts.size(); i++){
+            if(thisCustomer.accounts.get(i).accountNumber == accountNumber){
+                if(thisCustomer.accounts.get(i).type == "Savings"){
+                    //This is a valid account. Set pointer to accountNumber
+                    backupAccountNumber = accountNumber;
+                }
+                else//Account exists but is not a savings account
+                    {System.out.println("Account Exists but is not a Savings Account");
+                }
+            }//End Check for account
+        }//end For loop
+
+        //TODO Create Alert box for this
+        if(backupAccountNumber == null)
+            System.out.println("No Account found by account number: " + accountNumber);
+    }
+
+    @Override
+    public String getBackupAccountNumber(){
+        return this.backupAccountNumber;
     }
 
     @Override
