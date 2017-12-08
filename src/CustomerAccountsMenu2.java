@@ -28,8 +28,15 @@ public class CustomerAccountsMenu2 extends JDialog {
                         customer.accounts.get(0).type,
                         customer.accounts.get(0).interestRate,
                         customer.accounts.get(0).balance
+                },
+                {
+                        customer.accounts.get(1).accountNumber,
+                        customer.accounts.get(1).type,
+                        customer.accounts.get(1).interestRate,
+                        customer.accounts.get(1).balance
                 }
         };
+
 
         for (int col = 1; col < (data.length + 1); col++) {
             model.addColumn("col" + col);
