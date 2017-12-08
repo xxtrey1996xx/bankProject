@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.awt.Color;
@@ -7,23 +8,42 @@ import java.awt.Dimension;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
+
 public class CustomerAccountsMenu2 extends JDialog {
     int index;
 
-    JTable jt;
 
     public CustomerAccountsMenu2() {
         Customer customer = LookupCustomer.getCustomer(index);
+        DefaultTableModel model = new DefaultTableModel();
+        JTable jt = new JTable(model);
+        model.addColumn("Header");
         // Columns for table
         String[] columns = {"Account Number", "Account Type", "Interest Rate", "Balance",};
 
         // 2D array is used for data in table
-        int i = 0;
-        String[][] data = {
+        String[][] data = new String[][]{
                 {
-                        customer.accounts.get(i).getAccountNumber(), customer.accounts.get(i).type,
-                        customer.accounts.get(i).interestRate, customer.accounts.get(i).balance
-                }};//end data
+                        customer.accounts.get(0).accountNumber,
+                        customer.accounts.get(0).type,
+                        customer.accounts.get(0).interestRate,
+                        customer.accounts.get(0).balance
+                }
+        };
+
+        for (int col = 1; col < (data.length + 1); col++) {
+            model.addColumn("col" + col);
+        }
+        for (int h = 0; h < columns.length; h++) {
+            model.addRow(new Object[]{columns[h]});
+        }
+        for (int r = 0; r < data.length; r++) {
+            for (int c = 0; c < data[0].length; c++) {
+                model.setValueAt(data[r][c], c, r + 1);
+            }
+        }
+
+
         // Creates Table
         jt = new JTable(data, columns) {
             // Determines if data can be entered by users
