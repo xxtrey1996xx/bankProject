@@ -20,14 +20,17 @@ public class FirstMainMenu extends JDialog {
     private JButton depositButton;
     private JTextField systemDateAndTimeTextField;
     private JButton updateDateButton;
+    public static String acctType = null;//This is a "flag" used to determine which accttype button was used for new and exsisting page
+    private JButton openLoanButton;
     private String activeUser;
-
-
+    private JButton openCDButton;
     public FirstMainMenu(String activeUser) {
         this.activeUser = activeUser;
         //This is for controlling what the tellers can see as apposed to managers
         if (activeUser.compareToIgnoreCase("teller") == 0) {
         } else if (activeUser.compareToIgnoreCase("manager") == 0) {
+            openLoanButton.setVisible(true);
+            openCDButton.setVisible(true);
         } else if (activeUser.compareToIgnoreCase("customer") == 0) {
             openAccountButton.setVisible(false);
             closeAccountButton.setVisible(false);
@@ -84,6 +87,16 @@ public class FirstMainMenu extends JDialog {
                 onCloseSystem();
             }
         });
+        openCDButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onOpenCD();
+            }
+        });
+        openLoanButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onOpenLoan();
+            }
+        });
 
     }
 
@@ -112,6 +125,7 @@ public class FirstMainMenu extends JDialog {
     //Change Detected
 
     private void onOpenAccount() {
+        acctType = "bank";
         System.out.println("open account clicked");
         //Going to open a new menu that allows data to be entered
         dispose();
@@ -154,5 +168,16 @@ public class FirstMainMenu extends JDialog {
         LookupCustomer luc = new LookupCustomer();
         luc.pack();
         luc.setVisible(true);
+    }
+
+    private void onOpenCD() {
+        dispose();
+        acctType = "CD";
+        New_Existing ne = new New_Existing();
+        ne.pack();
+        ne.setVisible(true);
+    }
+
+    private void onOpenLoan() {
     }
 }
