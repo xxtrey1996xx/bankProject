@@ -32,12 +32,15 @@ public class Main {
         //Skip title line.
         input.nextLine();
         input.useDelimiter("\n");//Set Delimiter to returns to get a record from the Database
+        System.out.println("\n*************************************************** - Original DB Record - ***************************************************\n");
         while (input.hasNext()) {
             String record = input.next();
-            System.out.println("This is the original DB Record: \n" + record);
+            System.out.println(record + "\n");
             String[] splitRecord = record.split("\\|");
             updateCustomerArray(splitRecord);
         }
+        System.out.println("************************************************* - End Original DB Record - *************************************************\n");
+
         input.close();
     }
 
@@ -147,6 +150,9 @@ public class Main {
 
                 ssn = customers.get(i).accounts.get(x).getOwnerID();
                 //TODO Will need a print function written for each type of account since Credit and loans have extra fields.
+
+
+
 
                 //TODO will also need to include the flag for overdraft coverage.
 
