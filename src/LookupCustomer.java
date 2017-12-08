@@ -53,24 +53,22 @@ public class LookupCustomer extends JDialog {
     public static int lookupUserIndex(String ssn, boolean alertNeeded) {
         int findIndex = -99;
         double test;
-        System.out.println("Searching for user " + ssn);
+        //System.out.println("Searching for user " + ssn);
         for (int i = 0; i <= Main.customers.size() - 1; i++) {
             test = Main.customers.get(i).getSSN().compareToIgnoreCase(ssn);
-            System.out.println("In for loop looking up customer");
             if (Main.customers.get(i).ssn.compareToIgnoreCase(ssn) == 0)
                 findIndex = i;
         }
         if (findIndex == -99) {
-            System.out.println("User not found SSN: " + ssn);
             if (alertNeeded) {
+                System.out.println("User not found SSN: " + ssn);
                 handleInvalidUser(ssn);
             }//end alertNeeded if
         } else
-            System.out.println("Found User: " + Main.customers.get(findIndex).firstName + " " + Main.customers.get(findIndex).lastName);
-
         //Shows a popup with a confirmation message
         //todo Error if searched more than one user ID;
         if (alertNeeded) {
+            System.out.println("Found User: " + Main.customers.get(findIndex).firstName + " " + Main.customers.get(findIndex).lastName);
             JOptionPane.showMessageDialog(null,
                     ssn + " was found. Belongs to " + Main.customers.get(findIndex).firstName + " " + Main.customers.get(findIndex).lastName,
                     "Found Customer", JOptionPane.INFORMATION_MESSAGE);

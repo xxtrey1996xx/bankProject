@@ -29,7 +29,7 @@ public class CD extends Account {
 
     @Override
     public String getType() {
-        return getType();
+        return type;
     }
 
     @Override
