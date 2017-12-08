@@ -24,7 +24,6 @@ public class Main {
     }//End main
 
 
-
     //May need to make this a Runnable as well to avoid race condition with save
     public static void readDB() throws Exception {
         File db = new File("bankdatabasePIPE.txt");
@@ -62,67 +61,126 @@ public class Main {
 
         //Variables only used in CC, and Loans
         String lastPaymentDate, monthlyPayment, openDate, WTFvariable, length;
+        int wasFound = LookupCustomer.lookupUser(ssn, false);
+        if (wasFound == -99) {
+            //Create customer object from parsed values
+            Customer newCustomer;
+            newCustomer = new Customer(ssn, fName, lName, address, city, state, zip);
+            customers.add(newCustomer);
+            //Instanciating account types
+            Savings newSavings;
+            Checking newChecking;
+            CC newCC;
+            CD newCD;
+            Loan newLoan;
 
-        //Create customer object from parsed values
-        Customer newCustomer;
-        newCustomer = new Customer(ssn, fName, lName, address, city, state, zip);
-        customers.add(newCustomer);
-        //Instanciating account types
-        Savings newSavings;
-        Checking newChecking;
-        CC newCC;
-        CD newCD;
-        Loan newLoan;
+            //Create Account and Add to User Object Based on Account Type in DB Record
+            switch (type) {
+                case "Savings":
+                    newSavings = new Savings(ssn, balance, interest, acctNum, type, date);
+                    newCustomer.accounts.add(newSavings);
+                    break;
 
-        //Create Account and Add to User Object Based on Account Type in DB Record
-        switch (type) {
-            case "Savings":
-                newSavings = new Savings(ssn, balance, interest, acctNum, type, date);
-                newCustomer.accounts.add(newSavings);
-                break;
+                case "CD":
+                    newCD = new CD(ssn, balance, interest, acctNum, date);
+                    newCustomer.accounts.add(newCD);
+                    break;
 
-            case "CD":
-                newCD = new CD(ssn, balance, interest, acctNum, date);
-                newCustomer.accounts.add(newCD);
-                break;
+                case "TMB":
+                case "Gold":
+                case "Diamond":
+                    newChecking = new Checking(ssn, balance, interest, acctNum, type, date, hasOverdraftAccount(record[12]));
+                    newCustomer.accounts.add(newChecking);
+                    break;
 
-            case "TMB":
-            case "Gold":
-            case "Diamond":
-                newChecking = new Checking(ssn, balance, interest, acctNum, type, date, hasOverdraftAccount(record[12]));
-                newCustomer.accounts.add(newChecking);
-                break;
+                case "CC":
+                    lastPaymentDate = record[12];
+                    monthlyPayment = record[13];
+                    openDate = record[14];
+                    WTFvariable = record[15];
+                    newCC = new CC(acctNum, balance, interest, date, lastPaymentDate, monthlyPayment, openDate, WTFvariable);
+                    newCustomer.accounts.add(newCC);
+                    break;
 
-            case "CC":
-                lastPaymentDate = record[12];
-                monthlyPayment = record[13];
-                openDate = record[14];
-                WTFvariable = record[15];
-                newCC = new CC(acctNum, balance, interest, date, lastPaymentDate, monthlyPayment, openDate, WTFvariable);
-                newCustomer.accounts.add(newCC);
-                break;
+                case "long":
+                case "short":
+                    length = record[7];
+                    lastPaymentDate = record[12];
+                    monthlyPayment = record[13];
+                    openDate = record[14];
+                    WTFvariable = record[15];
+                    newLoan = new Loan(ssn, length, type, balance, interest, date, lastPaymentDate, monthlyPayment, openDate, WTFvariable);
+                    newCustomer.accounts.add(newLoan);
+                    break;
 
-            case "long":
-            case "short":
-                length = record[7];
-                lastPaymentDate = record[12];
-                monthlyPayment = record[13];
-                openDate = record[14];
-                WTFvariable = record[15];
-                newLoan = new Loan(ssn, length, type, balance, interest, date, lastPaymentDate, monthlyPayment, openDate, WTFvariable);
-                newCustomer.accounts.add(newLoan);
-                break;
+                default:
+                    System.out.println("Invalid Account Type for User: " + newCustomer.firstName + " " + newCustomer.lastName
+                            + "\nID: " + newCustomer.ssn);
+                    break;
+            }//end switch
+        } else {
+            //Instanciating account types
+            Savings newSavings;
+            Checking newChecking;
+            CC newCC;
+            CD newCD;
+            Loan newLoan;
 
-            default:
-                System.out.println("Invalid Account Type for User: " + newCustomer.firstName + " " + newCustomer.lastName
-                        + "\nID: " + newCustomer.ssn);
-                break;
-        }
+            //Create Account and Add to User Object Based on Account Type in DB Record
+            switch (type) {
+                case "Savings":
+                    newSavings = new Savings(ssn, balance, interest, acctNum, type, date);
+                    //newCustomer.accounts.add(newSavings);
+                    customers.get(wasFound).accounts.add(newSavings);
+                    break;
+
+                case "CD":
+                    newCD = new CD(ssn, balance, interest, acctNum, date);
+                    //newCustomer.accounts.add(newCD);
+                    customers.get(wasFound).accounts.add(newCD);
+                    break;
+
+                case "TMB":
+                case "Gold":
+                case "Diamond":
+                    newChecking = new Checking(ssn, balance, interest, acctNum, type, date, hasOverdraftAccount(record[12]));
+                    //newCustomer.accounts.add(newChecking);
+                    customers.get(wasFound).accounts.add(newChecking);
+                    break;
+
+                case "CC":
+                    lastPaymentDate = record[12];
+                    monthlyPayment = record[13];
+                    openDate = record[14];
+                    WTFvariable = record[15];
+                    newCC = new CC(acctNum, balance, interest, date, lastPaymentDate, monthlyPayment, openDate, WTFvariable);
+                    //newCustomer.accounts.add(newCC);
+                    customers.get(wasFound).accounts.add(newCC);
+                    break;
+
+                case "long":
+                case "short":
+                    length = record[7];
+                    lastPaymentDate = record[12];
+                    monthlyPayment = record[13];
+                    openDate = record[14];
+                    WTFvariable = record[15];
+                    newLoan = new Loan(ssn, length, type, balance, interest, date, lastPaymentDate, monthlyPayment, openDate, WTFvariable);
+                    //newCustomer.accounts.add(newLoan);
+                    customers.get(wasFound).accounts.add(newLoan);
+                    break;
+
+                default:
+                    System.out.println("Invalid Account Type for User: " + record[5] + " " + record[6]
+                            + "\nID: " + record[0]);
+                    break;
+            }//end switch
+        }//end if
     }
 
 
     //Checks if Checking account has the flag for overdraft protection
-    public static boolean hasOverdraftAccount(String flag){
+    public static boolean hasOverdraftAccount(String flag) {
         if (flag == "1")
             return true;
         else
@@ -150,8 +208,6 @@ public class Main {
 
                 ssn = customers.get(i).accounts.get(x).getOwnerID();
                 //TODO Will need a print function written for each type of account since Credit and loans have extra fields.
-
-
 
 
                 //TODO will also need to include the flag for overdraft coverage.
@@ -182,16 +238,16 @@ public class Main {
                             printWriter.println(dbRecord);
                     break;
                     default : System.out.println("Invalid Type");*/
-                }
-            }//end nested loop
+            }
+        }//end nested loop
         printWriter.close();
     }//end For
     //end SaveDb
 
     public static void checkingDBRecord(PrintWriter printWriter, String ssn, String address, String city, String state, String zip, String fName,
-                                          String lName, String acctNum, String type, String balance, String interestRate, String date, boolean overdraft){
+                                        String lName, String acctNum, String type, String balance, String interestRate, String date, boolean overdraft) {
         String overdraftFlag = "0";
-        if(overdraft = true)
+        if (overdraft = true)
             overdraftFlag = "1";
         String dbRecord = (
                 ssn + "|" +
@@ -211,7 +267,7 @@ public class Main {
         String record = "test";
     }
 
-    public String creditDBRecord(){
+    public String creditDBRecord() {
         String record = "test";
         return record;
     }

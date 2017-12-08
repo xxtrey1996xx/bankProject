@@ -57,7 +57,7 @@ public class AddAccount extends JDialog {
     private void onOK() throws Exception {
         //dispose();
         System.out.println("Ok clicked in add Account");
-        int found = LookupCustomer.lookupUser(SSNTextField.getText());
+        int found = LookupCustomer.lookupUser(SSNTextField.getText(), true);
         //Check if User Exists
             if(found!=-99) {
                 switch (acctTypecomboBox1.getSelectedItem().toString()) {

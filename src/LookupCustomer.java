@@ -50,24 +50,7 @@ public class LookupCustomer extends JDialog {
         System.exit(0);
     }
 
-    private void onOK() {
-        //We need to check and see if their SSN is in the system yet.
-        int i = lookupUser(SSNtextField.getText());
-        if (i != -99) {
-            //user exists
-
-        }
-    }
-
-    private void onCancel() {
-        dispose();
-        FirstMainMenu fmm = new FirstMainMenu(Main.activeUser);
-        fmm.setSystemDateTime();
-        fmm.pack();
-        fmm.setVisible(true);
-    }
-
-    public static int lookupUser(String ssn) {
+    public static int lookupUser(String ssn, boolean alertNeeded) {
         int findIndex = -99;
         double test;
         System.out.println("Searching for user " + ssn);
@@ -79,18 +62,39 @@ public class LookupCustomer extends JDialog {
         }
         if (findIndex == -99) {
             System.out.println("User not found SSN: " + ssn);
-            handleInvalidUser(ssn);
+            if (alertNeeded) {
+                handleInvalidUser(ssn);
+            }//end alertNeeded if
         } else
             System.out.println("Found User: " + Main.customers.get(findIndex).firstName + " " + Main.customers.get(findIndex).lastName);
 
         //Shows a popup with a confirmation message
         //todo Error if searched more than one user ID;
-        JOptionPane.showMessageDialog(null,
-                ssn + " was found. Belongs to " + Main.customers.get(findIndex).firstName + " " + Main.customers.get(findIndex).lastName,
-                "Found Customer", JOptionPane.INFORMATION_MESSAGE);
-
+        if (alertNeeded) {
+            JOptionPane.showMessageDialog(null,
+                    ssn + " was found. Belongs to " + Main.customers.get(findIndex).firstName + " " + Main.customers.get(findIndex).lastName,
+                    "Found Customer", JOptionPane.INFORMATION_MESSAGE);
+        }//end alertNeeded if
         return findIndex;
     }
+
+    private void onCancel() {
+        dispose();
+        FirstMainMenu fmm = new FirstMainMenu(Main.activeUser);
+        fmm.setSystemDateTime();
+        fmm.pack();
+        fmm.setVisible(true);
+    }
+
+    private void onOK() {
+        //We need to check and see if their SSN is in the system yet.
+        int i = lookupUser(SSNtextField.getText(), true);
+        if (i != -99) {
+            //user exists
+
+        }
+    }
+
 
 
     private static void handleInvalidUser(String ssn) {
