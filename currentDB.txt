@@ -1,4 +1,4 @@
-SSN         Address         City        State/Zip   FNam    LName   ACCT#   ACCTTYP Balance Int     OpenDate
+12072017
 423453245|114 North 4th|Clarkesdale|MO|64493|Ronald|Jones|556315|Savings|10000|0.03|11071999
 423453245|114 North 4th|Clarkesdale|MO|64493|Ronald|Jones|789456|TMB|987.65|02|01012017
 423453245|114 North 4th|Clarkesdale|MO|64493|Ronald|Jones|918981|TMB|89.26|01|03312017
@@ -39,4 +39,3 @@ SSN         Address         City        State/Zip   FNam    LName   ACCT#   ACCT
 345679898|703 Park Ln|St. Joseph|Mo|64501|Broderick|Jones|759735|Savings|16852651|0.0045|06012010
 345679898|703 Park Ln|St. Joseph|Mo|64501|Broderick|Jones|123465|TMB|874.63|01|01202017
 345679898|703 Park Ln|St. Joseph|Mo|64501|Broderick|Jones|453410|Diamond|98009.00|00|10122017
-123|123 Testy Lane|Seatle|WA|88999|Testy|Person|556123|Gold|1234.56|2.01|12012017

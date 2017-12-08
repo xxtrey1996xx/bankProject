@@ -28,7 +28,9 @@ public class Main {
         File db = new File("bankdatabasePIPE.txt");
         Scanner input = new Scanner(db);
         //Read in Date
+
         dateString = input.nextLine();
+
         input.useDelimiter("\n");//Set Delimiter to returns to get a record from the Database
         System.out.println("\n*************************************************** - Original DB Record - ***************************************************\n");
         while (input.hasNext()) {
@@ -60,7 +62,11 @@ public class Main {
 
         //Variables only used in CC, and Loans
         String lastPaymentDate, monthlyPayment, openDate, WTFvariable, length;
+
+
         int wasFound = LookupCustomer.lookupUserIndex(ssn, false);
+
+
         if (wasFound == -99) {
             //Create customer object from parsed values
             Customer newCustomer;
@@ -213,16 +219,20 @@ public class Main {
                 acctNum = customers.get(i).accounts.get(x).accountNumber;
 
                 switch (type) {
-                    case "checking":
-                        if (customers.get(i).accounts.get(x).getOverdraftAccount())
-                            break;
+                    case "Savings":
+                        break;
 
                     case "TMB":
                     case "Gold":
                     case "Diamond":
+                        if (customers.get(i).accounts.get(x).getOverdraftAccount()) {
+                            backupAccountFlag = "1";
+                            String backupAccountNumber = customers.get(i).accounts.get(x).getBackupAccountNumber();
+                        } else backupAccountFlag = "0";
                         break;
 
                     case "cc":
+
                         break;
 
                     case "long":
