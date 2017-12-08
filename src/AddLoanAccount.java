@@ -5,6 +5,13 @@ public class AddLoanAccount extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
+    private JComboBox typeComboBox;
+    private JTextField SSNTextField;
+    private JTextField interestRateTextField;
+    private JTextField monthDueDateTextField;
+    private JTextField balanceTextField;
+    private JTextField initialDateTextField;
+    private JTextField accountNumTextField;
 
     public AddLoanAccount() {
         setContentPane(contentPane);
@@ -47,12 +54,53 @@ public class AddLoanAccount extends JDialog {
     }
 
     private void onOK() {
-        // add your code here
+        int found = LookupCustomer.lookupUserIndex(SSNTextField.getText(), false);
+        Loan newLoan;
+        if (found != -99) {
+            if (typeComboBox.getSelectedItem().toString().equalsIgnoreCase("Long term")) {
+                newLoan = new Loan(SSNTextField.getText(),
+                        "30",
+                        "long",
+                        balanceTextField.getText(),
+                        interestRateTextField.getText(),
+                        monthDueDateTextField.getText(),//Due Date
+                        "null",//Last payment due date set to null by default
+                        "????",
+                        initialDateTextField.getText(),
+                        "0");
+                Main.customers.get(found).accounts.add(newLoan);
+            } else if (typeComboBox.getSelectedItem().toString().equalsIgnoreCase("Short Term")) {
+                newLoan = new Loan(SSNTextField.getText(),
+                        "15",
+                        "short",
+                        balanceTextField.getText(),
+                        interestRateTextField.getText(),
+                        monthDueDateTextField.getText(),//Due Date
+                        "null",//Last payment due date set to null by default
+                        "????",
+                        initialDateTextField.getText(),
+                        "0");
+                Main.customers.get(found).accounts.add(newLoan);
+            } else if (typeComboBox.getSelectedItem().toString().equalsIgnoreCase("Credit Card")) {
+                CC newCC = new CC(accountNumTextField.getText(),
+                        balanceTextField.getText(),
+                        interestRateTextField.getText(),
+                        monthDueDateTextField.getText(),
+                        "null",//last payment date
+                        "????",
+                        initialDateTextField.getText(),
+                        "0");
+                Main.customers.get(found).accounts.add(newCC);
+            }
+        }//end outter if
         dispose();
-    }
+    }//end on ok
 
     private void onCancel() {
-        // add your code here if necessary
         dispose();
+        FirstMainMenu fmm = new FirstMainMenu(Main.activeUser);
+        fmm.setSystemDateTime();
+        fmm.pack();
+        fmm.setVisible(true);
     }
 }

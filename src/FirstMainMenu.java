@@ -179,5 +179,10 @@ public class FirstMainMenu extends JDialog {
     }
 
     private void onOpenLoan() {
+        dispose();
+        acctType = "loan";
+        New_Existing ne = new New_Existing();
+        ne.pack();
+        ne.setVisible(true);
     }
 }

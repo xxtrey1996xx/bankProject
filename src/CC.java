@@ -1,14 +1,14 @@
 import java.util.ArrayList;
 
 public class CC extends Credit {
-    String cardNumber, balance, interest, date, lastPaymentDate, monthlyPayment, openDate, wtFvariable;
+    String cardNumber, balance, interest, date, lastPaymentDate, monthlyPayment, openDate, missedPayment;
 
 
     ArrayList<Transaction> transactionsArrayList = new ArrayList<>();
 
 
     //Constructor for CC
-    public CC(String acctNum, String balance, String interest, String date, String lastPaymentDate, String monthlyPayment, String openDate, String wtFvariable) {
+    public CC(String acctNum, String balance, String interest, String date, String lastPaymentDate, String monthlyPayment, String openDate, String missedPayment) {
     this.cardNumber = acctNum;
         this.setBalance(balance);
         this.setInterestRate(interest);
@@ -17,7 +17,7 @@ public class CC extends Credit {
     this.lastPaymentDate = lastPaymentDate;
     this.monthlyPayment = monthlyPayment;
     this.openDate = openDate;
-    this.wtFvariable = wtFvariable;
+        this.missedPayment = missedPayment;
     }
 
     public CC(String text, String text1, String text2, String text3) {
@@ -70,8 +70,8 @@ public class CC extends Credit {
         return openDate;
     }
 
-    public String getWtFvariable() {
-        return wtFvariable;
+    public String getMissedPayment() {
+        return missedPayment;
     }
 
     @Override
