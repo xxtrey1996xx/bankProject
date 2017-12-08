@@ -1,8 +1,8 @@
 public class Loan extends Credit {
-    String ssn, length, type, balance, interestRate, dueDate, lastPayment, minimumPayment, openDate, WTFvariable;
+    String ssn, length, type, balance, interestRate, dueDate, lastPayment, minimumPayment, openDate, missedPayment;
 
     //Constructor for Loan
-    public Loan(String ssn, String length, String type, String balance, String interest, String date, String lastPaymentDate, String monthlyPayment, String openDate, String WTFvariable) {
+    public Loan(String ssn, String length, String type, String balance, String interest, String date, String lastPaymentDate, String monthlyPayment, String openDate, String missedPayment) {
         this.setOwnerID(ssn);
         this.length = length;
         this.setType(type);
@@ -12,7 +12,7 @@ public class Loan extends Credit {
         this.lastPayment = lastPaymentDate;
         this.minimumPayment = monthlyPayment;
         this.openDate = openDate;
-        this.WTFvariable = WTFvariable;
+        this.missedPayment = missedPayment;
     }
 
 
