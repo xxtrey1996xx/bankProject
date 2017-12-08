@@ -10,8 +10,9 @@ public class CC extends Credit {
     //Constructor for CC
     public CC(String acctNum, String balance, String interest, String date, String lastPaymentDate, String monthlyPayment, String openDate, String wtFvariable) {
     this.cardNumber = acctNum;
-    this.balance = balance;
-    this.interest = interest;
+        this.setBalance(balance);
+        this.setInterestRate(interest);
+        this.setType("CC");
     this.date = date;
     this.lastPaymentDate = lastPaymentDate;
     this.monthlyPayment = monthlyPayment;

@@ -8,11 +8,12 @@ public class CD extends Account {
 
     //Constructor for CD
     public CD(String ssn, String balance, String interest, String acctNum, String date) {
-        this.ssn = ssn;
-        this.balance = balance;
-        this.interest = interest;
-        this.acctNum = acctNum;
-        this.maturityDate = date;
+        this.setOwnerID(ssn);
+        this.setBalance(balance);
+        this.setInterestRate(interest);
+        this.setAccountNumber(acctNum);
+        this.setType("CD");
+        this.setDate(date);
     }//End of Constructor
 
 
