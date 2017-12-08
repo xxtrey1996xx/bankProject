@@ -98,7 +98,7 @@ public class Checking extends Account {
         double newBalance = Double.valueOf(balance) - amount;
 
         //Taking money from account
-        Transaction debit = new Transaction;
+        //Transaction debit = new Transaction;
 
         if (newBalance >= 0) {
             balance = String.valueOf(newBalance);

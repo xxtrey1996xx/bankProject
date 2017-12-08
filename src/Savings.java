@@ -74,4 +74,9 @@ public class Savings extends Account {
     public boolean getOverdraftAccount() {
         return false;
     }
+
+    @Override
+    public String getBackupAccountNumber() {
+        return null;
+    }
 }

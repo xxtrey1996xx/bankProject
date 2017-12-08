@@ -72,6 +72,11 @@ public class CD extends Account {
         return false;
     }
 
+    @Override
+    public String getBackupAccountNumber() {
+        return null;
+    }
+
 
     public static boolean compareDates(String currentDate, String maturityDate) {
         try {
