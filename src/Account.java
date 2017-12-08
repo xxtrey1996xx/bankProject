@@ -65,4 +65,6 @@ public abstract class Account {
 
 
     public abstract boolean getOverdraftAccount();
+
+    public abstract String getBackupAccountNumber();
 }
