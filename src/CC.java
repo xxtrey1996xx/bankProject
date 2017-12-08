@@ -100,6 +100,11 @@ public class CC extends Credit {
         return false;
     }
 
+    @Override
+    public String getBackupAccountNumber() {
+        return null;
+    }
+
     //Method to charge credit card
     public void creditCharge(double amount, String location, String date){
         //Create Transaction Object

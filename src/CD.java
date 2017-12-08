@@ -29,7 +29,7 @@ public class CD extends Account {
 
     @Override
     public String getType() {
-        return getType();
+        return type;
     }
 
     @Override
@@ -70,6 +70,11 @@ public class CD extends Account {
     @Override
     public boolean getOverdraftAccount() {
         return false;
+    }
+
+    @Override
+    public String getBackupAccountNumber() {
+        return null;
     }
 
 

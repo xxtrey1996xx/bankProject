@@ -8,6 +8,7 @@ public class Main {
     public static ArrayList<Customer> customers = new ArrayList<>();//Main Data structure for program
     public static String activeUser = null;//Stores user type that logged in
     public static Date myDate = new Date();//Stores Date for the system
+    public static String dateString;
 
 
     public static void main(String[] args) throws Exception {
@@ -26,8 +27,8 @@ public class Main {
     public static void readDB() throws Exception {
         File db = new File("bankdatabasePIPE.txt");
         Scanner input = new Scanner(db);
-        //Skip title line.
-        input.nextLine();
+        //Read in Date
+        dateString = input.nextLine();
         input.useDelimiter("\n");//Set Delimiter to returns to get a record from the Database
         System.out.println("\n*************************************************** - Original DB Record - ***************************************************\n");
         while (input.hasNext()) {
@@ -117,7 +118,7 @@ public class Main {
                     break;
             }//end switch
         } else {
-            //Instanciating account types
+            //Instantiating account types
             Savings newSavings;
             Checking newChecking;
             CC newCC;
@@ -187,11 +188,15 @@ public class Main {
 
     //May need to make this a Runnable to avoid Race condition with reading the database
     public static void saveDB() throws Exception {
-        String address, city, state, zip, fName, lName, balance, interestRate, type, acctNum, date, ssn;
+        String address, city, state, zip, fName, lName, balance, interestRate, type, acctNum, date, ssn, dateDue, backupAccountFlag, monthlyOverdraftCount;
         PrintWriter printWriter = new PrintWriter(new File("currentDB.txt"));
         String dbRecord;
-        //Print Title Line
-        printWriter.println("SSN         Address         City        State/Zip   FNam    LName   ACCT#   ACCTTYP Balance Int     OpenDate");
+
+        //printWriter.println("SSN         Address         City        State/Zip   FNam    LName   ACCT#   ACCTTYP Balance Int     OpenDate");
+
+        //Print Date
+        printWriter.println(dateString);
+        //Loop through array of users
         for (int i = 0; i <= customers.size() - 1; i++) {
             address = customers.get(i).streetAddress;
             city = customers.get(i).city;
@@ -199,12 +204,31 @@ public class Main {
             zip = customers.get(i).zip;
             fName = customers.get(i).firstName;
             lName = customers.get(i).lastName;
+            //Print record for each account that is linked to each user.
             for (int x = 0; x <= customers.get(i).accounts.size() - 1; x++) {
                 balance = customers.get(i).accounts.get(x).balance;
                 interestRate = customers.get(i).accounts.get(x).interestRate;
                 type = customers.get(i).accounts.get(x).type;
+                ssn = customers.get(i).accounts.get(x).ownerID;
+                acctNum = customers.get(i).accounts.get(x).accountNumber;
 
-                ssn = customers.get(i).accounts.get(x).getOwnerID();
+                switch (type) {
+                    case "checking":
+                        if (customers.get(i).accounts.get(x).getOverdraftAccount())
+                            break;
+
+                    case "TMB":
+                    case "Gold":
+                    case "Diamond":
+                        break;
+
+                    case "cc":
+                        break;
+
+                    case "long":
+                    case "short":
+                        break;
+                }
                 //TODO Will need a print function written for each type of account since Credit and loans have extra fields.
 
 

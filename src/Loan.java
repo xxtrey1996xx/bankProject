@@ -61,6 +61,11 @@ public class Loan extends Credit {
     public boolean getOverdraftAccount() {
         return false;
     }
+
+    @Override
+    public String getBackupAccountNumber() {
+        return null;
+    }
     //TODO setup loan class
 
 }
