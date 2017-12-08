@@ -53,7 +53,11 @@ public class FirstMainMenu extends JDialog {
                     e1.printStackTrace();
                 }
 
-                onUpdateDate(newDate);
+                try {
+                    onUpdateDate(newDate);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
             }
         });
         closeAccountButton.addActionListener(new ActionListener() {
@@ -116,7 +120,7 @@ public class FirstMainMenu extends JDialog {
         ne.setVisible(true);
     }
 
-    private void onUpdateDate(Date newDate){
+    private void onUpdateDate(Date newDate) throws Exception {
         Date previousDate = Main.myDate;
         int difference = previousDate.compareTo(newDate);
 
@@ -126,8 +130,9 @@ public class FirstMainMenu extends JDialog {
 
         JOptionPane.showMessageDialog(null, "Date Changed Successfully\nNew Date: " + strCurrentDate +
                 "\nPrevious Date was " + strPrevDate, "Successful Date Change", JOptionPane.INFORMATION_MESSAGE);
-
         Main.myDate = newDate;
+        Main.dateString = strCurrentDate;
+        Main.saveDB();
     }
 
     private void onCloseAccount(String activeUser) {
