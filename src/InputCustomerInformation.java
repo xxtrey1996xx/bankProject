@@ -56,31 +56,39 @@ public class InputCustomerInformation extends JDialog {
     private void onOK() {
         dispose();
         //Log Attempted User Creation
-        System.out.println("Attempting to create new User.");
-        //Create Customer Object from form entry
-        Customer newCustomer = new Customer(SSNTextField.getText(), firstNameTextField.getText(), lastNameTextField.getText(), addressTextField.getText(),
-                cityTextField.getText(), stateTextField.getText(), zipcodeTextField.getText());
-        //Log successful Creation
-        System.out.println("New User Created: " + firstNameTextField.getText() + " " + lastNameTextField.getText());
+        if (LookupCustomer.lookupUserIndex(SSNTextField.getText(), false) == -99) {
+            System.out.println("Attempting to create new User.");
+            //Create Customer Object from form entry
+            Customer newCustomer = new Customer(SSNTextField.getText(), firstNameTextField.getText(), lastNameTextField.getText(), addressTextField.getText(),
+                    cityTextField.getText(), stateTextField.getText(), zipcodeTextField.getText());
+            //Log successful Creation
+            System.out.println("New User Created: " + firstNameTextField.getText() + " " + lastNameTextField.getText());
 
-        //Add Customer Object to customers list
-        Main.customers.add(newCustomer);
+            //Add Customer Object to customers list
+            Main.customers.add(newCustomer);
 
-        if (FirstMainMenu.acctType.equalsIgnoreCase("bank")) {
-            AddBankAccount aa = new AddBankAccount();
-            aa.pack();
-            aa.setVisible(true);
-        } else if (FirstMainMenu.acctType.equalsIgnoreCase("CD")) {
-            AddCDAccount ac = new AddCDAccount();
-            ac.pack();
-            ac.setVisible(true);
-        } else if (FirstMainMenu.acctType.equalsIgnoreCase("loan")) {
-            AddLoanAccount al = new AddLoanAccount();
-            al.pack();
-            al.setVisible(true);
+            if (FirstMainMenu.acctType.equalsIgnoreCase("bank")) {
+                AddBankAccount aa = new AddBankAccount();
+                aa.pack();
+                aa.setVisible(true);
+            } else if (FirstMainMenu.acctType.equalsIgnoreCase("CD")) {
+                AddCDAccount ac = new AddCDAccount();
+                ac.pack();
+                ac.setVisible(true);
+            } else if (FirstMainMenu.acctType.equalsIgnoreCase("loan")) {
+                AddLoanAccount al = new AddLoanAccount();
+                al.pack();
+                al.setVisible(true);
+            } else {
+                System.exit(1);
+            }
         } else {
-            System.exit(1);
+            JOptionPane.showMessageDialog(null, "The social security number already exists in the system.", "Customer Already Exists!", JOptionPane.ERROR_MESSAGE);
+            New_Existing ne = new New_Existing();
+            ne.pack();
+            ne.setVisible(true);
         }
+
     }
 
     private void onCancel() {

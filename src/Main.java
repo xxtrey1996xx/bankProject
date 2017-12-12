@@ -250,7 +250,7 @@ public class Main {
                 System.out.println(i + " " + x);
                 if (type.equalsIgnoreCase("tmb") || type.equalsIgnoreCase("gold") || type.equalsIgnoreCase("diamond") || type.equalsIgnoreCase("savings")) {
                     acctNum = customers.get(i).accounts.get(x).getAccountNumber();
-                    date = customers.get(i).accounts.get(x).getDate();
+                    date = customers.get(i).accounts.get(x).date;
                     checkingDBRecord(printWriter, ssn, address, city, state, zip, fName, lName, acctNum, type, balance, interestRate, date, hasOverdraftAccount("0"));
                 } else if (type.equalsIgnoreCase("long") || type.equalsIgnoreCase("short") || type.equalsIgnoreCase("cc")) {
                     String lastPaymentDate, monthlyPayment, openDate, WTFvariable;
@@ -260,16 +260,6 @@ public class Main {
                 } else {
                     System.out.println("Tried to write invalid record");
                 }
-                /*switch(type){
-                    case "Savings":
-                    case "TMB":
-                    case "Gold":
-                    case "Diamond":
-                    case "CD": dbRecord = checkingDBRecord(printWriter,ssn,address,city,state,zip,fName,lName,acctNum,type,
-                            balance,interestRate,date, (Boolean) customers.get(i).accounts.get(x).getOverdraftAccount());
-                            printWriter.println(dbRecord);
-                    break;
-                    default : System.out.println("Invalid Type");*/
             }
         }//end nested loop
         printWriter.close();
