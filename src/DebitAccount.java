@@ -1,26 +1,25 @@
+import jdk.nashorn.internal.lookup.Lookup;
+
 import javax.swing.*;
 import java.awt.event.*;
 
-public class CloseAccount extends JDialog {
+public class DebitAccount extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JTextField customersSSNTextField;
+    private JTextField SSNTextField;
     private JTextField accountNumberTextField;
+    private JTextField amountTextField;
     private Customer customer;
 
-    public CloseAccount() {
+    public DebitAccount() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                try {
-                    onOK();
-                } catch (Exception e1) {
-                    e1.printStackTrace();
-                }
+                onOK();
             }
         });
 
@@ -47,15 +46,23 @@ public class CloseAccount extends JDialog {
     }
 
     public static void main(String[] args) {
-        CloseAccount dialog = new CloseAccount();
+        DebitAccount dialog = new DebitAccount();
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);
     }
 
-    private void onOK() throws Exception {
-        dispose();
-        int index = LookupCustomer.lookupUserIndex(customersSSNTextField.getText(), false);
+    public static boolean isDouble(String text) {
+        try {
+            new Double(text);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    private void onOK() {
+        int index = LookupCustomer.lookupUserIndex(SSNTextField.getText(), false);
         if (index != -99) {
             Customer customer = Main.customers.get(index);
             Boolean wasAccountFound = false;
@@ -64,16 +71,22 @@ public class CloseAccount extends JDialog {
                 //Going through only the accounts registered to the ssn
                 if (customer.accounts.get(i).accountNumber.equalsIgnoreCase(accountNumberTextField.getText())) {
                     //checking to see if the acct num exsists for the customer
-                    int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to close this account?\n"
+                    int response = JOptionPane.showConfirmDialog(null, "Are these details correct?\n"
                                     + "Social Security Num: " + customer.ssn + "\n" +
-                                    " Account Number: " + customer.accounts.get(i).accountNumber, "Confirm",
+                                    " Account Number: " + customer.accounts.get(i).accountNumber + "\n"
+                                    + "Balance to Debit: " + amountTextField.getText(), "Confirm",
                             JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                     if (response == JOptionPane.NO_OPTION) {
                         onCancel();
                     } else if (response == JOptionPane.YES_OPTION) {
-                        customer.accounts.remove(i);
-                        System.out.println("Account Closed");
-                        Main.saveDB();
+                        if (isDouble(amountTextField.getText())) {
+                            //checking to see if double or not
+                            customer.accounts.get(i).debit(Double.valueOf(amountTextField.getText()));
+
+                        } else {
+                            //not a double
+                            JOptionPane.showMessageDialog(null, "Please enter a valid number for debiting", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+                        }//end double if
                     } else if (response == JOptionPane.CLOSED_OPTION) {
                         onCancel();
                     }
@@ -83,14 +96,8 @@ public class CloseAccount extends JDialog {
                     JOptionPane.showMessageDialog(null, "That Account was not found", "Account Not Found", JOptionPane.ERROR_MESSAGE);
                 }
             }
-        } else {
-            JOptionPane.showMessageDialog(null, customersSSNTextField.getText() + " was not found", "Customer Not Found", JOptionPane.ERROR_MESSAGE);
-        }
 
-        FirstMainMenu fmm = new FirstMainMenu(Main.activeUser);
-        fmm.setSystemDateTime();
-        fmm.pack();
-        fmm.setVisible(true);
+        }
     }
 
     private void onCancel() {
@@ -99,6 +106,6 @@ public class CloseAccount extends JDialog {
         fmm.setSystemDateTime();
         fmm.pack();
         fmm.setVisible(true);
-    }
 
+    }
 }
