@@ -8,6 +8,7 @@ public abstract class Account {
     public String type;
     public String ownerID;
     public String date;
+    public String backupAccountNumber;
 
     public ArrayList<Transaction> transactionArrayList;
 
@@ -67,4 +68,6 @@ public abstract class Account {
     public abstract boolean getOverdraftAccount();
 
     public abstract String getBackupAccountNumber();
+
+    public abstract String getLastPaymentDate();
 }

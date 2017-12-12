@@ -85,11 +85,13 @@ public class AddLoanAccount extends JDialog {
                 CC newCC = new CC(accountNumTextField.getText(),
                         balanceTextField.getText(),
                         interestRateTextField.getText(),
+                        "null",//Date?
+                        "null",//Last Payment Date
                         monthDueDateTextField.getText(),
-                        "null",//last payment date
-                        "????",
-                        initialDateTextField.getText(),
-                        "0");
+                        "null",//Monthly payment as calculated by calcInterest?
+                        Main.dateString,//Open date
+                        "0"
+                );
                 Main.customers.get(found).accounts.add(newCC);
             }
         }//end outter if

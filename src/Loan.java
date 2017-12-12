@@ -66,6 +66,11 @@ public class Loan extends Credit {
     public String getBackupAccountNumber() {
         return null;
     }
+
+    @Override
+    public String getLastPaymentDate() {
+        return null;
+    }
     //TODO setup loan class
 
 }

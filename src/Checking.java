@@ -55,6 +55,11 @@ public class Checking extends Account {
     }
 
     @Override
+    public String getLastPaymentDate() {
+        return null;
+    }
+
+    @Override
     public String getBalance() {
         return balance;
     }

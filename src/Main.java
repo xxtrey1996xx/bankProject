@@ -13,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         readDB();
-        Thread.sleep(25);
+        Thread.sleep(100);
         saveDB();
         LogInScreen lis = new LogInScreen();
         lis.pack();
@@ -61,7 +61,7 @@ public class Main {
         String date = record[11];
 
         //Variables only used in CC, and Loans
-        String lastPaymentDate, monthlyPayment, openDate, WTFvariable, length;
+        String lastPaymentDate, monthlyPayment, monthlyDueDate, openDate, WTFvariable, length;
 
 
         int wasFound = LookupCustomer.lookupUserIndex(ssn, false);
@@ -99,11 +99,12 @@ public class Main {
                     break;
 
                 case "CC":
+                    monthlyDueDate = record[11];
                     lastPaymentDate = record[12];
                     monthlyPayment = record[13];
                     openDate = record[14];
                     WTFvariable = record[15];
-                    newCC = new CC(acctNum, balance, interest, date, lastPaymentDate, monthlyPayment, openDate, WTFvariable);
+                    newCC = new CC(acctNum, balance, interest, date, lastPaymentDate, monthlyDueDate, monthlyPayment, openDate, WTFvariable);
                     newCustomer.accounts.add(newCC);
                     break;
 
@@ -156,9 +157,10 @@ public class Main {
                 case "CC":
                     lastPaymentDate = record[12];
                     monthlyPayment = record[13];
+                    monthlyDueDate = record[11];
                     openDate = record[14];
                     WTFvariable = record[15];
-                    newCC = new CC(acctNum, balance, interest, date, lastPaymentDate, monthlyPayment, openDate, WTFvariable);
+                    newCC = new CC(acctNum, balance, interest, date, lastPaymentDate, monthlyDueDate, monthlyPayment, openDate, WTFvariable);
                     //newCustomer.accounts.add(newCC);
                     customers.get(wasFound).accounts.add(newCC);
                     break;
@@ -194,7 +196,7 @@ public class Main {
 
     //May need to make this a Runnable to avoid Race condition with reading the database
     public static void saveDB() throws Exception {
-        String address, city, state, zip, fName, lName, balance, interestRate, type, acctNum, date, ssn, dateDue, backupAccountFlag, monthlyOverdraftCount;
+        String address, city, state, zip, fName, lName, balance, interestRate, type, acctNum, date, ssn, dateDue, backupAccountFlag, monthlyDueDate, monthlyOverdraftCount;
         PrintWriter printWriter = new PrintWriter(new File("currentDB.txt"));
         String dbRecord;
 
@@ -217,15 +219,15 @@ public class Main {
                 type = customers.get(i).accounts.get(x).type;
                 ssn = customers.get(i).accounts.get(x).ownerID;
                 acctNum = customers.get(i).accounts.get(x).accountNumber;
-                String newRecord;
+                String newRecord = null;
 
                 switch (type) {
                     case "Savings":
                     case "TMB":
                     case "Gold":
                     case "Diamond":
-                            backupAccountFlag = "1";
-                            String backupAccountNumber = customers.get(i).accounts.get(x).getBackupAccountNumber();
+                        backupAccountFlag = "1";
+                        String backupAccountNumber = customers.get(i).accounts.get(x).getBackupAccountNumber();
                         acctNum = customers.get(i).accounts.get(x).getAccountNumber();
                         date = customers.get(i).accounts.get(x).date;
                         newRecord = checkingDBRecord(ssn, address, city, state, zip, fName, lName, acctNum, type, balance, interestRate, date, hasOverdraftAccount("0"));
@@ -234,33 +236,22 @@ public class Main {
                         break;
 
                     case "cc":
+                      /*  dateDue = customers.get(i).accounts.get(x).getLastPaymentDate();
+                        acctNum = customers.get(i).accounts.get(x).getAccountNumber();
+                        monthlyDueDate = customers.get(i).accounts.get(x);
+                        newRecord = loanDBRecord(ssn,address,city,state,zip,fName,lName,acctNum,type,balance,interestRate,dateDue,dateDue,monthlyDueDate);
+                       */
+                        break;
                     case "long":
                     case "short":
-                        //newRecord = loanDBRecord();
+                        //newRecord = loanDBRecord(ssn,address,city,state,zip,fName,lName,);
                         break;
                 }
+
                 //TODO Will need a print function written for each type of account since Credit and loans have extra fields.
 
 
-                //TODO will also need to include the flag for overdraft coverage.
-
-
-                //dbRecord = checkingDBRecord(printWriter, ssn,address,city,state,zip,fName,lName,acctNum,type,balance,interestRate,date,hasOverdraftAccount("0"));
-                //printWriter.println(dbRecord);
-                System.out.println(i + " " + x);
-                /*if (type.equalsIgnoreCase("tmb") || type.equalsIgnoreCase("gold") || type.equalsIgnoreCase("diamond") || type.equalsIgnoreCase("savings")) {
-                    acctNum = customers.get(i).accounts.get(x).getAccountNumber();
-                    date = customers.get(i).accounts.get(x).date;
-                    String newRecord = checkingDBRecord(ssn, address, city, state, zip, fName, lName, acctNum, type, balance, interestRate, date, hasOverdraftAccount("0"));
-                } else if (type.equalsIgnoreCase("long") || type.equalsIgnoreCase("short") || type.equalsIgnoreCase("cc")) {
-                    String lastPaymentDate, monthlyPayment, openDate, WTFvariable;
-                    //TODO loanDBRecord(printWriter,ssn,address,city,state,zip,fName,lName,);
-                } else if (type.equalsIgnoreCase("cd")) {
-                    System.out.println("printed cd record");
-                } else {
-                    System.out.println("Tried to write invalid record");
-                }
-                */
+                //TODO will also need to include the flag for overdraft coverage
             }
         }//end nested loop
         printWriter.close();
@@ -272,6 +263,8 @@ public class Main {
         String overdraftFlag = "0";
         if (overdraft = true)
             overdraftFlag = "1";
+        else
+            overdraftFlag = "0";
         String dbRecord = (
                 ssn + "|" +
                         address + "|" +
@@ -284,7 +277,9 @@ public class Main {
                         type + "|" +
                         balance + "|" +
                         interestRate + "|" +
-                        date);
+                        date + "|" +
+                        overdraftFlag + "\r"
+        );
 
         return dbRecord;
     }
@@ -294,8 +289,8 @@ public class Main {
         return record;
     }
 
-    public static void loanDBRecord(String ssn, String address, String city, String state, String zip, String fName,
-                                    String lName, String term, String type, String balance, String intRate, String dueDate, String lastPay, String monthlyPay, String endDate, String missedPayments) {
+    public static String loanDBRecord(String ssn, String address, String city, String state, String zip, String fName,
+                                      String lName, String term, String type, String balance, String intRate, String dueDate, String lastPay, String monthlyPay, String endDate, String missedPayments) {
         String dbRecord = (
                 ssn + "|" +
                         address + "|" +
@@ -314,6 +309,7 @@ public class Main {
                         endDate + "|" +
                         missedPayments
         );
+        return dbRecord;
     }
 /*
     Calculate interest(){

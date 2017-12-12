@@ -79,4 +79,9 @@ public class Savings extends Account {
     public String getBackupAccountNumber() {
         return null;
     }
+
+    @Override
+    public String getLastPaymentDate() {
+        return null;
+    }
 }

@@ -77,6 +77,11 @@ public class CD extends Account {
         return null;
     }
 
+    @Override
+    public String getLastPaymentDate() {
+        return null;
+    }
+
 
     public static boolean compareDates(String currentDate, String maturityDate) {
         try {
