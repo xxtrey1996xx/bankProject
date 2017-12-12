@@ -80,7 +80,6 @@ public class AddBankAccount extends JDialog {
                                 accountNumTextField.getText(),dateTextField.getText());
                         Main.customers.get(found).accounts.add(newCD);
                         break;
-
                     case "CC":
                         CC newCC = new CC(accountNumTextField.getText(),balanceTextField.getText(), interestRateTextField.getText(),dateTextField.getText());
                         Main.customers.get(found).accounts.add(newCC);

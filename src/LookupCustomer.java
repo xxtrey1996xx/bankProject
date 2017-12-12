@@ -93,11 +93,11 @@ public class LookupCustomer extends JDialog {
         int i = lookupUserIndex(SSNtextField.getText(), false);
         if (i != -99) {
             dispose();
-            CustomerAccountsMenu2 cam = new CustomerAccountsMenu2();
-            cam.setIndex(i);
-            cam.pack();
-            cam.setVisible(true);
-
+            editCustomer eCus = new editCustomer();
+            eCus.setCustomer(Main.customers.get(i));
+            eCus.setCustomerDetails();
+            eCus.pack();
+            eCus.setVisible(true);
         } else {
             handleInvalidUser(SSNtextField.getText());
         }
