@@ -101,7 +101,4 @@ public class CloseAccount extends JDialog {
         fmm.setVisible(true);
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
 }
