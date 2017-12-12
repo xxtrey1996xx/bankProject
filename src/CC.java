@@ -1,22 +1,23 @@
 import java.util.ArrayList;
 
 public class CC extends Credit {
-    String cardNumber, balance, interest, date, lastPaymentDate, monthlyPayment, openDate, missedPayment;
+    String cardNumber, balance, interest, date, lastPaymentDate, monthlyPayment, openDate, missedPayment, monthlyDueDate;
 
 
     ArrayList<Transaction> transactionsArrayList = new ArrayList<>();
 
 
     //Constructor for CC
-    public CC(String acctNum, String balance, String interest, String date, String lastPaymentDate, String monthlyPayment, String openDate, String missedPayment) {
-    this.cardNumber = acctNum;
+    public CC(String acctNum, String balance, String interest, String date, String lastPaymentDate, String monthlyDueDate, String monthlyPayment, String openDate, String missedPayment) {
+        this.cardNumber = acctNum;
         this.setBalance(balance);
+        this.monthlyDueDate = monthlyDueDate;
         this.setInterestRate(interest);
         this.setType("CC");
-    this.date = date;
-    this.lastPaymentDate = lastPaymentDate;
-    this.monthlyPayment = monthlyPayment;
-    this.openDate = openDate;
+        this.date = date;
+        this.lastPaymentDate = lastPaymentDate;
+        this.monthlyPayment = monthlyPayment;
+        this.openDate = openDate;
         this.missedPayment = missedPayment;
     }
 
@@ -74,9 +75,13 @@ public class CC extends Credit {
         return missedPayment;
     }
 
+    public String getMonthlyDueDate() {
+        return monthlyDueDate;
+    }
+
     @Override
     public void credit(double amount) {
-        
+
     }
 
     @Override
@@ -106,7 +111,7 @@ public class CC extends Credit {
     }
 
     //Method to charge credit card
-    public void creditCharge(double amount, String location, String date){
+    public void creditCharge(double amount, String location, String date) {
         //Create Transaction Object
         Transaction transaction = new Transaction(location, date, amount);
         //Add Transaction Object to Transaction ArrayList for Account
@@ -119,7 +124,8 @@ public class CC extends Credit {
         String location;
         String date;
         double amount;
-        private Transaction(String location, String date, double amount){
+
+        private Transaction(String location, String date, double amount) {
             this.location = location;
             this.date = date;
             this.amount = amount;
