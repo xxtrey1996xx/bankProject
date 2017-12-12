@@ -24,6 +24,8 @@ public class FirstMainMenu extends JDialog {
     private JButton openLoanButton;
     private String activeUser;
     private JButton openCDButton;
+    private JButton setInterestRatesButton;
+
     public FirstMainMenu(String activeUser) {
         this.activeUser = activeUser;
         //This is for controlling what the tellers can see as apposed to managers
@@ -31,10 +33,14 @@ public class FirstMainMenu extends JDialog {
         } else if (activeUser.compareToIgnoreCase("manager") == 0) {
             openLoanButton.setVisible(true);
             openCDButton.setVisible(true);
+            setInterestRatesButton.setEnabled(false);
+            setInterestRatesButton.setVisible(true);
         } else if (activeUser.compareToIgnoreCase("customer") == 0) {
             openAccountButton.setVisible(false);
             closeAccountButton.setVisible(false);
             lookupCustomerButton.setVisible(false);
+            withdrawalButton.setVisible(true);
+            depositButton.setVisible(true);
         }
         setContentPane(contentPane);
         setModal(true);
@@ -184,5 +190,14 @@ public class FirstMainMenu extends JDialog {
         New_Existing ne = new New_Existing();
         ne.pack();
         ne.setVisible(true);
+    }
+
+    public void redirectToFMM() {
+        dispose();
+        FirstMainMenu fmm = new FirstMainMenu(Main.activeUser);
+        fmm.setSystemDateTime();
+        fmm.pack();
+        fmm.setVisible(true);
+
     }
 }
