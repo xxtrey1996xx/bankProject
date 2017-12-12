@@ -31,11 +31,11 @@ public class Main {
 
         dateString = input.nextLine();
 
-        input.useDelimiter("\n");//Set Delimiter to returns to get a record from the Database
+        input.useDelimiter("\r");//Set Delimiter to returns to get a record from the Database
         System.out.println("\n*************************************************** - Original DB Record - ***************************************************\n");
         while (input.hasNext()) {
             String record = input.next();
-            System.out.println(record + "\n");
+            System.out.println(record);
             String[] splitRecord = record.split("\\|");
             updateCustomerArray(splitRecord);
         }
@@ -217,26 +217,26 @@ public class Main {
                 type = customers.get(i).accounts.get(x).type;
                 ssn = customers.get(i).accounts.get(x).ownerID;
                 acctNum = customers.get(i).accounts.get(x).accountNumber;
+                String newRecord;
 
                 switch (type) {
                     case "Savings":
-                        break;
-
                     case "TMB":
                     case "Gold":
                     case "Diamond":
-                        if (customers.get(i).accounts.get(x).getOverdraftAccount()) {
                             backupAccountFlag = "1";
                             String backupAccountNumber = customers.get(i).accounts.get(x).getBackupAccountNumber();
-                        } else backupAccountFlag = "0";
+                        acctNum = customers.get(i).accounts.get(x).getAccountNumber();
+                        date = customers.get(i).accounts.get(x).date;
+                        newRecord = checkingDBRecord(ssn, address, city, state, zip, fName, lName, acctNum, type, balance, interestRate, date, hasOverdraftAccount("0"));
+                        printWriter.print(newRecord);
+                        printWriter.flush();
                         break;
 
                     case "cc":
-
-                        break;
-
                     case "long":
                     case "short":
+                        //newRecord = loanDBRecord();
                         break;
                 }
                 //TODO Will need a print function written for each type of account since Credit and loans have extra fields.
@@ -248,26 +248,27 @@ public class Main {
                 //dbRecord = checkingDBRecord(printWriter, ssn,address,city,state,zip,fName,lName,acctNum,type,balance,interestRate,date,hasOverdraftAccount("0"));
                 //printWriter.println(dbRecord);
                 System.out.println(i + " " + x);
-                if (type.equalsIgnoreCase("tmb") || type.equalsIgnoreCase("gold") || type.equalsIgnoreCase("diamond") || type.equalsIgnoreCase("savings")) {
+                /*if (type.equalsIgnoreCase("tmb") || type.equalsIgnoreCase("gold") || type.equalsIgnoreCase("diamond") || type.equalsIgnoreCase("savings")) {
                     acctNum = customers.get(i).accounts.get(x).getAccountNumber();
                     date = customers.get(i).accounts.get(x).date;
-                    checkingDBRecord(printWriter, ssn, address, city, state, zip, fName, lName, acctNum, type, balance, interestRate, date, hasOverdraftAccount("0"));
+                    String newRecord = checkingDBRecord(ssn, address, city, state, zip, fName, lName, acctNum, type, balance, interestRate, date, hasOverdraftAccount("0"));
                 } else if (type.equalsIgnoreCase("long") || type.equalsIgnoreCase("short") || type.equalsIgnoreCase("cc")) {
                     String lastPaymentDate, monthlyPayment, openDate, WTFvariable;
-                    System.out.println("Loan printed");
+                    //TODO loanDBRecord(printWriter,ssn,address,city,state,zip,fName,lName,);
                 } else if (type.equalsIgnoreCase("cd")) {
                     System.out.println("printed cd record");
                 } else {
                     System.out.println("Tried to write invalid record");
                 }
+                */
             }
         }//end nested loop
         printWriter.close();
     }//end For
     //end SaveDb
 
-    public static void checkingDBRecord(PrintWriter printWriter, String ssn, String address, String city, String state, String zip, String fName,
-                                        String lName, String acctNum, String type, String balance, String interestRate, String date, boolean overdraft) {
+    public static String checkingDBRecord(String ssn, String address, String city, String state, String zip, String fName,
+                                          String lName, String acctNum, String type, String balance, String interestRate, String date, boolean overdraft) {
         String overdraftFlag = "0";
         if (overdraft = true)
             overdraftFlag = "1";
@@ -284,9 +285,8 @@ public class Main {
                         balance + "|" +
                         interestRate + "|" +
                         date);
-        printWriter.println(dbRecord);
-        printWriter.flush();
-        String record = "test";
+
+        return dbRecord;
     }
 
     public String creditDBRecord() {
@@ -294,6 +294,27 @@ public class Main {
         return record;
     }
 
+    public static void loanDBRecord(String ssn, String address, String city, String state, String zip, String fName,
+                                    String lName, String term, String type, String balance, String intRate, String dueDate, String lastPay, String monthlyPay, String endDate, String missedPayments) {
+        String dbRecord = (
+                ssn + "|" +
+                        address + "|" +
+                        city + "|" +
+                        state + "|" +
+                        zip + "|" +
+                        fName + "|" +
+                        lName + "|" +
+                        term + "|" +
+                        type + "|" +
+                        balance + "|" +
+                        intRate + "|" +
+                        dueDate + "|" +
+                        lastPay + "|" +
+                        monthlyPay + "|" +
+                        endDate + "|" +
+                        missedPayments
+        );
+    }
 /*
     Calculate interest(){
         principal = $$.$$;
