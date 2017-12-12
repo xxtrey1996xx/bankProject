@@ -113,13 +113,6 @@ public class FirstMainMenu extends JDialog {
         System.exit(0);
     }
 
-    private void checkCredentials(String activeUser) {
-        if (activeUser.compareToIgnoreCase("teller") == 0) {
-            hideButton.setVisible(false);
-
-        }
-    }
-
     public void setSystemDateTime() {
         SimpleDateFormat date = new SimpleDateFormat("MM/dd/yyyy");
         String strDate = date.format(Main.myDate);
@@ -157,7 +150,9 @@ public class FirstMainMenu extends JDialog {
 
     private void onCloseAccount(String activeUser) {
         System.out.println("close account clicked");
-        checkCredentials(activeUser);
+        CloseAccount ca = new CloseAccount();
+        ca.pack();
+        ca.setVisible(true);
         //Going to open a new menu that allows accounts to be closed
         dispose();
     }
@@ -190,14 +185,5 @@ public class FirstMainMenu extends JDialog {
         New_Existing ne = new New_Existing();
         ne.pack();
         ne.setVisible(true);
-    }
-
-    public void redirectToFMM() {
-        dispose();
-        FirstMainMenu fmm = new FirstMainMenu(Main.activeUser);
-        fmm.setSystemDateTime();
-        fmm.pack();
-        fmm.setVisible(true);
-
     }
 }
