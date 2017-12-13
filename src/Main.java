@@ -203,7 +203,7 @@ public class Main {
         //printWriter.println("SSN         Address         City        State/Zip   FNam    LName   ACCT#   ACCTTYP Balance Int     OpenDate");
 
         //Print Date
-        printWriter.println(dateString);
+        printWriter.print(dateString);
         //Loop through array of users
         for (int i = 0; i <= customers.size() - 1; i++) {
             address = customers.get(i).streetAddress;
