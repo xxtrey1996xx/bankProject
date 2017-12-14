@@ -59,8 +59,13 @@ public class Savings extends Account {
         //Subtract Debit Amount from Balance
         newTotal = (currentTotal - amount);
         //Check if this will send account negative
-        if (newTotal < 0.00) {
-            setBalance(Double.toString(newTotal));
+        if (newTotal > 0.00) {
+            balance = Double.toString(newTotal);
+        }
+        try {
+            Main.saveDB();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
