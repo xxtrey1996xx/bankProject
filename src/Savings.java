@@ -40,6 +40,11 @@ public class Savings extends Account {
         //saving new balance
         balance = newBalance.toString();
         System.out.println(accountNumber + " should be " + balance);
+        try {
+            Main.saveDB();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

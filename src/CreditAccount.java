@@ -60,6 +60,7 @@ public class CreditAccount extends JDialog {
 
     private void onOK() {
         int index = LookupCustomer.lookupUserIndex(SSNTextField.getText(), false);
+        boolean wasCredited = false;
         if (index != -99) {
             Customer customer = Main.customers.get(index);
             Boolean wasAccountFound = false;
@@ -85,6 +86,7 @@ public class CreditAccount extends JDialog {
                                     //checking to see if double or not
                                     try {
                                         acct.credit(Double.valueOf(amountTextField.getText()));
+                                        wasCredited = true;
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
@@ -122,6 +124,7 @@ public class CreditAccount extends JDialog {
                                     //checking to see if double or not
                                     try {
                                         acct.credit(Double.valueOf(amountTextField.getText()));
+                                        wasCredited = true;
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
@@ -157,6 +160,7 @@ public class CreditAccount extends JDialog {
                                     //checking to see if double or not
                                     try {
                                         acct.credit(Double.valueOf(amountTextField.getText()));
+                                        wasCredited = true;
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
@@ -177,6 +181,11 @@ public class CreditAccount extends JDialog {
                         break;
                 }
 
+            }
+            if (wasCredited) {
+                JOptionPane.showMessageDialog(null,
+                        "Account Credited!",
+                        "Update Successful", JOptionPane.INFORMATION_MESSAGE);
             }
         }
         FirstMainMenu fmm = new FirstMainMenu(Main.activeUser);

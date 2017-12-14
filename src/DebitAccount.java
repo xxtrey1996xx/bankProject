@@ -66,6 +66,7 @@ public class DebitAccount extends JDialog {
         if (index != -99) {
             Customer customer = Main.customers.get(index);
             Boolean wasAccountFound = false;
+            Boolean accountDebited = false;
 
 
             for (int i = 0; i < customer.accounts.size(); i++) {
@@ -88,6 +89,7 @@ public class DebitAccount extends JDialog {
                                     //checking to see if double or not
                                     try {
                                         acct.debit(Double.valueOf(amountTextField.getText()));
+                                        accountDebited = true;
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
@@ -125,6 +127,7 @@ public class DebitAccount extends JDialog {
                                     //checking to see if double or not
                                     try {
                                         acct.debit(Double.valueOf(amountTextField.getText()));
+                                        accountDebited = true;
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
@@ -160,6 +163,7 @@ public class DebitAccount extends JDialog {
                                     //checking to see if double or not
                                     try {
                                         acct.debit(Double.valueOf(amountTextField.getText()));
+                                        accountDebited = true;
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
@@ -180,6 +184,11 @@ public class DebitAccount extends JDialog {
                         break;
                 }
 
+            }
+            if (accountDebited) {
+                JOptionPane.showMessageDialog(null,
+                        "Account Debited!",
+                        "Updated Successful", JOptionPane.INFORMATION_MESSAGE);
             }
         }
         FirstMainMenu fmm = new FirstMainMenu(Main.activeUser);
