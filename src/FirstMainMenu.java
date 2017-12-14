@@ -26,6 +26,7 @@ public class FirstMainMenu extends JDialog {
     private JButton openCDButton;
     private JButton setInterestRatesButton;
     private JButton debitAnAccountButton;
+    private JButton creditAnAccountButton;
 
     public FirstMainMenu(String activeUser) {
         this.activeUser = activeUser;
@@ -78,6 +79,11 @@ public class FirstMainMenu extends JDialog {
         debitAnAccountButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onDebitAccount();
+            }
+        });
+        creditAnAccountButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onCreditAccount();
             }
         });
         closeSystemButton.addActionListener(new ActionListener() {
@@ -197,5 +203,12 @@ public class FirstMainMenu extends JDialog {
         DebitAccount db = new DebitAccount();
         db.pack();
         db.setVisible(true);
+    }
+
+    private void onCreditAccount() {
+        dispose();
+        CreditAccount cr = new CreditAccount();
+        cr.pack();
+        cr.setVisible(true);
     }
 }

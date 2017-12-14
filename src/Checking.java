@@ -85,7 +85,15 @@ public class Checking extends Account {
         Double newBalance;
         newBalance = Double.valueOf(balance) + amount;
         balance = newBalance.toString();
+        Transaction transaction;
+        transaction = new Transaction("Credit", Main.myDate.toString(), balance);
+        updateTransactionList(transaction);
         System.out.println(accountNumber + " should be " + balance);
+        try {
+            Main.saveDB();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
