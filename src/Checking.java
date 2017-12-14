@@ -99,17 +99,24 @@ public class Checking extends Account {
     }
 
     @Override
-    public void debit(double amount) {
-        double newBalance = (Double.valueOf(Account.balance) - amount);
+    public void debit(double amount) throws Exception {
+        double newBalance = (Double.valueOf(balance) - amount);
+        Transaction transaction;
 
         //Taking money from account
 
         //Transaction debit = new Transaction("Debit",Main.myDate,balance);
 
         if (newBalance >= 0) {
-            Account.balance = String.valueOf(newBalance);
+            balance = String.valueOf(newBalance);
             System.out.println(Account.accountNumber + " new balance should be " + balance);
-            updateTransactionList(new Transaction("Debit", Main.myDate.toString(), balance));
+            transaction = new Transaction("Debit", Main.myDate.toString(), balance);
+            updateTransactionList(transaction);
+            try {
+                Main.saveDB();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         else if ((Double.valueOf(balance) - amount) < 0) {
             //This is where overdrafts are handled

@@ -62,35 +62,122 @@ public class CloseAccount extends JDialog {
 
             for (int i = 0; i < customer.accounts.size(); i++) {
                 //Going through only the accounts registered to the ssn
-                if (customer.accounts.get(i).accountNumber.equalsIgnoreCase(accountNumberTextField.getText())) {
-                    //checking to see if the acct num exsists for the customer
-                    int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to close this account?\n"
-                                    + "Social Security Num: " + customer.ssn + "\n" +
-                                    " Account Number: " + customer.accounts.get(i).accountNumber, "Confirm",
-                            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-                    if (response == JOptionPane.NO_OPTION) {
-                        onCancel();
-                    } else if (response == JOptionPane.YES_OPTION) {
-                        customer.accounts.remove(i);
-                        System.out.println("Account Closed");
-                        Main.saveDB();
-                    } else if (response == JOptionPane.CLOSED_OPTION) {
-                        onCancel();
-                    }
-                    wasAccountFound = true;
+                Account acct = customer.accounts.get(i);
+                switch (acct.type) {
+                    case "Savings":
+                        Savings savings = (Savings) customer.accounts.get(i);
+                        if (savings.accountNumber.equalsIgnoreCase(accountNumberTextField.getText())) {
+                            //checking to see if the acct num exsists for the customer
+                            int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to close this account?\n"
+                                            + "Social Security Num: " + customer.ssn + "\n" +
+                                            " Account Number: " + customer.accounts.get(i).accountNumber, "Confirm",
+                                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                            if (response == JOptionPane.NO_OPTION) {
+                                onCancel();
+                            } else if (response == JOptionPane.YES_OPTION) {
+                                customer.accounts.remove(i);
+                                System.out.println("Account Closed");
+                                JOptionPane.showMessageDialog(null,
+                                        "Account Closed!",
+                                        "Account Closed", JOptionPane.INFORMATION_MESSAGE);
+                                Main.saveDB();
+                            } else if (response == JOptionPane.CLOSED_OPTION) {
+                                onCancel();
+                            }
+                            wasAccountFound = true;
+                        }
+                        if (!wasAccountFound) {
+                            JOptionPane.showMessageDialog(null, "That Account was not found", "Account Not Found", JOptionPane.ERROR_MESSAGE);
+                        }
+                        break;
+                    case "Gold":
+                    case "TMB":
+                    case "Diamond":
+                        Checking checking = (Checking) customer.accounts.get(i);
+                        if (checking.accountNumber.equalsIgnoreCase(accountNumberTextField.getText())) {
+                            //checking to see if the acct num exsists for the customer
+                            int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to close this account?\n"
+                                            + "Social Security Num: " + customer.ssn + "\n" +
+                                            " Account Number: " + customer.accounts.get(i).accountNumber, "Confirm",
+                                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                            if (response == JOptionPane.NO_OPTION) {
+                                onCancel();
+                            } else if (response == JOptionPane.YES_OPTION) {
+                                customer.accounts.remove(i);
+                                System.out.println("Account Closed");
+                                JOptionPane.showMessageDialog(null,
+                                        "Account Closed!",
+                                        "Account Closed", JOptionPane.INFORMATION_MESSAGE);
+                                Main.saveDB();
+                            } else if (response == JOptionPane.CLOSED_OPTION) {
+                                onCancel();
+                            }
+                            wasAccountFound = true;
+                        }
+                        if (!wasAccountFound) {
+                            JOptionPane.showMessageDialog(null, "That Account was not found", "Account Not Found", JOptionPane.ERROR_MESSAGE);
+                        }
+                        break;
+                    case "CC":
+                        CC cc = (CC) customer.accounts.get(i);
+                        if (cc.cardNumber.equalsIgnoreCase(accountNumberTextField.getText())) {
+                            //checking to see if the acct num exsists for the customer
+                            int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to close this account?\n"
+                                            + "Social Security Num: " + customer.ssn + "\n" +
+                                            " Account Number: " + customer.accounts.get(i).accountNumber, "Confirm",
+                                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                            if (response == JOptionPane.NO_OPTION) {
+                                onCancel();
+                            } else if (response == JOptionPane.YES_OPTION) {
+                                customer.accounts.remove(i);
+                                System.out.println("Account Closed");
+                                JOptionPane.showMessageDialog(null,
+                                        "Account Closed!",
+                                        "Account Closed", JOptionPane.INFORMATION_MESSAGE);
+                                Main.saveDB();
+                            } else if (response == JOptionPane.CLOSED_OPTION) {
+                                onCancel();
+                            }
+                            wasAccountFound = true;
+                        }
+                        if (!wasAccountFound) {
+                            JOptionPane.showMessageDialog(null, "That Account was not found", "Account Not Found", JOptionPane.ERROR_MESSAGE);
+                        }
+                        break;
+                    case "CD":
+                        CD cd = (CD) customer.accounts.get(i);
+                        if (cd.accountNumber.equalsIgnoreCase(accountNumberTextField.getText())) {
+                            //checking to see if the acct num exsists for the customer
+                            int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to close this account?\n"
+                                            + "Social Security Num: " + customer.ssn + "\n" +
+                                            " Account Number: " + customer.accounts.get(i).accountNumber, "Confirm",
+                                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                            if (response == JOptionPane.NO_OPTION) {
+                                onCancel();
+                            } else if (response == JOptionPane.YES_OPTION) {
+                                customer.accounts.remove(i);
+                                System.out.println("Account Closed");
+                                JOptionPane.showMessageDialog(null,
+                                        "Account Closed!",
+                                        "Account Closed", JOptionPane.INFORMATION_MESSAGE);
+                                Main.saveDB();
+                            } else if (response == JOptionPane.CLOSED_OPTION) {
+                                onCancel();
+                            }
+                            wasAccountFound = true;
+                        }
+                        if (!wasAccountFound) {
+                            JOptionPane.showMessageDialog(null, "That Account was not found", "Account Not Found", JOptionPane.ERROR_MESSAGE);
+                        }
+                        break;
                 }
-                if (!wasAccountFound) {
-                    JOptionPane.showMessageDialog(null, "That Account was not found", "Account Not Found", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, customersSSNTextField.getText() + " was not found", "Customer Not Found", JOptionPane.ERROR_MESSAGE);
-        }
 
         FirstMainMenu fmm = new FirstMainMenu(Main.activeUser);
         fmm.setSystemDateTime();
         fmm.pack();
         fmm.setVisible(true);
+            }
+        }
     }
 
     private void onCancel() {

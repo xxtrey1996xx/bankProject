@@ -57,11 +57,11 @@ public class Savings extends Account {
         //Convert Balance from String to double
         currentTotal = Double.valueOf(oldTotal);
         //Subtract Debit Amount from Balance
-        newTotal = currentTotal - amount;
+        newTotal = (currentTotal - amount);
         //Check if this will send account negative
-        if (newTotal < 0.00)
-            //handleOverdraft();
+        if (newTotal < 0.00) {
             setBalance(Double.toString(newTotal));
+        }
     }
 
     @Override

@@ -10,7 +10,7 @@ public abstract class Account {
     public String date;
     public String backupAccountNumber;
 
-    public ArrayList<Transaction> transactionArrayList;
+    public ArrayList<Transaction> transactionArrayList = new ArrayList<>();
 
     public void setBalance(String balance) {
         this.balance = balance;
@@ -60,7 +60,8 @@ public abstract class Account {
     public void updateTransactionList(Transaction transaction){
         transactionArrayList.add(transaction);
     }
-    public abstract void debit(double amount);
+
+    public abstract void debit(double amount) throws Exception;
 
     public abstract double calcInterest();
 
