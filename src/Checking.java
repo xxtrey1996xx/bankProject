@@ -27,31 +27,31 @@ public class Checking extends Account {
         this.overdraftAccount = overdraftAccount;
     }
 
-    public void setBackupAccountNumber(String accountNumber){
-        int userIndex = LookupCustomer.lookupUserIndex(ownerID,false);
+    @Override
+    public String getBackupAccountNumber() {
+        return this.backupAccountNumber;
+    }
+
+    public void setBackupAccountNumber(String accountNumber) {
+        int userIndex = LookupCustomer.lookupUserIndex(ownerID, false);
         Customer thisCustomer = Main.customers.get(userIndex);
 
         //loop through user accounts to verify Savings account exists matching requested account number.
-        for(int i = 0; i<=thisCustomer.accounts.size(); i++){
-            if(thisCustomer.accounts.get(i).accountNumber == accountNumber){
-                if(thisCustomer.accounts.get(i).type == "Savings"){
+        for (int i = 0; i <= thisCustomer.accounts.size(); i++) {
+            if (thisCustomer.accounts.get(i).accountNumber == accountNumber) {
+                if (thisCustomer.accounts.get(i).type == "Savings") {
                     //This is a valid account. Set pointer to accountNumber
                     backupAccountNumber = accountNumber;
-                }
-                else//Account exists but is not a savings account
-                    {System.out.println("Account Exists but is not a Savings Account");
+                } else//Account exists but is not a savings account
+                {
+                    System.out.println("Account Exists but is not a Savings Account");
                 }
             }//End Check for account
         }//end For loop
 
         //TODO Create Alert box for this
-        if(backupAccountNumber == null)
+        if (backupAccountNumber == null)
             System.out.println("No Account found by account number: " + accountNumber);
-    }
-
-    @Override
-    public String getBackupAccountNumber(){
-        return this.backupAccountNumber;
     }
 
     @Override
@@ -125,15 +125,13 @@ public class Checking extends Account {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-        else if ((Double.valueOf(balance) - amount) < 0) {
+        } else if ((Double.valueOf(balance) - amount) < 0) {
             //This is where overdrafts are handled
             System.out.println("Overdraft***\t\tAccount#: " + accountNumber);
             balance = String.valueOf(newBalance).format("$999,999,999.99");
         }
 
     }
-
 
 
     public void stopPay(String checkNumber) {
