@@ -25,7 +25,7 @@ public class Main {
 
     //May need to make this a Runnable as well to avoid race condition with save
     public static void readDB() throws Exception {
-        File db = new File("bankdatabasePIPE.txt");
+        File db = new File("bankdatabasePIPE2.txt");
         Scanner input = new Scanner(db);
         //Read in Date
 
@@ -104,7 +104,7 @@ public class Main {
                     monthlyPayment = record[13];
                     openDate = record[14];
                     WTFvariable = record[15];
-                    newCC = new CC(acctNum, balance, interest, date, lastPaymentDate, monthlyDueDate, monthlyPayment, openDate, WTFvariable);
+                    newCC = new CC(ssn, acctNum, balance, interest, date, lastPaymentDate, monthlyDueDate, monthlyPayment, openDate, WTFvariable);
                     newCustomer.accounts.add(newCC);
                     break;
 
@@ -160,7 +160,7 @@ public class Main {
                     monthlyDueDate = record[11];
                     openDate = record[14];
                     WTFvariable = record[15];
-                    newCC = new CC(acctNum, balance, interest, date, lastPaymentDate, monthlyDueDate, monthlyPayment, openDate, WTFvariable);
+                    newCC = new CC(ssn, acctNum, balance, interest, date, lastPaymentDate, monthlyDueDate, monthlyPayment, openDate, WTFvariable);
                     //newCustomer.accounts.add(newCC);
                     customers.get(wasFound).accounts.add(newCC);
                     break;
@@ -196,14 +196,14 @@ public class Main {
 
     //May need to make this a Runnable to avoid Race condition with reading the database
     public static void saveDB() throws Exception {
-        String address, city, state, zip, fName, lName, balance, interestRate, type, acctNum, date, ssn, dateDue, backupAccountFlag, monthlyDueDate, monthlyOverdraftCount;
-        PrintWriter printWriter = new PrintWriter(new File("currentDB.txt"));
+        String address, city, state, zip, fName, lName, balance, interestRate, type, acctNum, date, ssn, dateDue, rollover, backupAccountFlag, monthlyDueDate, monthlyOverdraftCount, missedPayments, lastPay, monthlyPay, endDate;
+        PrintWriter printWriter = new PrintWriter(new File("bankdatabasePIPE2.txt"));
         String dbRecord;
 
         //printWriter.println("SSN         Address         City        State/Zip   FNam    LName   ACCT#   ACCTTYP Balance Int     OpenDate");
 
         //Print Date
-        printWriter.print(dateString);
+        printWriter.print(dateString + "\r");
         //Loop through array of users
         for (int i = 0; i <= customers.size() - 1; i++) {
             address = customers.get(i).streetAddress;
@@ -235,16 +235,41 @@ public class Main {
                         printWriter.flush();
                         break;
 
-                    case "cc":
-                      /*  dateDue = customers.get(i).accounts.get(x).getLastPaymentDate();
-                        acctNum = customers.get(i).accounts.get(x).getAccountNumber();
-                        monthlyDueDate = customers.get(i).accounts.get(x);
-                        newRecord = loanDBRecord(ssn,address,city,state,zip,fName,lName,acctNum,type,balance,interestRate,dateDue,dateDue,monthlyDueDate);
-                       */
+                    case "CC":
+                        CC cc = (CC) customers.get(i).accounts.get(x);
+                        dateDue = cc.monthlyDueDate;
+                        acctNum = cc.cardNumber;
+                        monthlyPay = cc.monthlyPayment;
+                        lastPay = cc.lastPaymentDate;
+                        endDate = cc.expireDate;
+                        missedPayments = cc.missedPayment;
+                        newRecord = loanDBRecord(ssn, address, city, state, zip, fName, lName, acctNum, type, balance, interestRate, dateDue, lastPay, monthlyPay, endDate, missedPayments);
+                        printWriter.print(newRecord);
+                        printWriter.flush();
+
                         break;
                     case "long":
                     case "short":
-                        //newRecord = loanDBRecord(ssn,address,city,state,zip,fName,lName,);
+                        Loan loan = (Loan) customers.get(i).accounts.get(x);
+                        acctNum = loan.length;
+                        type = customers.get(i).accounts.get(x).type;
+                        balance = customers.get(i).accounts.get(x).balance;
+                        interestRate = customers.get(i).accounts.get(x).interestRate;
+                        dateDue = loan.dueDate;
+                        lastPay = loan.lastPayment;
+                        monthlyPay = loan.dueDate;
+                        endDate = loan.openDate;
+                        missedPayments = loan.missedPayment;
+                        newRecord = loanDBRecord(ssn, address, city, state, zip, fName, lName, acctNum, type, balance, interestRate, dateDue, lastPay, monthlyPay, endDate, missedPayments);
+                        printWriter.print(newRecord);
+                        printWriter.flush();
+                        break;
+                    case "CD":
+                        CD cd = (CD) customers.get(i).accounts.get(x);
+                        rollover = cd.date;
+                        newRecord = cdDBRecord(ssn, address, city, state, zip, fName, lName, acctNum, type, balance, interestRate, rollover);
+                        printWriter.print(newRecord);
+                        printWriter.flush();
                         break;
                 }
 
@@ -284,9 +309,22 @@ public class Main {
         return dbRecord;
     }
 
-    public String creditDBRecord() {
-        String record = "test";
-        return record;
+    public static String cdDBRecord(String ssn, String address, String city, String state, String zip, String fName, String lName, String acctNum, String type, String balance, String interestRate, String rollover) {
+        String dbRecord = (
+                ssn + "|" +
+                        address + "|" +
+                        city + "|" +
+                        state + "|" +
+                        zip + "|" +
+                        fName + "|" +
+                        lName + "|" +
+                        acctNum + "|" +
+                        type + "|" +
+                        balance + "|" +
+                        interestRate + "|" +
+                        rollover + "\r"
+        );
+        return dbRecord;
     }
 
     public static String loanDBRecord(String ssn, String address, String city, String state, String zip, String fName,
@@ -307,7 +345,7 @@ public class Main {
                         lastPay + "|" +
                         monthlyPay + "|" +
                         endDate + "|" +
-                        missedPayments
+                        missedPayments + "\r"
         );
         return dbRecord;
     }

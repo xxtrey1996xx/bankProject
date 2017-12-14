@@ -81,7 +81,8 @@ public class DebitAccount extends JDialog {
                     } else if (response == JOptionPane.YES_OPTION) {
                         if (isDouble(amountTextField.getText())) {
                             //checking to see if double or not
-                            customer.accounts.get(i).debit(Double.valueOf(amountTextField.getText()));
+                            Account acct = customer.accounts.get(i);
+                            acct.debit(Double.valueOf(amountTextField.getText()));
 
                         } else {
                             //not a double

@@ -64,8 +64,8 @@ public class AddLoanAccount extends JDialog {
                         balanceTextField.getText(),
                         interestRateTextField.getText(),
                         monthDueDateTextField.getText(),//Due Date
-                        "null",//Last payment due date set to null by default
-                        "????",
+                        "11102017",//Last payment due date set to null by default
+                        "50.00",
                         initialDateTextField.getText(),
                         "0");
                 Main.customers.get(found).accounts.add(newLoan);
@@ -76,19 +76,19 @@ public class AddLoanAccount extends JDialog {
                         balanceTextField.getText(),
                         interestRateTextField.getText(),
                         monthDueDateTextField.getText(),//Due Date
-                        "null",//Last payment due date set to null by default
-                        "????",
+                        "11102017",//Last payment due date set to null by default
+                        "50.00",
                         initialDateTextField.getText(),
                         "0");
                 Main.customers.get(found).accounts.add(newLoan);
             } else if (typeComboBox.getSelectedItem().toString().equalsIgnoreCase("Credit Card")) {
-                CC newCC = new CC(accountNumTextField.getText(),
+                CC newCC = new CC(SSNTextField.getText(), accountNumTextField.getText(),
                         balanceTextField.getText(),
                         interestRateTextField.getText(),
-                        "null",//Date?
-                        "null",//Last Payment Date
+                        "12102022",//Date?
+                        "11102017",//Last Payment Date
                         monthDueDateTextField.getText(),
-                        "null",//Monthly payment as calculated by calcInterest?
+                        "10",//Monthly payment as calculated by calcInterest?
                         Main.dateString,//Open date
                         "0"
                 );
