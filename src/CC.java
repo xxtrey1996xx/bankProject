@@ -1,30 +1,28 @@
 import java.util.ArrayList;
 
 public class CC extends Credit {
-    String cardNumber, balance, interest, date, lastPaymentDate, monthlyPayment, openDate, missedPayment, monthlyDueDate;
+    String cardNumber, balance, interest, expireDate, lastPaymentDate, monthlyPayment, openDate, missedPayment, monthlyDueDate;
 
 
     ArrayList<Transaction> transactionsArrayList = new ArrayList<>();
 
 
     //Constructor for CC
-    public CC(String acctNum, String balance, String interest, String date, String lastPaymentDate, String monthlyDueDate, String monthlyPayment, String openDate, String missedPayment) {
+    public CC(String ssn, String acctNum, String balance, String interest, String date, String lastPaymentDate, String monthlyDueDate, String monthlyPayment, String openDate, String missedPayment) {
+        super();
+        this.ownerID = ssn;
         this.cardNumber = acctNum;
         this.setBalance(balance);
         this.monthlyDueDate = monthlyDueDate;
         this.setInterestRate(interest);
         this.setType("CC");
-        this.date = date;
+        this.expireDate = date;
         this.lastPaymentDate = lastPaymentDate;
+        this.lastPaymentDate = "11102017";
         this.monthlyPayment = monthlyPayment;
         this.openDate = openDate;
         this.missedPayment = missedPayment;
     }
-
-    public CC(String text, String text1, String text2, String text3) {
-        super();
-    }
-
 
     @Override
     public String getBalance() {
@@ -56,7 +54,7 @@ public class CC extends Credit {
 
     @Override
     public String getDate() {
-        return date;
+        return expireDate;
     }
 
     public String getLastPaymentDate() {

@@ -74,15 +74,6 @@ public class AddBankAccount extends JDialog {
                                 accountNumTextField.getText(),"Savings", dateTextField.getText());
                         Main.customers.get(found).accounts.add(newSavings);
                         break;
-
-                    case "CD":
-                        CD newCD = new CD(SSNTextField.getText(), balanceTextField.getText(), interestRateTextField.getText(),
-                                accountNumTextField.getText(),dateTextField.getText());
-                        Main.customers.get(found).accounts.add(newCD);
-                        break;
-                    case "CC":
-                        CC newCC = new CC(accountNumTextField.getText(),balanceTextField.getText(), interestRateTextField.getText(),dateTextField.getText());
-                        Main.customers.get(found).accounts.add(newCC);
                 }
             }
 

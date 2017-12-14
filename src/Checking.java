@@ -61,7 +61,7 @@ public class Checking extends Account {
 
     @Override
     public String getBalance() {
-        return balance;
+        return this.balance;
     }
 
     @Override
