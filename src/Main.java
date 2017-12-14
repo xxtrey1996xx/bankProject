@@ -66,18 +66,17 @@ public class Main {
 
         int wasFound = LookupCustomer.lookupUserIndex(ssn, false);
 
-
+        //Instanciating account types
+        Savings newSavings;
+        Checking newChecking;
+        CC newCC;
+        CD newCD;
+        Loan newLoan;
         if (wasFound == -99) {
             //Create customer object from parsed values
             Customer newCustomer;
             newCustomer = new Customer(ssn, fName, lName, address, city, state, zip);
             customers.add(newCustomer);
-            //Instanciating account types
-            Savings newSavings;
-            Checking newChecking;
-            CC newCC;
-            CD newCD;
-            Loan newLoan;
 
             //Create Account and Add to User Object Based on Account Type in DB Record
             switch (type) {
@@ -126,11 +125,6 @@ public class Main {
             }//end switch
         } else {
             //Instantiating account types
-            Savings newSavings;
-            Checking newChecking;
-            CC newCC;
-            CD newCD;
-            Loan newLoan;
 
             //Create Account and Add to User Object Based on Account Type in DB Record
             switch (type) {
@@ -214,22 +208,38 @@ public class Main {
             lName = customers.get(i).lastName;
             //Print record for each account that is linked to each user.
             for (int x = 0; x <= customers.get(i).accounts.size() - 1; x++) {
-                balance = customers.get(i).accounts.get(x).balance;
-                interestRate = customers.get(i).accounts.get(x).interestRate;
-                type = customers.get(i).accounts.get(x).type;
-                ssn = customers.get(i).accounts.get(x).ownerID;
-                acctNum = customers.get(i).accounts.get(x).accountNumber;
+                Customer cus = customers.get(i);
+                Account acct = cus.accounts.get(x);
+                balance = acct.balance;
+                interestRate = acct.interestRate;
+                type = acct.type;
+                ssn = acct.ownerID;
+                acctNum = acct.accountNumber;
                 String newRecord = null;
 
                 switch (type) {
                     case "Savings":
+                        Savings savings = (Savings) customers.get(i).accounts.get(x);
+                        backupAccountFlag = "1";
+                        String backupAccountNumber = savings.getBackupAccountNumber();
+                        interestRate = savings.interestRate;
+                        acctNum = savings.accountNumber;
+                        balance = savings.balance;
+                        date = savings.date;
+                        newRecord = checkingDBRecord(ssn, address, city, state, zip, fName, lName, acctNum, type, balance, interestRate, date, hasOverdraftAccount("0"));
+                        printWriter.print(newRecord);
+                        printWriter.flush();
+                        break;
                     case "TMB":
                     case "Gold":
                     case "Diamond":
+                        Checking checking = (Checking) customers.get(i).accounts.get(x);
                         backupAccountFlag = "1";
-                        String backupAccountNumber = customers.get(i).accounts.get(x).getBackupAccountNumber();
-                        acctNum = customers.get(i).accounts.get(x).getAccountNumber();
-                        date = customers.get(i).accounts.get(x).date;
+                        backupAccountNumber = acct.getBackupAccountNumber();
+                        acctNum = checking.accountNumber;
+                        interestRate = checking.interestRate;
+                        balance = checking.balance;
+                        date = checking.date;
                         newRecord = checkingDBRecord(ssn, address, city, state, zip, fName, lName, acctNum, type, balance, interestRate, date, hasOverdraftAccount("0"));
                         printWriter.print(newRecord);
                         printWriter.flush();
@@ -272,8 +282,6 @@ public class Main {
                         printWriter.flush();
                         break;
                 }
-
-                //TODO Will need a print function written for each type of account since Credit and loans have extra fields.
 
 
                 //TODO will also need to include the flag for overdraft coverage

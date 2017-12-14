@@ -8,19 +8,19 @@ public class Checking extends Account {
 
     public Checking(String ownerID, String balance, String interestRate, String accountNumber, String type, String date, boolean hasOverdraftAccount) {
         this.setOwnerID(ownerID);
-        this.setBalance(balance);
-        this.setInterestRate(interestRate);
-        this.setAccountNumber(accountNumber);
+        this.balance = balance;
+        this.interestRate = interestRate;
+        this.accountNumber = accountNumber;
         this.setType(type);
-        this.setDate(date);
+        this.date = date;
         this.hasOverdraftAccount = hasOverdraftAccount;
     }
 
     public Checking(String ownerID, String balance, String interestRate, String accountNumber, String type, String date, boolean hasOverdraftAccount, String overdraftAccount) {
         this.setOwnerID(ownerID);
-        this.setBalance(balance);
-        this.setInterestRate(interestRate);
-        this.setAccountNumber(accountNumber);
+        this.balance = balance;
+        this.interestRate = interestRate;
+        this.accountNumber = accountNumber;
         this.setType(type);
         this.setDate(date);
         this.hasOverdraftAccount = hasOverdraftAccount;
@@ -100,15 +100,15 @@ public class Checking extends Account {
 
     @Override
     public void debit(double amount) {
-        double newBalance = Double.valueOf(balance) - amount;
+        double newBalance = (Double.valueOf(Account.balance) - amount);
 
         //Taking money from account
 
         //Transaction debit = new Transaction("Debit",Main.myDate,balance);
 
         if (newBalance >= 0) {
-            balance = String.valueOf(newBalance);
-            System.out.println(accountNumber + " new balance should be " + balance);
+            Account.balance = String.valueOf(newBalance);
+            System.out.println(Account.accountNumber + " new balance should be " + balance);
             updateTransactionList(new Transaction("Debit", Main.myDate.toString(), balance));
         }
         else if ((Double.valueOf(balance) - amount) < 0) {

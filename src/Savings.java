@@ -4,11 +4,11 @@ public class Savings extends Account {
 
     public Savings(String ownerID, String balance, String interestRate, String accountNumber, String type, String date) {
         this.setOwnerID(ownerID);
-        this.setBalance(balance);
-        this.setInterestRate(interestRate);
-        this.setAccountNumber(accountNumber);
+        this.balance = balance;
+        this.interestRate = interestRate;
+        this.accountNumber = accountNumber;
         this.setType(type);
-        this.setDate(date);
+        this.date = date;
     }
 
     @Override
@@ -52,7 +52,7 @@ public class Savings extends Account {
         //Initialization
         double currentTotal;
         double newTotal;
-        String oldTotal = getBalance();
+        String oldTotal = this.getBalance();
 
         //Convert Balance from String to double
         currentTotal = Double.valueOf(oldTotal);
@@ -62,7 +62,6 @@ public class Savings extends Account {
         if (newTotal < 0.00)
             //handleOverdraft();
             setBalance(Double.toString(newTotal));
-
     }
 
     @Override

@@ -2,9 +2,9 @@ import java.util.ArrayList;
 
 public abstract class Account {
     //Abstract Variables
-    public String balance;
+    public static String balance;
     public String interestRate;
-    public String accountNumber;
+    public static String accountNumber;
     public String type;
     public String ownerID;
     public String date;
