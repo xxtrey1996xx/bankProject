@@ -1,18 +1,15 @@
-import jdk.nashorn.internal.lookup.Lookup;
-
 import javax.swing.*;
 import java.awt.event.*;
 
-public class DebitAccount extends JDialog {
+public class CreditAccount extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
     private JTextField SSNTextField;
     private JTextField accountNumberTextField;
     private JTextField amountTextField;
-    private Customer customer;
 
-    public DebitAccount() {
+    public CreditAccount() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -46,7 +43,7 @@ public class DebitAccount extends JDialog {
     }
 
     public static void main(String[] args) {
-        DebitAccount dialog = new DebitAccount();
+        CreditAccount dialog = new CreditAccount();
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);
@@ -87,7 +84,7 @@ public class DebitAccount extends JDialog {
                                 if (isDouble(amountTextField.getText())) {
                                     //checking to see if double or not
                                     try {
-                                        acct.debit(Double.valueOf(amountTextField.getText()));
+                                        acct.credit(Double.valueOf(amountTextField.getText()));
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
@@ -124,7 +121,7 @@ public class DebitAccount extends JDialog {
                                 if (isDouble(amountTextField.getText())) {
                                     //checking to see if double or not
                                     try {
-                                        acct.debit(Double.valueOf(amountTextField.getText()));
+                                        acct.credit(Double.valueOf(amountTextField.getText()));
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
@@ -159,7 +156,7 @@ public class DebitAccount extends JDialog {
                                 if (isDouble(amountTextField.getText())) {
                                     //checking to see if double or not
                                     try {
-                                        acct.debit(Double.valueOf(amountTextField.getText()));
+                                        acct.credit(Double.valueOf(amountTextField.getText()));
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
@@ -194,6 +191,5 @@ public class DebitAccount extends JDialog {
         fmm.setSystemDateTime();
         fmm.pack();
         fmm.setVisible(true);
-
     }
 }
