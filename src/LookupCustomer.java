@@ -59,6 +59,7 @@ public class LookupCustomer extends JDialog {
             if (Main.customers.get(i).ssn.compareToIgnoreCase(ssn) == 0)
                 findIndex = i;
         }
+
         if (findIndex == -99) {
             if (alertNeeded) {
                 System.out.println("User not found SSN: " + ssn);
