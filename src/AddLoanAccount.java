@@ -95,6 +95,11 @@ public class AddLoanAccount extends JDialog {
                 Main.customers.get(found).accounts.add(newCC);
             }
         }//end outter if
+        try {
+            Main.saveDB();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         dispose();
     }//end on ok
 
