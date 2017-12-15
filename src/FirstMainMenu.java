@@ -84,6 +84,13 @@ public class FirstMainMenu extends JDialog {
             onLookupCustomer();//Performs button event
         });
 
+        withdrawalButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                onDebitAccount();
+            }
+        });
+
 
         // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
