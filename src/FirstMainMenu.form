@@ -38,6 +38,7 @@
             <properties>
               <enabled value="true"/>
               <text value="Close Account"/>
+              <visible value="false"/>
             </properties>
           </component>
           <vspacer id="fc022">
