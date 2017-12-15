@@ -126,6 +126,8 @@ public class Main {
         } else {
             //Instantiating account types
 
+
+            //todo redundant code
             //Create Account and Add to User Object Based on Account Type in DB Record
             switch (type) {
                 case "Savings":

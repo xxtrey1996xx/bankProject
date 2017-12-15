@@ -3,6 +3,9 @@ import jdk.nashorn.internal.lookup.Lookup;
 import javax.swing.*;
 import java.awt.event.*;
 
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
+
 public class DebitAccount extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
@@ -68,24 +71,31 @@ public class DebitAccount extends JDialog {
             Boolean wasAccountFound = false;
             Boolean accountDebited = false;
 
-
+            //Find account
             for (int i = 0; i < customer.accounts.size(); i++) {
                 Account acct = customer.accounts.get(i);
                 switch (acct.type) {
                     case "Savings":
                         Savings savings = (Savings) customer.accounts.get(i);
-                        //Going through only the accounts registered to the ssn
+                        //Searching through only the accounts registered to the ssn
                         if (savings.accountNumber.equalsIgnoreCase(accountNumberTextField.getText())) {
+
                             //checking to see if the acct num exsists for the customer
                             int response = JOptionPane.showConfirmDialog(null, "Are these details correct?\n"
                                             + "Social Security Num: " + customer.ssn + "\n" +
-                                            " Account Number: " + customer.accounts.get(i).accountNumber + "\n"
-                                            + "Balance to Debit: " + amountTextField.getText(), "Confirm",
+                                            " Account Number: " + customer.accounts.get(i).accountNumber + "\n"+
+                                            "Current Balance: " + customer.accounts.get(i).balance + "\n" +
+                                            "Balance to Debit: " + amountTextField.getText() + "\n" +
+                                            "Final Balance: " + (Double.valueOf(customer.accounts.get(i).balance) - Double.valueOf(amountTextField.getText())), "Confirm",
                                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+
                             if (response == JOptionPane.NO_OPTION) {
                                 onCancel();
+
                             } else if (response == JOptionPane.YES_OPTION) {
                                 if (isDouble(amountTextField.getText())) {
+
                                     //checking to see if double or not
                                     try {
                                         acct.debit(Double.valueOf(amountTextField.getText()));
@@ -93,11 +103,12 @@ public class DebitAccount extends JDialog {
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
+
                                     dispose();
 
                                 } else {
                                     //not a double
-                                    JOptionPane.showMessageDialog(null, "Please enter a valid number for debiting", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+                                    JOptionPane.showMessageDialog(null, "Please enter a valid number for debiting", "Invalid Input", ERROR_MESSAGE);
                                 }//end double if
                             } else if (response == JOptionPane.CLOSED_OPTION) {
                                 onCancel();
@@ -108,17 +119,24 @@ public class DebitAccount extends JDialog {
                     case "Gold":
                     case "TMB":
                     case "Diamond":
+
                         Checking checking = (Checking) customer.accounts.get(i);
+
                         //Going through only the accounts registered to the ssn
                         if (checking.accountNumber.equalsIgnoreCase(accountNumberTextField.getText())) {
+
                             //checking to see if the acct num exsists for the customer
                             int response = JOptionPane.showConfirmDialog(null, "Are these details correct?\n"
                                             + "Social Security Num: " + customer.ssn + "\n" +
-                                            " Account Number: " + customer.accounts.get(i).accountNumber + "\n"
-                                            + "Balance to Debit: " + amountTextField.getText(), "Confirm",
+                                            " Account Number: " + customer.accounts.get(i).accountNumber + "\n"+
+                                            "Current Balance: " + customer.accounts.get(i).balance + "\n" +
+                                            "Balance to Debit: " + amountTextField.getText() + "\n" +
+                                            "Final Balance: " + (Double.valueOf(customer.accounts.get(i).balance) - Double.valueOf(amountTextField.getText())), "Confirm",
                                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
                             if (response == JOptionPane.NO_OPTION) {
-                                onCancel();
+                                onCancel();//End Process no transaction
+
                             } else if (response == JOptionPane.YES_OPTION) {
                                 if (isDouble(amountTextField.getText())) {
                                     //checking to see if double or not
@@ -132,7 +150,7 @@ public class DebitAccount extends JDialog {
 
                                 } else {
                                     //not a double
-                                    JOptionPane.showMessageDialog(null, "Please enter a valid number for debiting", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+                                    JOptionPane.showMessageDialog(null, "Please enter a valid number for debiting", "Invalid Input", ERROR_MESSAGE);
                                 }//end double if
                             } else if (response == JOptionPane.CLOSED_OPTION) {
                                 onCancel();
@@ -140,6 +158,7 @@ public class DebitAccount extends JDialog {
                             wasAccountFound = true;
                         }
                         break;
+
                     case "CC":
                         CC cc = (CC) customer.accounts.get(i);
                         //Going through only the accounts registered to the ssn
@@ -147,11 +166,15 @@ public class DebitAccount extends JDialog {
                             //checking to see if the acct num exsists for the customer
                             int response = JOptionPane.showConfirmDialog(null, "Are these details correct?\n"
                                             + "Social Security Num: " + customer.ssn + "\n" +
-                                            " Account Number: " + customer.accounts.get(i).accountNumber + "\n"
-                                            + "Balance to Debit: " + amountTextField.getText(), "Confirm",
+                                            " Account Number: " + customer.accounts.get(i).accountNumber + "\n"+
+                                            "Current Balance: " + customer.accounts.get(i).balance + "\n" +
+                                            "Balance to Debit: " + amountTextField.getText() + "\n" +
+                                            "Final Balance: " + (Double.valueOf(customer.accounts.get(i).balance) - Double.valueOf(amountTextField.getText())), "Confirm",
                                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
                             if (response == JOptionPane.NO_OPTION) {
-                                onCancel();
+                                onCancel(); // Cancel Transaction
+
                             } else if (response == JOptionPane.YES_OPTION) {
                                 if (isDouble(amountTextField.getText())) {
                                     //checking to see if double or not
@@ -162,10 +185,9 @@ public class DebitAccount extends JDialog {
                                         e.printStackTrace();
                                     }
                                     dispose();
-
                                 } else {
                                     //not a double
-                                    JOptionPane.showMessageDialog(null, "Please enter a valid number for debiting", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+                                    JOptionPane.showMessageDialog(null, "Please enter a valid number for debiting", "Invalid Input", ERROR_MESSAGE);
                                 }//end double if
                             } else if (response == JOptionPane.CLOSED_OPTION) {
                                 onCancel();
@@ -177,12 +199,16 @@ public class DebitAccount extends JDialog {
 
             }
             if (!wasAccountFound) {
-                JOptionPane.showMessageDialog(null, "That Account was not found", "Account Not Found", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "That Account was not found", "Account Not Found", ERROR_MESSAGE);
             }
             if (accountDebited) {
                 JOptionPane.showMessageDialog(null,
                         "Account Debited!",
-                        "Updated Successful", JOptionPane.INFORMATION_MESSAGE);
+                        "Updated Successful", INFORMATION_MESSAGE);
+            }
+            else if(!accountDebited) {
+                JOptionPane.showMessageDialog(
+                null,"Debit Failed", "Unsuccessful Transaction", ERROR_MESSAGE);
             }
         }
         FirstMainMenu fmm = new FirstMainMenu(Main.activeUser);

@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -16,8 +15,8 @@ public class FirstMainMenu extends JDialog {
     private JButton closeAccountButton;
     private JButton lookupCustomerButton;
     private JButton hideButton;
-    private JButton withdrawalButton;
-    private JButton depositButton;
+    private JButton withdrawalButton; //Make Visible if Customer
+    private JButton depositButton; //Hide if Customer
     private JTextField systemDateAndTimeTextField;
     private JButton updateDateButton;
     public static String acctType = null;//This is a "flag" used to determine which accttype button was used for new and exsisting page
@@ -25,6 +24,7 @@ public class FirstMainMenu extends JDialog {
     private JButton openCDButton;
     private JButton debitAnAccountButton;
     private JButton creditAnAccountButton;
+    private JButton displayAccounts;
 
     public FirstMainMenu(String activeUser) {
         //This is for controlling what the tellers can see as apposed to managers
@@ -32,7 +32,6 @@ public class FirstMainMenu extends JDialog {
         } else if (activeUser.compareToIgnoreCase("manager") == 0) {
             openLoanButton.setVisible(true);
             openCDButton.setVisible(true);
-
             closeAccountButton.setVisible(true);
 
         } else if (activeUser.compareToIgnoreCase("customer") == 0) {
@@ -42,7 +41,7 @@ public class FirstMainMenu extends JDialog {
             creditAnAccountButton.setVisible(false);
             debitAnAccountButton.setVisible(false);
             withdrawalButton.setVisible(true);
-            depositButton.setVisible(true);
+            depositButton.setVisible(false);
         }
         setContentPane(contentPane);
         setModal(true);
@@ -53,6 +52,7 @@ public class FirstMainMenu extends JDialog {
                 onOpenAccount();
             }
         });
+
         updateDateButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String dateStr = systemDateAndTimeTextField.getText();
@@ -71,49 +71,34 @@ public class FirstMainMenu extends JDialog {
                 }
             }
         });
-        closeAccountButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCloseAccount(activeUser);
-            }
-        });
-        debitAnAccountButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onDebitAccount();
-            }
-        });
-        creditAnAccountButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCreditAccount();
-            }
-        });
-        closeSystemButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCloseSystem();
-            }
+
+        closeAccountButton.addActionListener(e -> onCloseAccount(activeUser));
+
+        debitAnAccountButton.addActionListener(e -> onDebitAccount());
+
+        creditAnAccountButton.addActionListener(e -> onCreditAccount());
+
+        closeSystemButton.addActionListener(e -> onCloseSystem());
+
+        lookupCustomerButton.addActionListener(e -> {
+            onLookupCustomer();//Performs button event
         });
 
-        lookupCustomerButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onLookupCustomer();//Performs button event
-            }
-        });
+
         // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 onCloseSystem();
             }
         });
-        openCDButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onOpenCD();
-            }
-        });
-        openLoanButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onOpenLoan();
-            }
-        });
+
+        openCDButton.addActionListener(e -> onOpenCD());
+
+        openLoanButton.addActionListener(e -> onOpenLoan());
+
+        /*withdrawalButton.addActionListener(e -> onWithdrawal());*/
 
     }
 
@@ -131,8 +116,8 @@ public class FirstMainMenu extends JDialog {
     }
 
 
-    //Change Detected
 
+    //Change Detected
     private void onOpenAccount() {
         acctType = "bank";
         System.out.println("open account clicked");
@@ -157,6 +142,14 @@ public class FirstMainMenu extends JDialog {
         Main.dateString = strCurrentDate;
         Main.saveDB();
     }
+
+    /*private void onWithdrawal() {
+        System.out.println("Withdrawal Clicked");
+        DisplayAccounts accounts = new DisplayAccounts();
+        accounts.pack();
+        accounts.setVisible(true);
+        dispose();
+    }*/
 
     private void onCloseAccount(String activeUser) {
         System.out.println("close account clicked");
