@@ -72,15 +72,6 @@
               <text value="Lookup Customer"/>
             </properties>
           </component>
-          <component id="4d2b2" class="javax.swing.JButton" binding="setInterestRatesButton" default-binding="true">
-            <constraints>
-              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Set Interest Rates"/>
-              <visible value="false"/>
-            </properties>
-          </component>
           <component id="23c36" class="javax.swing.JButton" binding="depositButton" default-binding="true">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
@@ -107,20 +98,20 @@
               <text value="Close System"/>
             </properties>
           </component>
-          <component id="3943" class="javax.swing.JButton" binding="debitAnAccountButton" default-binding="true">
-            <constraints>
-              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Debit an Account"/>
-            </properties>
-          </component>
           <component id="7ff51" class="javax.swing.JButton" binding="creditAnAccountButton" default-binding="true">
             <constraints>
               <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Credit an Account "/>
+            </properties>
+          </component>
+          <component id="3943" class="javax.swing.JButton" binding="debitAnAccountButton" default-binding="true">
+            <constraints>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Debit an Account"/>
             </properties>
           </component>
         </children>

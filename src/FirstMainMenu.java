@@ -23,7 +23,6 @@ public class FirstMainMenu extends JDialog {
     public static String acctType = null;//This is a "flag" used to determine which accttype button was used for new and exsisting page
     private JButton openLoanButton;
     private JButton openCDButton;
-    private JButton setInterestRatesButton;
     private JButton debitAnAccountButton;
     private JButton creditAnAccountButton;
 
@@ -33,9 +32,9 @@ public class FirstMainMenu extends JDialog {
         } else if (activeUser.compareToIgnoreCase("manager") == 0) {
             openLoanButton.setVisible(true);
             openCDButton.setVisible(true);
-            setInterestRatesButton.setVisible(false);
+
             closeAccountButton.setVisible(true);
-            setInterestRatesButton.setVisible(true);
+
         } else if (activeUser.compareToIgnoreCase("customer") == 0) {
             openAccountButton.setVisible(false);
             closeAccountButton.setVisible(false);
@@ -130,7 +129,6 @@ public class FirstMainMenu extends JDialog {
         String strDate = date.format(Main.myDate);
         systemDateAndTimeTextField.setText(strDate);
     }
-
 
 
     //Change Detected
