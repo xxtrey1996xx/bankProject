@@ -22,25 +22,26 @@ public class FirstMainMenu extends JDialog {
     private JButton updateDateButton;
     public static String acctType = null;//This is a "flag" used to determine which accttype button was used for new and exsisting page
     private JButton openLoanButton;
-    private String activeUser;
     private JButton openCDButton;
     private JButton setInterestRatesButton;
     private JButton debitAnAccountButton;
     private JButton creditAnAccountButton;
 
     public FirstMainMenu(String activeUser) {
-        this.activeUser = activeUser;
         //This is for controlling what the tellers can see as apposed to managers
         if (activeUser.compareToIgnoreCase("teller") == 0) {
         } else if (activeUser.compareToIgnoreCase("manager") == 0) {
             openLoanButton.setVisible(true);
             openCDButton.setVisible(true);
-            setInterestRatesButton.setEnabled(false);
+            setInterestRatesButton.setVisible(false);
+            closeAccountButton.setVisible(true);
             setInterestRatesButton.setVisible(true);
         } else if (activeUser.compareToIgnoreCase("customer") == 0) {
             openAccountButton.setVisible(false);
             closeAccountButton.setVisible(false);
             lookupCustomerButton.setVisible(false);
+            creditAnAccountButton.setVisible(false);
+            debitAnAccountButton.setVisible(false);
             withdrawalButton.setVisible(true);
             depositButton.setVisible(true);
         }
