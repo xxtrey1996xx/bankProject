@@ -66,7 +66,7 @@
               </grid>
             </constraints>
             <properties>
-              <text value="teller"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="49d0d" class="javax.swing.JPasswordField" binding="passwordPasswordField" default-binding="true">
@@ -76,7 +76,7 @@
               </grid>
             </constraints>
             <properties>
-              <text value="password"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="7d4a6" class="javax.swing.JLabel">
