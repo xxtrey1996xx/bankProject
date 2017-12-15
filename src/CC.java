@@ -85,11 +85,18 @@ public class CC extends Credit {
     @Override
     public void debit() {
 
-
     }
 
     @Override
     public void debit(double amount) {
+        Double newBalance = Double.valueOf(balance) - amount;
+        String StringBalance = newBalance.toString();
+        balance = StringBalance;
+        try {
+            Main.saveDB();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

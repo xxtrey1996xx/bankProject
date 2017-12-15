@@ -89,6 +89,13 @@ public class Checking extends Account {
         transaction = new Transaction("Credit", Main.myDate.toString(), balance);
         updateTransactionList(transaction);
         System.out.println(accountNumber + " should be " + balance);
+        if (newBalance >= 1500) {
+            this.setType("Diamond");
+        } else if (newBalance >= 1000) {
+            this.setType("Gold");
+        } else {
+            this.setType("TMB");
+        }
         try {
             Main.saveDB();
         } catch (Exception e) {
@@ -120,6 +127,13 @@ public class Checking extends Account {
             System.out.println(Account.accountNumber + " new balance should be " + balance);
             transaction = new Transaction("Debit", Main.myDate.toString(), balance);
             updateTransactionList(transaction);
+            if (newBalance >= 1500) {
+                this.setType("Diamond");
+            } else if (newBalance >= 1000) {
+                this.setType("Gold");
+            } else {
+                this.setType("TMB");
+            }
             try {
                 Main.saveDB();
             } catch (Exception e) {

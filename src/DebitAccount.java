@@ -143,7 +143,7 @@ public class DebitAccount extends JDialog {
                     case "CC":
                         CC cc = (CC) customer.accounts.get(i);
                         //Going through only the accounts registered to the ssn
-                        if (cc.accountNumber.equalsIgnoreCase(accountNumberTextField.getText())) {
+                        if (cc.cardNumber.equalsIgnoreCase(accountNumberTextField.getText())) {
                             //checking to see if the acct num exsists for the customer
                             int response = JOptionPane.showConfirmDialog(null, "Are these details correct?\n"
                                             + "Social Security Num: " + customer.ssn + "\n" +
