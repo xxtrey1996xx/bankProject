@@ -69,7 +69,7 @@
                   </grid>
                 </constraints>
                 <properties>
-                  <text value="100.00"/>
+                  <text value=""/>
                 </properties>
               </component>
               <component id="fb09f" class="javax.swing.JTextField" binding="interestRateTextField" default-binding="true">
@@ -79,7 +79,7 @@
                   </grid>
                 </constraints>
                 <properties>
-                  <text value="1.0"/>
+                  <text value=""/>
                 </properties>
               </component>
               <component id="799d8" class="javax.swing.JTextField" binding="dateTextField" default-binding="true">
@@ -89,7 +89,7 @@
                   </grid>
                 </constraints>
                 <properties>
-                  <text value="12152017"/>
+                  <text value=""/>
                 </properties>
               </component>
               <component id="2cf16" class="javax.swing.JLabel">

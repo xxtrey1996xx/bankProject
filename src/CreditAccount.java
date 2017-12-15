@@ -76,8 +76,10 @@ public class CreditAccount extends JDialog {
                             //checking to see if the acct num exsists for the customer
                             int response = JOptionPane.showConfirmDialog(null, "Are these details correct?\n"
                                             + "Social Security Num: " + customer.ssn + "\n" +
-                                            " Account Number: " + customer.accounts.get(i).accountNumber + "\n"
-                                            + "Balance to Debit: " + amountTextField.getText(), "Confirm",
+                                            " Account Number: " + savings.accountNumber + "\n" +
+                                            "Current Balance: " + savings.balance + "\n" +
+                                            "Balance to Debit: " + amountTextField.getText() + "\n" +
+                                            "Final Balance: " + (Double.valueOf(savings.balance) + Double.valueOf(amountTextField.getText())), "Confirm",
                                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                             if (response == JOptionPane.NO_OPTION) {
                                 onCancel();
@@ -112,8 +114,10 @@ public class CreditAccount extends JDialog {
                             //checking to see if the acct num exsists for the customer
                             int response = JOptionPane.showConfirmDialog(null, "Are these details correct?\n"
                                             + "Social Security Num: " + customer.ssn + "\n" +
-                                            " Account Number: " + customer.accounts.get(i).accountNumber + "\n"
-                                            + "Balance to Debit: " + amountTextField.getText(), "Confirm",
+                                            " Account Number: " + checking.accountNumber + "\n" +
+                                            "Current Balance: " + checking.balance + "\n" +
+                                            "Balance to Debit: " + amountTextField.getText() + "\n" +
+                                            "Final Balance: " + (Double.valueOf(checking.balance) + Double.valueOf(amountTextField.getText())), "Confirm",
                                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                             if (response == JOptionPane.NO_OPTION) {
                                 onCancel();
@@ -145,8 +149,10 @@ public class CreditAccount extends JDialog {
                             //checking to see if the acct num exsists for the customer
                             int response = JOptionPane.showConfirmDialog(null, "Are these details correct?\n"
                                             + "Social Security Num: " + customer.ssn + "\n" +
-                                            " Account Number: " + customer.accounts.get(i).accountNumber + "\n"
-                                            + "Balance to Debit: " + amountTextField.getText(), "Confirm",
+                                            " Account Number: " + cc.accountNumber + "\n" +
+                                            "Current Balance: " + cc.balance + "\n" +
+                                            "Balance to Debit: " + amountTextField.getText() + "\n" +
+                                            "Final Balance: " + (Double.valueOf(cc.balance) + Double.valueOf(amountTextField.getText())), "Confirm",
                                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                             if (response == JOptionPane.NO_OPTION) {
                                 onCancel();
