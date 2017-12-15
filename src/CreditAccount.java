@@ -101,9 +101,7 @@ public class CreditAccount extends JDialog {
                             }
                             wasAccountFound = true;
                         }
-                        if (!wasAccountFound) {
-                            JOptionPane.showMessageDialog(null, "That Account was not found", "Account Not Found", JOptionPane.ERROR_MESSAGE);
-                        }
+
                         break;
                     case "Gold":
                     case "TMB":
@@ -139,9 +137,6 @@ public class CreditAccount extends JDialog {
                             }
                             wasAccountFound = true;
                         }
-                        if (!wasAccountFound) {
-                            JOptionPane.showMessageDialog(null, "That Account was not found", "Account Not Found", JOptionPane.ERROR_MESSAGE);
-                        }
                         break;
                     case "CC":
                         CC cc = (CC) customer.accounts.get(i);
@@ -175,12 +170,12 @@ public class CreditAccount extends JDialog {
                             }
                             wasAccountFound = true;
                         }
-                        if (!wasAccountFound) {
-                            JOptionPane.showMessageDialog(null, "That Account was not found", "Account Not Found", JOptionPane.ERROR_MESSAGE);
-                        }
                         break;
                 }
 
+            }
+            if (!wasAccountFound) {
+                JOptionPane.showMessageDialog(null, "That Account was not found", "Account Not Found", JOptionPane.ERROR_MESSAGE);
             }
             if (wasCredited) {
                 JOptionPane.showMessageDialog(null,
