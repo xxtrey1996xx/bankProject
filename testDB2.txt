@@ -1,3 +1,0 @@
-SSN         Address         City        State/Zip   FNam    LName   ACCT#   ACCTTYP Balance Int     OpenDate
-423453245|114 North 4th|Clarkesdale|MO|64493|Ronald|Jones|556315|Savings|10000|0.03|11071999
-345653425|1805 Jules|St. Joseph|MO|64503|Mark|Ingrem|496645|Savings|156593|0.007|11062003
